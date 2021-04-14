@@ -1,3 +1,1 @@
 # sei-project-four
-
-Hi
