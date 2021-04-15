@@ -1,0 +1,159 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+// Set your brand colors
+$brand-blue: #00a0ff;
+$brand-hover: #0392e4;
+$brand-black: #161637;
+$brand-light-blue: #aedffc;
+// other
+
+$duration: 0.2s;
+$distance: 8px;
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// Update Bulma's global variables
+$family-sans-serif: 'Helvetica', sans-serif;
+$heading-font: 'Inter', sans-serif;
+
+@import '~bulma/bulma.sass';
+
+// * General styles
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font;
+  color: $brand-black;
+  color: $brand-black;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+}
+
+p {
+  color: $brand-black;
+}
+//* Nav Styles
+
+.logo {
+  font-family: $heading-font;
+  color: $brand-black;
+  font-weight: 700;
+  font-size: 2em;
+  margin-left: 0.5rem;
+}
+
+.nav-container {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+.sign-in {
+  color: $brand-black;
+  margin-right: 2rem;
+}
+.sign-in:hover {
+  text-decoration: underline;
+}
+
+.get-started-button {
+  border-radius: 40px;
+  background: $brand-blue;
+  color: white;
+  padding: 1.5rem 0.8rem;
+  border: none;
+  margin-top: 0.3rem;
+}
+
+.get-started-button:hover {
+  background: $brand-hover;
+  color: white;
+  outline: none;
+}
+
+// * link underline effect integrate later
+
+// .box-e .custom-underline::after {
+//   top: 65%;
+//   height: 2px;
+//   width: 0%;
+//   left: 5%;
+//   background-color: rgba(255, 255, 255, 0.6);
+//   transition: 0.5s ease all 0.3s;
+// }
+
+// .box-e:hover .custom-underline::after {
+//   width: 90%;
+//   transition: 0.3s ease all;
+// }
+// .custom-underline,
+// .custom-underline:hover,
+// .custom-underline:focus,
+// .custom-underline:active {
+//   text-decoration: none;
+// }
+
+// .custom-underline::after {
+//   content: '';
+//   position: absolute;
+// }
+
+// * dropdown
+
+.dropdown-shape {
+  border-radius: 10px;
+  // margin-top: 0.8rem;
+  z-index: 1000 !important;
+  width: 15rem;
+}
+
+.circle-space {
+  margin-right: 0.5rem;
+}
+
+// * Home
+
+.home-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.home-content-container {
+  margin-top: 6rem;
+}
+
+.home-cta-box {
+  width: 100%;
+  margin-top: 4rem;
+}
+
+.logos-box-banner {
+  height: 35vh;
+  background: $brand-light-blue;
+  margin-top: 4rem;
+  clip-path: url(#wave);
+  text-align: center;
+  justify-content: center;
+  padding: 8rem;
+}
+.logos-box {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.logos-box img {
+  height: 50px;
+  margin-left: 4rem;
+}
