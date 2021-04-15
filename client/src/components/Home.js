@@ -1,14 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const Home = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch('api/savedproperties/')
-      console.log(await res.json())
-    }
-    getData()
-  }, [])
-
   return <h1>Hello World</h1>
 }
 

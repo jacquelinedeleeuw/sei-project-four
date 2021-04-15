@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import { userIsAuthenticated } from '../helpers/auth'
 
 const Navbar = () => {
 
@@ -47,7 +48,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
-          {/* { !userIsAuthenticated() && */}
+          { !userIsAuthenticated() &&
           <div className="navbar-item">
             <div className="buttons">
               <Link to="/login" className="button is-light">
@@ -58,8 +59,8 @@ const Navbar = () => {
               </Link>
             </div>
           </div>
-          {/* } */}
-          {/* { userIsAuthenticated() && */}
+          }
+          { userIsAuthenticated() &&
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">
           User Name
@@ -80,7 +81,7 @@ const Navbar = () => {
               </a>
             </div>
           </div>
-          {/* } */}
+          }
         </div>
       </div>
     </nav>
