@@ -38,9 +38,9 @@ class UserDetailView(APIView):
         user_to_delete.delete()
         return Response(f"User {pk} deleted successfully", status=status.HTTP_200_OK)
 
-    def put(self, request, pk):
+    def patch(self, request, pk):
         user_to_edit = self.get_user(pk=pk)
-        updated_user = UserSerializer(user_to_edit, data=request.data)
+        updated_user = PopulatedUserSerializer(user_to_edit, data=request.data, partial=True)
         if updated_user.is_valid():
             updated_user.save()
             return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)
