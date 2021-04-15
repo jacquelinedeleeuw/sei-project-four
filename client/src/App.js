@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
-import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -21,7 +20,6 @@ const App = () => {
           <Login />
         </Route>
       </Switch>
-      <Footer />
     </BrowserRouter>
   )
 }

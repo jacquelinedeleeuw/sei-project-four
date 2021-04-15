@@ -7,6 +7,8 @@ import Zoopla from './assets/zoopla.png'
 import RightMove from './assets/rightmove.png'
 import PrimeLocation from './assets/prime-location.png'
 
+import Footer from './Footer'
+
 const Home = () => {
   // useEffect(() => {
   //   const getData = async () => {
@@ -64,6 +66,8 @@ const Home = () => {
           />
         </clipPath>
       </svg>
+
+      <Footer />
     </>
   )
 }
