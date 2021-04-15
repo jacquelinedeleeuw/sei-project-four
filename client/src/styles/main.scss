@@ -157,3 +157,25 @@ p {
   height: 50px;
   margin-left: 4rem;
 }
+
+//* footer
+
+footer {
+  border-top: 1px solid rgb(228, 228, 228);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-content {
+  display: flex;
+}
+
+.footer-content p {
+  margin-right: 1rem;
+  font-size: 0.9em;
+}
+
+.copyright {
+  font-size: 0.9em;
+}

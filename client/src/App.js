@@ -1,9 +1,11 @@
 import React from 'react'
-import Home from './components/Home'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+// components
+import Home from './components/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
           <Login />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   )
 }

@@ -3,6 +3,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Logo from './assets/logo.svg'
+import { userIsAuthenticated } from '../helpers/auth'
 
 const Navbar = () => {
   const location = useLocation()
@@ -54,44 +55,44 @@ const Navbar = () => {
           </div> */}
 
           <div className="navbar-end">
-            {/* { !userIsAuthenticated() && */}
-            <div className="navbar-item">
-              <div className="buttons">
-                <Link to="/login" className="sign-in ">
-                  Sign in
-                </Link>
-                <Link to="/getstarted" className="button get-started-button">
-                  <strong>Get Started</strong>
-                </Link>
+            {!userIsAuthenticated() && (
+              <div className="navbar-item">
+                <div className="buttons">
+                  <Link to="/login" className="sign-in ">
+                    Sign in
+                  </Link>
+                  <Link to="/getstarted" className="button get-started-button">
+                    <strong>Get Started</strong>
+                  </Link>
+                </div>
               </div>
-            </div>
-            {/* } */}
-            {/* { userIsAuthenticated() && */}
-            <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
-                <FontAwesomeIcon
-                  icon={faUserCircle}
-                  className="circle-space fa-2x"
-                />
-                <p>User Name</p>
-              </a>
-              <div className="navbar-dropdown dropdown-shape">
-                <Link to="/myprofile" className="navbar-item">
-                  Profile
-                </Link>
-                <Link to="/savedproperties" className="navbar-item">
-                  My Properties
-                </Link>
-                <Link to="/applications" className="navbar-item">
-                  My applications
-                </Link>
-                <hr className="navbar-divider" />
-                <a onClick={handleLogout} className="navbar-item">
-                  Log out
+            )}
+            {userIsAuthenticated() && (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    className="circle-space fa-2x"
+                  />
+                  <p>User Name</p>
                 </a>
+                <div className="navbar-dropdown dropdown-shape">
+                  <Link to="/myprofile" className="navbar-item">
+                    Profile
+                  </Link>
+                  <Link to="/savedproperties" className="navbar-item">
+                    My Properties
+                  </Link>
+                  <Link to="/applications" className="navbar-item">
+                    My applications
+                  </Link>
+                  <hr className="navbar-divider" />
+                  <a onClick={handleLogout} className="navbar-item">
+                    Log out
+                  </a>
+                </div>
               </div>
-            </div>
-            {/* } */}
+            )}
           </div>
         </div>
       </nav>
