@@ -8,7 +8,7 @@
 $brand-blue: #00a0ff;
 $brand-hover: #0392e4;
 $brand-black: #161637;
-$brand-light-blue: #aedffc;
+$brand-light-blue: #d8effc;
 // other
 
 $duration: 0.2s;
@@ -33,6 +33,7 @@ h6 {
   color: $brand-black;
   color: $brand-black;
   font-weight: 500;
+  font-size: 2em;
 }
 
 h1 {
@@ -158,6 +159,72 @@ p {
   margin-left: 4rem;
 }
 
+//* Login
+
+.login-left {
+  background: $brand-light-blue;
+  min-height: 101.5vh;
+  padding: 3rem;
+}
+
+.login-logo {
+  display: flex;
+}
+
+.login-logo img {
+  height: 30px;
+  margin-top: 0.45rem;
+}
+.form-container {
+  margin-top: 6rem;
+}
+
+.login-form-box {
+  padding: 6rem;
+
+  // text-align: center;
+}
+
+.login-form-form {
+  width: 40vh;
+  margin: 0 auto;
+}
+
+.login-form-form input {
+  border-radius: 10px;
+}
+
+.form-label {
+  text-align: none;
+  margin-bottom: 0.5rem;
+}
+
+.form-header {
+  text-align: center;
+}
+.form-header p {
+  font-weight: 100;
+}
+
+.form-button {
+  width: 100%;
+  background-color: $brand-blue;
+  color: white;
+  border-radius: 8px;
+}
+.form-button:hover {
+  color: white;
+  background-color: $brand-hover;
+}
+
+.login-sign-up {
+  text-align: center;
+  font-size: 0.9em;
+  color: rgb(179, 179, 179);
+}
+.login-sign-up p {
+  color: rgb(179, 179, 179);
+}
 //* footer
 
 footer {
