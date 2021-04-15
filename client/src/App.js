@@ -1,14 +1,15 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+// components
 import Home from './components/Home'
-import Navbar from './components/Navbar'
 import Login from './auth/Login'
 import Register from './auth/Register'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -20,6 +21,7 @@ const App = () => {
           <Login />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   )
 }
