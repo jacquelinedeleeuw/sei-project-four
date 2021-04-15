@@ -32,8 +32,4 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ['first_name', 'last_name', 'username', 'email', 'password', 'password_confirmation']
-=======
-        fields = '__all__'
->>>>>>> development
