@@ -98,18 +98,6 @@ const Register = () => {
           </div>
         </div>
         <div className="field">
-          <div className="control">
-            <input
-              className={`input ${errors.profile_image ? 'is-danger' : ''}`}
-              placeholder='Profile Image'
-              name='profile_image'
-              ref={register}
-              required={true}
-            />
-            <p className="help is-danger">{errors.profile_image}</p>
-          </div>
-        </div>
-        <div className="field">
           <p className="control">
             <button className="button is-info" type="submit">
               Get Started
