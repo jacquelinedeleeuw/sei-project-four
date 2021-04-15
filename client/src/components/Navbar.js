@@ -3,7 +3,14 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Logo from './assets/logo.svg'
-import { userIsAuthenticated } from '../helpers/auth'
+//prettier-ignore
+import {
+  userIsAuthenticated,
+  getPayloadFromToken,
+  getTokenFromLocalStorage
+} from '../helpers/auth'
+
+import axios from 'axios'
 
 const Navbar = () => {
   const location = useLocation()
@@ -12,7 +19,10 @@ const Navbar = () => {
 
   const history = useHistory()
 
+  const token = getTokenFromLocalStorage()
+
   const [burger, setBurger] = useState('')
+  const [userName, setUserName] = useState(null)
 
   const toggleBurger = () => {
     if (burger === '') setBurger('is-active')
@@ -23,6 +33,21 @@ const Navbar = () => {
     window.localStorage.removeItem('token')
     history.push('/')
   }
+
+  const userID = getPayloadFromToken().sub
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios.get(`api/auth/${userID}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      setUserName(data.username)
+    }
+    getData()
+  }, [])
 
   return (
     <div className="nav-container">
@@ -74,7 +99,7 @@ const Navbar = () => {
                     icon={faUserCircle}
                     className="circle-space fa-2x"
                   />
-                  <p>User Name</p>
+                  <p>{userName}</p>
                 </a>
                 <div className="navbar-dropdown dropdown-shape">
                   <Link to="/myprofile" className="navbar-item">

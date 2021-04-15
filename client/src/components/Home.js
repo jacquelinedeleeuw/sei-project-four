@@ -6,6 +6,9 @@ import House from './assets/house.png'
 import Zoopla from './assets/zoopla.png'
 import RightMove from './assets/rightmove.png'
 import PrimeLocation from './assets/prime-location.png'
+import 'animate.css'
+
+import Footer from './Footer'
 
 const Home = () => {
   // useEffect(() => {
@@ -25,7 +28,7 @@ const Home = () => {
           <div className="columns">
             <div className="column ">
               <div className="home-cta-box">
-                <h1>
+                <h1 className="animate__animated animate__fadeInLeft">
                   Search property <br />
                   yields like <br />
                   never before
@@ -64,6 +67,8 @@ const Home = () => {
           />
         </clipPath>
       </svg>
+
+      <Footer />
     </>
   )
 }
