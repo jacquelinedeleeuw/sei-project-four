@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import Home from './components/Home'
+import Navbar from './components/Navbar'
+import Login from './auth/Login'
+import Register from './auth/Register'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const App = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch('api/savedproperties/')
-      console.log(await res.json())
-    }
-    getData()
-  }, [])
-
-  return <h1>Hello World</h1>
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/getstarted">
+          <Register />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App
