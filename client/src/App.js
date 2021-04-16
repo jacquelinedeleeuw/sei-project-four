@@ -6,7 +6,7 @@ import Home from './components/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Profile from './components/profile/Profile'
-import SavedProperties from './components/profile/SavedProperties'
+// import SavedProperties from './components/profile/SavedProperties'
 
 const App = () => {
   return (
@@ -21,9 +21,9 @@ const App = () => {
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route path="/savedproperties">
+        {/* <Route path="/savedproperties">
           <SavedProperties />
-        </Route>
+        </Route> */}
         <Route path="/myprofile">
           <Profile />
         </Route>

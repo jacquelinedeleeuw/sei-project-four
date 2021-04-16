@@ -16,6 +16,7 @@ import Upload from './UploadImage'
 import Modal from '../../Modal'
 
 import ProfilePage from '../profile/profileViews/profilePage'
+import SavedProperties from './profileViews/SavedProperties'
 
 //helpers
 
@@ -31,6 +32,20 @@ const Profile = () => {
   const [userDetails, setUserDetails] = useState(null)
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
+
+  const [profileShow, setProfileShow] = useState(true)
+  const [propertyShow, setPropertyShow] = useState(false)
+
+  const editProfileShow = () => {
+    setPropertyShow(false)
+    setProfileShow(true)
+  }
+  const editPropertyShow = () => {
+    setPropertyShow(true)
+    setProfileShow(false)
+  }
+
+  // console.log(profileShow)
 
   useEffect(() => {}, [location.pathname])
 
@@ -60,24 +75,21 @@ const Profile = () => {
                 <h1 className="logo">yieldly</h1>
               </Link>
             </div>
-            <Link to="/myprofile">
-              <div className="dash-nav-item">
-                <FontAwesomeIcon
-                  icon={faUserCircle}
-                  className="nav-icon fa-2x fa-fw"
-                />{' '}
-                <p>Profile</p>
-              </div>
-            </Link>
-            <Link to="/savedproperties">
-              <div className="dash-nav-item">
-                <FontAwesomeIcon
-                  icon={faHome}
-                  className="nav-icon fa-2x fa-fw"
-                />
-                <p>Properties</p>
-              </div>
-            </Link>
+            {/* <Link to="/myprofile"> */}
+            <div onClick={editProfileShow} className="dash-nav-item">
+              <FontAwesomeIcon
+                icon={faUserCircle}
+                className="nav-icon fa-2x fa-fw"
+              />{' '}
+              <p>Profile</p>
+            </div>
+            {/* </Link> */}
+            {/* <Link to="/savedproperties"> */}
+            <div onClick={editPropertyShow} className="dash-nav-item">
+              <FontAwesomeIcon icon={faHome} className="nav-icon fa-2x fa-fw" />
+              <p>Properties</p>
+            </div>
+            {/* </Link> */}
             <div className="dash-nav-item">
               <FontAwesomeIcon
                 icon={faFileAlt}
@@ -93,8 +105,8 @@ const Profile = () => {
         </div>
         <div className="column is-four-fifths dash-content">
           {/* Start of Content */}
-
-          <ProfilePage />
+          {profileShow && <ProfilePage />}
+          {propertyShow && <SavedProperties />}
 
           {/* End of content */}
         </div>
