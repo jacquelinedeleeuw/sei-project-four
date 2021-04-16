@@ -9,15 +9,9 @@ import PrimeLocation from './assets/prime-location.png'
 import 'animate.css'
 
 import Footer from './Footer'
+import { userIsAuthenticated } from '../helpers/auth'
 
 const Home = () => {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const res = await fetch('api/savedproperties/')
-  //     console.log(await res.json())
-  //   }
-  //   getData()
-  // }, [])
 
   return (
     <>
@@ -39,9 +33,16 @@ const Home = () => {
                   in the UK
                 </p>
                 <br />
-                <Link to="/getstarted" className="button get-started-button">
-                  <strong>Get Started</strong>
-                </Link>
+                { userIsAuthenticated() &&
+                  <Link to="/properties" className="button get-started-button">
+                    <strong>Find a property</strong>
+                  </Link>
+                }
+                { !userIsAuthenticated() &&
+                  <Link to="/getstarted" className="button get-started-button">
+                    <strong>Get Started</strong>
+                  </Link>
+                }
               </div>
             </div>
             <div className="column">

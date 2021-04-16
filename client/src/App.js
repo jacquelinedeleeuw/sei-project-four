@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import PropertyIndex from './components/properties/PropertyIndex'
 
 const App = () => {
   return (
@@ -16,8 +17,11 @@ const App = () => {
         <Route path="/getstarted">
           <Register />
         </Route>
-        <Route exact path="/login">
+        <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/properties">
+          <PropertyIndex />
         </Route>
       </Switch>
     </BrowserRouter>

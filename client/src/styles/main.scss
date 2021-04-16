@@ -58,6 +58,7 @@ p {
   width: 70%;
   margin: 0 auto;
   margin-top: 1rem;
+  position: relative;
 }
 .sign-in {
   color: $brand-black;
@@ -80,6 +81,16 @@ p {
   background: $brand-hover;
   color: white;
   outline: none;
+}
+
+.search-bar {
+  width: 250px;
+}
+
+@media screen and (min-width: 820px) {
+  .searchbar-form {
+    display: flex;
+  }
 }
 
 // * link underline effect integrate later

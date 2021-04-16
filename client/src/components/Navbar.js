@@ -31,22 +31,23 @@ const Navbar = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem('token')
-    history.push('/')
+    history.push('/login')
   }
 
   const userID = getPayloadFromToken().sub
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(`api/auth/${userID}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-
-      setUserName(data.username)
+    if (userIsAuthenticated()) {
+      const getData = async () => {
+        const { data } = await axios.get(`api/auth/${userID}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        setUserName(data.username)
+      }
+      getData()
     }
-    getData()
   }, [])
 
   return (
