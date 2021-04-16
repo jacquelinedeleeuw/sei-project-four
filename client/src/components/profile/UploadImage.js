@@ -17,8 +17,6 @@ const UploadImage = () => {
     profile_image: '',
   })
 
-  console.log(imageUrl)
-
   const token = getTokenFromLocalStorage()
 
   const userID = getPayloadFromToken().sub

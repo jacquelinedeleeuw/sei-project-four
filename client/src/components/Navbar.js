@@ -106,12 +106,12 @@ const Navbar = () => {
                   <Link to="/myprofile" className="navbar-item">
                     Profile
                   </Link>
-                  <Link to="/savedproperties" className="navbar-item">
+                  {/* <Link to="/savedproperties" className="navbar-item">
                     My Properties
                   </Link>
                   <Link to="/applications" className="navbar-item">
                     My applications
-                  </Link>
+                  </Link> */}
                   <hr className="navbar-divider" />
                   <a onClick={handleLogout} className="navbar-item">
                     Log out
