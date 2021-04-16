@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../Navbar'
 import Searchbar from './search/Searchbar'
 import Properties from './Properties'
 import Map from './Map'
@@ -60,7 +59,6 @@ const PropertyIndex = () => {
   if (!listings) return null
   return (
     <>
-      <Navbar />
       <Searchbar 
         handleSubmit={handleSubmit}
         handleChange={handleChange}

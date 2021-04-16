@@ -87,11 +87,11 @@ p {
   width: 250px;
 }
 
-@media screen and (min-width: 820px) {
-  .searchbar-form {
-    display: flex;
-  }
-}
+// @media screen and (min-width: 500px) {
+//   .searchbar-form {
+//     display: flex;
+//   }
+// }
 
 // * link underline effect integrate later
 
@@ -258,10 +258,39 @@ footer {
   font-size: 0.9em;
 }
 
+
+// Properties
+
 .map-container {
   height: calc(100vh - 52px);
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.card-property-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.property-details {
+  display: flex;
+}
+
+.property-icon {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+hr {
+  margin: 0.5rem 0;
+}
+
+.card-image {
+  img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
 }
