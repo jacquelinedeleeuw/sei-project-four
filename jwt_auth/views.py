@@ -12,7 +12,13 @@ import jwt
 from .serializers.common import UserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
+
+
 User = get_user_model()
+
+
+
+
 
 class UserView(APIView):
     def get(self, _request):

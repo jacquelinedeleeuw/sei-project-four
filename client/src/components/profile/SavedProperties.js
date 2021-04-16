@@ -15,8 +15,6 @@ import Logo from '.././assets/logo.svg'
 import Upload from './UploadImage'
 import Modal from '../../Modal'
 
-import ProfilePage from '../profile/profileViews/profilePage'
-
 //helpers
 
 //prettier-ignore
@@ -25,7 +23,7 @@ import {
   getTokenFromLocalStorage
 } from '../../helpers/auth'
 
-const Profile = () => {
+const SavedProperties = () => {
   const location = useLocation()
   const modal = useRef(null)
   const [userDetails, setUserDetails] = useState(null)
@@ -69,15 +67,10 @@ const Profile = () => {
                 <p>Profile</p>
               </div>
             </Link>
-            <Link to="/savedproperties">
-              <div className="dash-nav-item">
-                <FontAwesomeIcon
-                  icon={faHome}
-                  className="nav-icon fa-2x fa-fw"
-                />
-                <p>Properties</p>
-              </div>
-            </Link>
+            <div className="dash-nav-item">
+              <FontAwesomeIcon icon={faHome} className="nav-icon fa-2x fa-fw" />
+              <p>Properties</p>
+            </div>
             <div className="dash-nav-item">
               <FontAwesomeIcon
                 icon={faFileAlt}
@@ -94,8 +87,6 @@ const Profile = () => {
         <div className="column is-four-fifths dash-content">
           {/* Start of Content */}
 
-          <ProfilePage />
-
           {/* End of content */}
         </div>
       </div>
@@ -106,4 +97,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default SavedProperties

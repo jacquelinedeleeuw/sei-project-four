@@ -12,6 +12,7 @@ $brand-light-blue: #d8effc;
 $brand-border: 1px solid #e1e4ed;
 $brand-border-light: 1px solid #f2f4fc;
 $brand-dark-bg-gray: #f6f8fc;
+$brand-gray-text: rgb(162, 161, 161);
 // other
 
 $duration: 0.2s;
@@ -300,9 +301,9 @@ p {
 }
 
 .profile-image img {
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
+  width: 75%;
+  height: 75%;
+  border-radius: 150px;
   border: $brand-border;
 }
 
@@ -313,8 +314,30 @@ p {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.username-text {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.member-since {
+  text-align: center;
+  font-size: 0.8em;
+}
+.member-since p {
+  color: $brand-gray-text;
+}
+
 .upload-form input {
   border-radius: 10px;
+}
+
+.user-email {
+  text-align: center;
+}
+
+.user-email P {
+  color: $brand-gray-text;
 }
 
 ::-webkit-file-upload-button {
