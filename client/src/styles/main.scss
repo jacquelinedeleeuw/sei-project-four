@@ -409,6 +409,11 @@ footer {
   display: flex;
 }
 
+.property-details-spread {
+  display: flex;
+  justify-content: space-between;
+}
+
 .property-icon {
   margin-right: 10px;
   margin-left: 10px;
@@ -424,4 +429,13 @@ hr {
     width: 100%;
     object-fit: cover;
   }
+}
+
+img.property-detail {
+    width: 100%;
+}
+
+.property-detail-view {
+  padding-left: 20px;
+  padding-right: 20px;
 }

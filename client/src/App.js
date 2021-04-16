@@ -7,6 +7,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Profile from './components/profile/Profile'
 import PropertyIndex from './components/properties/PropertyIndex'
+import PropertyDetail from './components/properties/PropertyDetail'
 
 const App = () => {
   return (
@@ -25,8 +26,11 @@ const App = () => {
         <Route path="/myprofile">
           <Profile />
         </Route>
-        <Route path="/properties">
+        <Route exact path="/properties">
           <PropertyIndex />
+        </Route>
+        <Route path="/properties/:id">
+          <PropertyDetail />
         </Route>
       </Switch>
     </BrowserRouter>
