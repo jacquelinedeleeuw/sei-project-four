@@ -1,57 +1,20 @@
 import React from 'react'
 import Select from 'react-select'
 import { priceOptions, typeOptions, bedroomOptions, customStyles } from './searchdata'
-import { useForm } from 'react-hook-form'
 
-const Searchbar = () => {
-
-  const { register, handleSubmit } = useForm()
-  const onSubmit = async (data) => {
-    console.log(data)
-  }
-
-  const handleChange = (selected, name) => {
-    console.log(name)
-    console.log(selected.value)
-  }
+const Searchbar = ({ handleSubmit, handleChange }) => {
 
   return (
     <div className="nav-container">
       <nav className="navbar">
-        <form onSubmit={handleSubmit(onSubmit)} className="searchbar-form">
+        <form onSubmit={handleSubmit} className="searchbar-form">
           <div className="navbar-item">
             <input
               className="input"
               placeholder="Search..."
               name="location"
-              ref={register}
               required={true}
             />
-          </div>
-          <div className="navbar-item has-dropdown is-hoverable">
-            <div className="navbar-link">
-              Number of Bedrooms
-            </div>
-            <div className="navbar-dropdown">
-              <div className="navbar-item">
-                <Select className="search-bar"
-                  options={bedroomOptions}
-                  styles={customStyles}
-                  placeholder="No min"
-                  name="minimum_price"
-                  onChange={(selected) => handleChange(selected, 'minimum_price')}
-                />
-              </div>
-              <div className="navbar-item">
-                <Select className="search-bar"
-                  options={bedroomOptions}
-                  styles={customStyles}
-                  placeholder="No max"
-                  name="maximum_price"
-                  onChange={(selected) => handleChange(selected, 'maximum_price')}
-                />
-              </div>
-            </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
             <div className="navbar-link">
@@ -63,13 +26,38 @@ const Searchbar = () => {
                   options={priceOptions}
                   styles={customStyles}
                   placeholder="No min"
+                  name="minimum_price"
+                  onChange={(selected) => handleChange(selected, 'minimum_price')}
+                />
+              </div>
+              <div className="navbar-item">
+                <Select className="search-bar"
+                  options={priceOptions}
+                  styles={customStyles}
+                  placeholder="No max"
+                  name="maximum_price"
+                  onChange={(selected) => handleChange(selected, 'maximum_price')}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="navbar-item has-dropdown is-hoverable">
+            <div className="navbar-link">
+              Number of bedrooms
+            </div>
+            <div className="navbar-dropdown">
+              <div className="navbar-item">
+                <Select className="search-bar"
+                  options={bedroomOptions}
+                  styles={customStyles}
+                  placeholder="No min"
                   name="minimum_beds"
                   onChange={(selected) => handleChange(selected, 'minimum_beds')}
                 />
               </div>
               <div className="navbar-item">
                 <Select className="search-bar"
-                  options={priceOptions}
+                  options={bedroomOptions}
                   styles={customStyles}
                   placeholder="No max"
                   name="maximum_beds"
