@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import { priceOptions, typeOptions, bedroomOptions, customStyles } from './searchdata'
 
-const Searchbar = ({ handleSubmit, handleChange }) => {
+const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
 
   return (
     <div className="nav-container">
@@ -15,6 +15,9 @@ const Searchbar = ({ handleSubmit, handleChange }) => {
               name="location"
               required={true}
             />
+          </div>
+          <div className="navbar-item">
+            We found {listingsLength} properties
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
             <div className="navbar-link">

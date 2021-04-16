@@ -257,3 +257,11 @@ footer {
 .copyright {
   font-size: 0.9em;
 }
+
+.map-container {
+  height: calc(100vh - 52px);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

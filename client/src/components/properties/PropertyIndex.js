@@ -17,7 +17,9 @@ const PropertyIndex = () => {
   })
 
   const [listings, setListings] = useState(null)
+  const [listingsLength, setListingsLength] = useState('')
   const [location, setLocation] = useState(null)
+  const [viewPort, setViewPort] = useState()
 
   const handleChange = (selected, name) => {
     const newSearchData = { ...search, [name]: selected.value }
@@ -27,6 +29,7 @@ const PropertyIndex = () => {
   const handleSubmit = event => {
     event.preventDefault()    
     setLocation(event.target[0].value)
+    setListingsLength(listings.listing.length)
   }
 
   useEffect(() => {
@@ -44,7 +47,15 @@ const PropertyIndex = () => {
       }
       getData()
     }
-  }, [location])
+  }, [location, search])
+
+  useEffect(() => {
+    if (listings) {
+      const longitude = listings.listing[0].longitude
+      const latitude = listings.listing[0].latitude
+      setViewPort({ longitude, latitude })
+    }
+  }, [listings])
 
   if (!listings) return null
   return (
@@ -53,9 +64,14 @@ const PropertyIndex = () => {
       <Searchbar 
         handleSubmit={handleSubmit}
         handleChange={handleChange}
+        listingsLength={listingsLength}
       />
       <div className="columns">
-        <Map />
+        <Map 
+          listings={listings}
+          viewPort={viewPort}
+          setViewPort={setViewPort}
+        />
         <Properties
           listings={listings}
         />
