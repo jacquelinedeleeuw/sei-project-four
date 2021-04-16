@@ -1,0 +1,70 @@
+import React, { useState } from 'react'
+import ReactMapGL, { Popup, Marker } from 'react-map-gl'
+import {
+  faHome,
+  faBath,
+  faBed
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+const Map = ({ viewPort, setViewPort, listings }) => {
+
+  //map
+  const [popup, setPopup] = useState(null)
+
+  return (
+    <div className="column is-half-desktop is-hidden-touch is-hidden-mobile">
+      <div className="map-container">
+        {viewPort ?
+          <ReactMapGL
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            height="100vh"
+            width="50vw"
+            mapStyle="mapbox://styles/mapbox/light-v10"
+            zoom={15}
+            {...viewPort}
+            onViewportChange={(viewPort) => setViewPort(viewPort)}
+          >
+            {listings.listing.map((listing, index) => {
+              return <Marker 
+                key={index} 
+                longitude={listing.longitude} 
+                latitude={listing.latitude}>
+                <span onClick={() => setPopup(listing)}>
+                  <FontAwesomeIcon icon={faHome} className="nav-icon fa-1x fa-fw" />
+                </span>
+              </Marker>
+            })}
+            {popup &&
+        <Popup
+          latitude={popup.latitude}
+          longitude={popup.longitude}
+          closeOnClick={true}
+          onClose={() => setPopup(null)}
+        >
+          <img key={popup.index} src={popup.image_354_255_url} alt={popup.displayable_address} />
+          {popup.price === 0 ?
+            <h2>TBC</h2>
+            :
+            <h2>£{popup.price}</h2>
+          }
+          <div className="property-details">
+            <p>{popup.num_bedrooms} </p>
+            <FontAwesomeIcon icon={faBed} className="property-icon fa-1x fa-fw" />
+            <p>{popup.num_bathrooms} </p>
+            <FontAwesomeIcon icon={faBath} className="property-icon fa-1x fa-fw" />
+          </div>
+          <hr />
+          <p>{popup.displayable_address}</p>
+        </Popup>
+            }
+          </ReactMapGL>
+          :
+          <p>Loading the location…</p>
+        }
+      </div>
+    </div>
+  )
+}
+
+export default Map

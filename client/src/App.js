@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import Profile from './components/profile/Profile'
+import PropertyIndex from './components/properties/PropertyIndex'
 
 const App = () => {
   return (
@@ -17,11 +18,14 @@ const App = () => {
         <Route path="/getstarted">
           <Register />
         </Route>
-        <Route exact path="/login">
+        <Route path="/login">
           <Login />
         </Route>
         <Route exact path="/myprofile">
           <Profile />
+        </Route>
+        <Route path="/properties">
+          <PropertyIndex />
         </Route>
       </Switch>
     </BrowserRouter>
