@@ -9,7 +9,7 @@ const Footer = () => {
         <p>Privacy Policy</p>
       </div>
       <div className="copyright">
-        <p>© 2021 yieldly Inc. All rights reserved. </p>
+        <p>© 2021 yieldly Ltd. All rights reserved. </p>
       </div>
     </footer>
   )

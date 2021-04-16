@@ -9,6 +9,9 @@ $brand-blue: #00a0ff;
 $brand-hover: #0392e4;
 $brand-black: #161637;
 $brand-light-blue: #d8effc;
+$brand-border: 1px solid #e1e4ed;
+$brand-border-light: 1px solid #f2f4fc;
+$brand-dark-bg-gray: #f6f8fc;
 // other
 
 $duration: 0.2s;
@@ -225,6 +228,112 @@ p {
 .login-sign-up p {
   color: rgb(179, 179, 179);
 }
+
+// * Dashboard
+
+.dash-col {
+  height: 101.5vh;
+  border-right: $brand-border;
+}
+
+.profile-col {
+  height: 80vh;
+  border: $brand-border-light;
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.dash-content-box {
+}
+
+.dash-nav-box {
+  // padding: 2rem;
+}
+.dash-logo-box {
+  padding: 2rem;
+  margin-bottom: 4rem;
+  margin-left: 0.73rem;
+}
+
+.dash-nav-item {
+  height: 5vh;
+  padding: 1rem;
+  padding-left: 2rem;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  // justify-content: space-between;
+  margin-bottom: 2rem;
+  color: rgb(184, 184, 184);
+  margin-left: 0.73rem;
+}
+.dash-nav-item:hover {
+  // background: $brand-dark-bg-gray;
+  cursor: pointer;
+  border-right: 5px solid $brand-blue;
+  color: $brand-blue;
+}
+
+.dash-nav-item p {
+  font-weight: 700;
+  color: rgb(162, 161, 161);
+}
+
+.dash-nav-item:hover p {
+  color: $brand-black;
+}
+
+.nav-icon {
+  margin-right: 3rem;
+  margin-top: -0.3rem;
+}
+
+.dash-content {
+  background: $brand-dark-bg-gray;
+  padding: 4rem;
+}
+.profile-image {
+  justify-content: center;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.profile-image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: $brand-border;
+}
+
+.change-image {
+  text-align: center;
+  font-weight: 100;
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.upload-form input {
+  border-radius: 10px;
+}
+
+::-webkit-file-upload-button {
+  /* chrome and edge */
+  display: inline-block;
+  margin: 0rem 1rem 0rem 0rem;
+  padding: 0.5em 0.5em;
+  padding: 0.19rem 0.5rem;
+  -webkit-appearance: button;
+  text-align: center;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgb(215, 214, 214);
+
+  background: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 //* footer
 
 footer {
