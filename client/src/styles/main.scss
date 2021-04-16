@@ -256,12 +256,6 @@ p {
   padding: 1rem;
 }
 
-.dash-content-box {
-}
-
-.dash-nav-box {
-  // padding: 2rem;
-}
 .dash-logo-box {
   padding: 2rem;
   margin-bottom: 4rem;
@@ -349,6 +343,16 @@ p {
 
 .user-email P {
   color: $brand-gray-text;
+}
+
+// * Saved properties
+
+.saved-property-card {
+  height: 15vh;
+  background: white;
+  border: $brand-border-light;
+  border-radius: 20px;
+  padding: 1rem;
 }
 
 ::-webkit-file-upload-button {

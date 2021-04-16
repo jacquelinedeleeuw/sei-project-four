@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-//prettier-ignore
-
 import axios from 'axios'
 // components
 
-// import Upload from '../UploadImage'
-// import Modal from '../../../Modal'
-// import UpdateProfile from '../UpdateProfile'
-
-//helpers
-
-// import { convertTimestamp } from '../../../helpers/helpersFunctions'
 //prettier-ignore
 import {
-
-
   getPayloadFromToken,
   getTokenFromLocalStorage
 } from '../../../helpers/auth'
@@ -29,6 +18,8 @@ const SavedProperties = () => {
   const userID = getPayloadFromToken().sub
 
   useEffect(() => {}, [location.pathname])
+
+  console.log(userDetails)
 
   useEffect(() => {
     const getData = async () => {
@@ -50,7 +41,9 @@ const SavedProperties = () => {
       <h2>Saved Properties</h2>
       <br />
 
-      <div className="columns dash-content-box">hello</div>
+      <div className="dash-content-box">
+        <div className="container saved-property-card">hello</div>
+      </div>
     </div>
   )
 }
