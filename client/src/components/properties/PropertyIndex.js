@@ -18,7 +18,7 @@ const PropertyIndex = () => {
   const [listings, setListings] = useState(null)
   const [listingsLength, setListingsLength] = useState('')
   const [location, setLocation] = useState(null)
-  const [viewPort, setViewPort] = useState()
+  const [viewPort, setViewPort] = useState(null)
 
   const handleChange = (selected, name) => {
     const newSearchData = { ...search, [name]: selected.value }
