@@ -97,17 +97,11 @@ const SavedProperties = () => {
               )
             })}
           </div>
-          <div classNameName="column">
+          <div>
             <div id="mySidebar" className="sidebar">
-              <a
-                href="javascript:void(0)"
-                className="closebtn"
-                onClick={closeNav}
-              >
+              <a className="closebtn" onClick={closeNav}>
                 &times;
               </a>
-
-              
             </div>
           </div>
         </div>
