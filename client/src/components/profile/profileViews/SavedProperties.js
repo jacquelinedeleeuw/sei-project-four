@@ -62,38 +62,36 @@ const SavedProperties = () => {
           <div className="column">
             {userDetails.saved_properties.map((property) => {
               return (
-                <>
-                  <div
-                    key={property.id}
-                    className="container saved-property-card animate__animated animate__fadeInUp"
-                    onClick={openNav}
-                  >
-                    <div className="columns">
-                      <div className="column">
-                        <img src={property.image}></img>
+                <div
+                  key={property.id}
+                  className="container saved-property-card animate__animated animate__fadeInUp"
+                  onClick={openNav}
+                >
+                  <div className="columns">
+                    <div className="column">
+                      <img src={property.image}></img>
+                    </div>
+                    <div className="column is-four-fifths">
+                      <div className="container">
+                        <div className="saved-location">
+                          <FontAwesomeIcon
+                            icon={faMapMarkerAlt}
+                            className="saved-location-icon fa-1x fa-fw"
+                          />
+                          {
+                            <h2>
+                              {property.address}, {property.postcode}
+                            </h2>
+                          }
+                        </div>
                       </div>
-                      <div className="column is-four-fifths">
-                        <div className="container">
-                          <div className="saved-location">
-                            <FontAwesomeIcon
-                              icon={faMapMarkerAlt}
-                              className="saved-location-icon fa-1x fa-fw"
-                            />
-                            {
-                              <h2>
-                                {property.address}, {property.postcode}
-                              </h2>
-                            }
-                          </div>
-                        </div>
-                        <hr />
-                        <div className="container">
-                          <p>{property.short_description}</p>
-                        </div>
+                      <hr />
+                      <div className="container">
+                        <p>{property.short_description}</p>
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               )
             })}
           </div>
