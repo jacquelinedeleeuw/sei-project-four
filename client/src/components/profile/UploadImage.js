@@ -26,10 +26,8 @@ const UploadImage = () => {
       const data = new FormData()
       data.append('file', event.target.files[0])
       data.append('upload_preset', uploadPreset)
-      console.log('DATA', data)
       const response = await axios.post(uploadUrl, data)
       setImageUrl(response.data.url)
-      console.log('RESPONSE', response.data.url)
     } catch (err) {
       setErrors(err.response.data.detail)
     }
@@ -37,8 +35,6 @@ const UploadImage = () => {
 
   const { register, handleSubmit } = useForm()
   const onSubmit = async (data) => {
-    console.log(data)
-    console.log(imageUrl)
     try {
       await axios.patch(
         `/api/auth/${userID}/`,
@@ -53,7 +49,6 @@ const UploadImage = () => {
           },
         }
       )
-      // history.push('/myprofile')
       location.reload()
     } catch (err) {
       console.log(err.response)
@@ -63,7 +58,6 @@ const UploadImage = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="column box upload-form">
       <label>Profile Image</label>
-
       <br />
       <br />
       <input
