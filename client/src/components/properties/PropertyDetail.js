@@ -46,7 +46,7 @@ const PropertyDetail = () => {
     getData()
   }, [])
 
-  console.log(user)
+  console.log(user.saved_properties)
 
   const handleSaveProperty = async () => {
     try {
