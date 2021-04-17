@@ -244,12 +244,14 @@ p {
 // * Dashboard
 
 .dash-col {
-  height: 101.5vh;
+  max-height: 100vh;
   border-right: $brand-border;
+  position: sticky;
+  top: 0;
 }
 
 .profile-col {
-  height: 80vh;
+  // height: 80vh;
   border: $brand-border-light;
   background: white;
   border-radius: 20px;
@@ -298,6 +300,7 @@ p {
 .dash-content {
   background: $brand-dark-bg-gray;
   padding: 4rem;
+  min-height: 101vh;
 }
 .profile-image {
   justify-content: center;
@@ -348,11 +351,45 @@ p {
 // * Saved properties
 
 .saved-property-card {
-  height: 15vh;
   background: white;
   border: $brand-border-light;
   border-radius: 20px;
   padding: 1rem;
+  margin-bottom: 1.5rem;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.saved-property-card:hover {
+  border: 1px $brand-blue solid;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.saved-property-card img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+.saved-property-card h2 {
+  font-size: 1.3em;
+}
+.saved-property-card p {
+  color: $brand-gray-text;
+}
+.saved-location {
+  display: flex;
+}
+.saved-location-icon {
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
 }
 
 ::-webkit-file-upload-button {
