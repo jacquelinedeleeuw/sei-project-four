@@ -4,10 +4,12 @@ class SavedProperty(models.Model):
     address = models.CharField(max_length=50)
     postcode = models.CharField(max_length=50)
     short_description = models.CharField(max_length=99999)
+    property_type = models.CharField(max_length=50)
     image = models.CharField(max_length=99999)
     price = models.FloatField()
     beds = models.FloatField()
     baths = models.FloatField()
+    receptions = models.FloatField()
     listing_id = models.CharField(max_length=50)
     user = models.ForeignKey(
         "jwt_auth.User",
