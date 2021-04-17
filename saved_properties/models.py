@@ -5,7 +5,7 @@ class SavedProperty(models.Model):
     postcode = models.CharField(max_length=50)
     short_description = models.CharField(max_length=99999)
 <<<<<<< HEAD
-    image = models.CharField(max_length=99999)
+
 =======
     property_type = models.CharField(max_length=50)
     image = models.CharField(max_length=99999)
