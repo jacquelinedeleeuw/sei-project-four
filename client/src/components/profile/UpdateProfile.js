@@ -59,7 +59,6 @@ const UpdateProfile = () => {
             <p className="help is-danger">{errors.first_name}</p>
           </div>
         </div>
-        <br />
 
         <div className="field">
           <div className="control">
@@ -76,7 +75,6 @@ const UpdateProfile = () => {
             <p className="help is-danger">{errors.last_name}</p>
           </div>
         </div>
-        <br />
 
         <div className="field">
           <div className="control">
@@ -93,7 +91,7 @@ const UpdateProfile = () => {
             <p className="help is-danger">{errors.username}</p>
           </div>
         </div>
-        <br />
+
         <div className="field">
           <div className="control">
             <div className="form-label">
@@ -140,7 +138,7 @@ const UpdateProfile = () => {
             <p className="help is-danger">{errors.password}</p>
           </div>
         </div>
-        <br />
+        <hr />
         <div className="field">
           <p className="control">
             <button className="button form-button" type="submit">
@@ -148,8 +146,8 @@ const UpdateProfile = () => {
             </button>
           </p>
         </div>
-        <hr />
       </form>
+      <br />
     </>
   )
 }
