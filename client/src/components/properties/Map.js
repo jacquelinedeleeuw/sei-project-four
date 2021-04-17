@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactMapGL, { Popup, Marker } from 'react-map-gl'
+import { Link } from 'react-router-dom'
 import {
   faHome,
   faBath,
@@ -36,27 +37,29 @@ const Map = ({ viewPort, setViewPort, listings }) => {
               </Marker>
             })}
             {popup &&
-        <Popup
-          latitude={popup.latitude}
-          longitude={popup.longitude}
-          closeOnClick={true}
-          onClose={() => setPopup(null)}
-        >
-          <img key={popup.index} src={popup.image_354_255_url} alt={popup.displayable_address} />
-          {popup.price === 0 ?
-            <h2>TBC</h2>
-            :
-            <h2>£{popup.price}</h2>
-          }
-          <div className="property-details">
-            <p>{popup.num_bedrooms} </p>
-            <FontAwesomeIcon icon={faBed} className="property-icon fa-1x fa-fw" />
-            <p>{popup.num_bathrooms} </p>
-            <FontAwesomeIcon icon={faBath} className="property-icon fa-1x fa-fw" />
-          </div>
-          <hr />
-          <p>{popup.displayable_address}</p>
-        </Popup>
+        <Link to={`/properties/${popup.listing_id}`}>
+          <Popup
+            latitude={popup.latitude}
+            longitude={popup.longitude}
+            closeOnClick={false}
+            onClose={() => setPopup(null)}
+          >
+            <img key={popup.index} src={popup.image_354_255_url} alt={popup.displayable_address} />
+            {popup.price === 0 ?
+              <h2>TBC</h2>
+              :
+              <h2>£{Number(popup.price).toLocaleString()}</h2>
+            }
+            <div className="property-details">
+              <p>{popup.num_bedrooms} </p>
+              <FontAwesomeIcon icon={faBed} className="property-icon fa-1x fa-fw" />
+              <p>{popup.num_bathrooms} </p>
+              <FontAwesomeIcon icon={faBath} className="property-icon fa-1x fa-fw" />
+            </div>
+            <hr />
+            <p>{popup.displayable_address}</p>
+          </Popup>
+        </Link>
             }
           </ReactMapGL>
           :
