@@ -86,7 +86,10 @@ const Profile = () => {
             {/* </Link> */}
             {/* <Link to="/savedproperties"> */}
             <div onClick={editPropertyShow} className="dash-nav-item">
-              <FontAwesomeIcon icon={faHome} className="nav-icon fa-2x fa-fw" />
+              <FontAwesomeIcon
+                icon={('far', faHome)}
+                className="nav-icon fa-2x fa-fw"
+              />
               <p>Properties</p>
             </div>
             {/* </Link> */}

@@ -244,24 +244,20 @@ p {
 // * Dashboard
 
 .dash-col {
-  height: 101.5vh;
+  max-height: 100vh;
   border-right: $brand-border;
+  position: sticky;
+  top: 0;
 }
 
 .profile-col {
-  height: 80vh;
+  // height: 80vh;
   border: $brand-border-light;
   background: white;
   border-radius: 20px;
   padding: 1rem;
 }
 
-.dash-content-box {
-}
-
-.dash-nav-box {
-  // padding: 2rem;
-}
 .dash-logo-box {
   padding: 2rem;
   margin-bottom: 4rem;
@@ -304,6 +300,7 @@ p {
 .dash-content {
   background: $brand-dark-bg-gray;
   padding: 4rem;
+  min-height: 101vh;
 }
 .profile-image {
   justify-content: center;
@@ -351,6 +348,50 @@ p {
   color: $brand-gray-text;
 }
 
+// * Saved properties
+
+.saved-property-card {
+  background: white;
+  border: $brand-border-light;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.saved-property-card:hover {
+  border: 1px $brand-blue solid;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.saved-property-card img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+  margin-left: 0.4rem;
+}
+
+.saved-property-card h2 {
+  font-size: 1.3em;
+}
+.saved-property-card p {
+  color: $brand-gray-text;
+}
+.saved-location {
+  display: flex;
+}
+.saved-location-icon {
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
+}
+
 ::-webkit-file-upload-button {
   /* chrome and edge */
   display: inline-block;
@@ -366,6 +407,57 @@ p {
   background: none;
   white-space: nowrap;
   cursor: pointer;
+}
+
+//// * side
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  right: 0;
+  background-color: white; /* Black*/
+  border-left: $brand-border;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
 }
 
 //* footer
@@ -432,7 +524,7 @@ hr {
 }
 
 img.property-detail {
-    width: 100%;
+  width: 100%;
 }
 
 .property-detail-view {
