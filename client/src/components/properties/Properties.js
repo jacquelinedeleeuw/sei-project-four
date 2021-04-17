@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  faBath,
-  faBed
-} from '@fortawesome/free-solid-svg-icons'
+import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
@@ -12,7 +9,10 @@ const Properties = ({ listings }) => {
       <div className="columns is-multiline">
         {listings.listing.map((item, index) => {
           return (
-            <div key={index} className="column is-half-desktop is-half-tablet is-full-mobile">
+            <div
+              key={index}
+              className="column is-half-desktop is-half-tablet is-full-mobile"
+            >
               <Link to={`/properties/${item.listing_id}`}>
                 <div className="card">
                   <div className="card-image">
@@ -24,28 +24,30 @@ const Properties = ({ listings }) => {
                       <p>{item.property_type}</p>
                     </div>
                     <hr />
-                    {item.price === 0 ?
-                      <h2>TBC</h2>
-                      :
-                      <h2>£{item.price}</h2>
-                    }
+                    {item.price === 0 ? <h2>TBC</h2> : <h2>£{item.price}</h2>}
                     <div className="property-details">
-                      {item.num_bedrooms > 0 ?
+                      {item.num_bedrooms > 0 ? (
                         <>
                           <p>{item.num_bedrooms}</p>
-                          <FontAwesomeIcon icon={faBed} className="property-icon fa-1x fa-fw" />
+                          <FontAwesomeIcon
+                            icon={faBed}
+                            className="property-icon fa-1x fa-fw"
+                          />
                         </>
-                        :
+                      ) : (
                         <></>
-                      }
-                      {item.num_bathrooms > 0 ?
+                      )}
+                      {item.num_bathrooms > 0 ? (
                         <>
                           <p>{item.num_bathrooms}</p>
-                          <FontAwesomeIcon icon={faBath} className="property-icon fa-1x fa-fw" />
+                          <FontAwesomeIcon
+                            icon={faBath}
+                            className="property-icon fa-1x fa-fw"
+                          />
                         </>
-                        :
+                      ) : (
                         <></>
-                      }
+                      )}
                     </div>
                     <hr />
                     <p>{item.displayable_address}</p>

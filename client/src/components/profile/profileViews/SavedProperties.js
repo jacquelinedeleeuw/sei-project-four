@@ -7,7 +7,10 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //prettier-ignore
 import {
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faTags,
+  faBed,
+  faChartLine
 } from '@fortawesome/free-solid-svg-icons'
 
 //prettier-ignore
@@ -88,6 +91,50 @@ const SavedProperties = () => {
                       <hr />
                       <div className="container">
                         <p>{property.short_description}</p>
+                      </div>
+                      <br />
+                      <div className="container">
+                        <div className="columns saved-icons-container ">
+                          <div className="column">
+                            <div className="saved-icons">
+                              <FontAwesomeIcon
+                                icon={faTags}
+                                className="saved-location-icon-card fa-1x fa-fw"
+                              />
+                              <div>
+                                <p>Price</p>
+                                <p>
+                                  <strong>£ </strong>
+                                  {property.price.toLocaleString()}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="column">
+                            <div className="saved-icons">
+                              <FontAwesomeIcon
+                                icon={faBed}
+                                className="saved-location-icon-card fa-1x fa-fw"
+                              />
+                              <div>
+                                <p>Beds</p>
+                                <p>{property.beds}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="column">
+                            <div className="saved-icons">
+                              <FontAwesomeIcon
+                                icon={faChartLine}
+                                className="saved-location-icon-card fa-1x fa-fw"
+                              />
+                              <div>
+                                <p>Yield</p>
+                                <p>{property.beds}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

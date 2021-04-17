@@ -391,6 +391,18 @@ p {
   margin-top: 0.5rem;
   margin-right: 0.3rem;
 }
+.saved-location-icon-card {
+  margin-top: 1rem;
+  margin-right: 0.7rem;
+}
+
+.saved-icons {
+  display: flex;
+}
+
+.saved-icons-container {
+  width: 60%;
+}
 
 ::-webkit-file-upload-button {
   /* chrome and edge */
