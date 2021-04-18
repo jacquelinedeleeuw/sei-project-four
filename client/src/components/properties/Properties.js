@@ -4,6 +4,7 @@ import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
+  if (!listings) return null
   return (
     <section className="column is-half-desktop">
       <div className="columns is-multiline">
@@ -13,7 +14,9 @@ const Properties = ({ listings }) => {
               key={index}
               className="column is-half-desktop is-half-tablet is-full-mobile"
             >
-              <Link to={`/properties/${item.listing_id}`}>
+              <Link
+                to={`/properties/${item.listing_id}/${item.outcode}/${item.num_bedrooms}`}
+              >
                 <div className="card">
                   <div className="card-image">
                     <img src={item.image_354_255_url} />

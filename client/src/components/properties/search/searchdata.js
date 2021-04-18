@@ -4,6 +4,16 @@ export const typeOptions = [
   { value: 'flats', label: 'Flats' }
 ]
 
+export const orderOptions = [
+  { value: 'descending', label: 'Descending' },
+  { value: 'ascending', label: 'Ascending' }
+]
+
+export const orderByOptions = [
+  { value: 'price', label: 'Price' },
+  { value: 'age', label: 'Date Added' }
+]
+
 export const bedroomOptions = [
   { value: 'studio', label: 'Studio' },
   { value: '1', label: '1' },

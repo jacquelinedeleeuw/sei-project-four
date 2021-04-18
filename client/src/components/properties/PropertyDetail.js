@@ -12,13 +12,18 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getPayloadFromToken, getTokenFromLocalStorage } from '../../helpers/auth'
+import YieldCalculation from './YieldCalculation'
 
 const PropertyDetail = () => {
 
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
   const token = getTokenFromLocalStorage()
   const { id } = useParams()
+  const { postcode } = useParams()
+  const { beds } = useParams()
+  console.log(postcode)
   const [listing, setListing] = useState(null)
+  const [listings, setListings] = useState(null)
   const [user, setUser] = useState(null)
 
   const userID = getPayloadFromToken().sub
@@ -55,6 +60,19 @@ const PropertyDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
+      try {
+        const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`)
+        setListings(await res.json())
+        console.log('test')
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [])
+
+  useEffect(() => {
+    const getData = async () => {
       const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?listing_id=${id}&api_key=${zooplaKey}`)
       setListing(await res.json())
     }
@@ -76,12 +94,12 @@ const PropertyDetail = () => {
   const history = useHistory()
 
   const goToPreviousPath = () => {
-    history. goBack()
+    history.goBack()
   }
 
   let listingIdArray
 
-  if (!listing || !user) return null
+  if (!listing || !user || !listings) return null
   else {
     {listingIdArray = user.saved_properties.map((item) => item.listing_id)}
   }
@@ -116,9 +134,10 @@ const PropertyDetail = () => {
           </div>   
         </div>   
       </div>
-      <div className="column is-one-third">
-          Lots of amazing calulations and stuff
-      </div>
+      <YieldCalculation
+        listing={listing}
+        listings={listings} 
+      />
     </div>
   )
 }

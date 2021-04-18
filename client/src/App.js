@@ -28,7 +28,7 @@ const App = () => {
         <Route exact path="/properties">
           <PropertyIndex />
         </Route>
-        <Route path="/properties/:id">
+        <Route path="/properties/:id/:postcode/:beds">
           <PropertyDetail />
         </Route>
       </Switch>
