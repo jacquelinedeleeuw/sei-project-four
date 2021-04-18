@@ -146,7 +146,7 @@ const YieldCalculation = ({ listings, listing }) => {
             onChange={handleChange}
           />
         </div>
-        <p>Total Annual Costs £{(Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest)).toLocaleString()}</p>
+        <p>Total Annual Costs £{(Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest)).toFixed(2)}</p>
         <hr />
         <div className="field">
           <div className="form-label">
@@ -163,12 +163,12 @@ const YieldCalculation = ({ listings, listing }) => {
         </div>
         <hr />
         <p>Predicted Returns</p>
-        <p>Monthly Cashflow £{(yieldData.monthlyRent - (yieldData.purchasePrice / yieldData.loanTerms / 12)).toLocaleString()}</p>
-        <p>Net Annual Income £{((yieldData.monthlyRent * 12) - (yieldData.purchasePrice / yieldData.loanTerms) - ((Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest)))).toLocaleString()}</p>
+        <p>Monthly Cashflow £{(yieldData.monthlyRent - (yieldData.purchasePrice / yieldData.loanTerms / 12)).toFixed(2)}</p>
+        <p>Net Annual Income £{((yieldData.monthlyRent * 12) - (yieldData.purchasePrice / yieldData.loanTerms) - ((Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest)))).toFixed(2)}</p>
         <p>Revaluation £{Number(listing.listing[0].price).toLocaleString()}</p>
         <p>Equity Tied Up £{(Number(yieldData.deposit) + Number(yieldData.refurb) + Number(yieldData.purchaseCosts)).toLocaleString()}</p>
-        <p>Gross Yield {((yieldData.monthlyRent * 12)) / Number(listing.listing[0].price) * 100}%</p>
-        <p>Net Yield {((yieldData.monthlyRent * 12) - (Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest))) / Number(listing.listing[0].price) * 100}%</p>
+        <p>Gross Yield {(((yieldData.monthlyRent * 12)) / Number(listing.listing[0].price) * 100).toFixed(2)}%</p>
+        <p>Net Yield {(((yieldData.monthlyRent * 12) - (Number(yieldData.annualMaintenance) + Number(((yieldData.monthlyRent * 12) / 100 * yieldData.managementFee)) + Number(yieldData.purchasePrice / 100 * yieldData.mortgageInterest))) / Number(listing.listing[0].price) * 100).toFixed(2)}%</p>
 
         <button className="button get-started-button" onSubmit={handleSubmit}>Save yield calculations</button>
       </form>
