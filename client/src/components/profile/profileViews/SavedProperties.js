@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import 'animate.css'
 import axios from 'axios'
 // components
+import PropertySidebar from './PropertySidebar'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //prettier-ignore
@@ -26,9 +27,9 @@ const SavedProperties = () => {
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
 
-  useEffect(() => {}, [location.pathname])
+  const [propID, setPropID] = useState('')
 
-  console.log(userDetails)
+  useEffect(() => {}, [location.pathname])
 
   useEffect(() => {
     const getData = async () => {
@@ -44,8 +45,10 @@ const SavedProperties = () => {
   }, [])
 
   /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-  function openNav() {
+  function openNav(id) {
     document.getElementById('mySidebar').style.width = '400px'
+
+    setPropID(id)
   }
 
   /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
@@ -68,7 +71,7 @@ const SavedProperties = () => {
                 <div
                   key={property.id}
                   className="container saved-property-card animate__animated animate__fadeInUp"
-                  onClick={openNav}
+                  onClick={() => openNav(property.id)}
                 >
                   <div className="columns">
                     <div className="column">
@@ -149,6 +152,7 @@ const SavedProperties = () => {
               <a className="closebtn" onClick={closeNav}>
                 &times;
               </a>
+              <PropertySidebar propID={propID} />
             </div>
           </div>
         </div>
