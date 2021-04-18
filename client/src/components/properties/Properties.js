@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  faBath,
-  faBed
-} from '@fortawesome/free-solid-svg-icons'
+import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -32,22 +29,28 @@ const Properties = ({ listings }) => {
                       <h2>£{Number(item.price).toLocaleString()}</h2>
                     }
                     <div className="property-details">
-                      {item.num_bedrooms > 0 ?
+                      {item.num_bedrooms > 0 ? (
                         <>
                           <p>{item.num_bedrooms}</p>
-                          <FontAwesomeIcon icon={faBed} className="property-icon fa-1x fa-fw" />
+                          <FontAwesomeIcon
+                            icon={faBed}
+                            className="property-icon fa-1x fa-fw"
+                          />
                         </>
-                        :
+                      ) : (
                         <></>
-                      }
-                      {item.num_bathrooms > 0 ?
+                      )}
+                      {item.num_bathrooms > 0 ? (
                         <>
                           <p>{item.num_bathrooms}</p>
-                          <FontAwesomeIcon icon={faBath} className="property-icon fa-1x fa-fw" />
+                          <FontAwesomeIcon
+                            icon={faBath}
+                            className="property-icon fa-1x fa-fw"
+                          />
                         </>
-                        :
+                      ) : (
                         <></>
-                      }
+                      )}
                     </div>
                     <hr />
                     <p>{item.displayable_address}</p>
