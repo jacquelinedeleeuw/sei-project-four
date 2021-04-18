@@ -24,15 +24,11 @@ const Properties = ({ listings }) => {
                       <p>{item.property_type}</p>
                     </div>
                     <hr />
-<<<<<<< HEAD
-                    {item.price === 0 ? <h2>TBC</h2> : <h2>£{item.price}</h2>}
-=======
-                    {item.price === 0 ?
+                    {item.price === 0 ? (
                       <h2>TBC</h2>
-                      :
+                    ) : (
                       <h2>£{Number(item.price).toLocaleString()}</h2>
-                    }
->>>>>>> 535cf3433965e24c359ee4cd1245bbc4572619e5
+                    )}
                     <div className="property-details">
                       {item.num_bedrooms > 0 ? (
                         <>

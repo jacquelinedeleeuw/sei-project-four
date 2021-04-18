@@ -90,7 +90,9 @@ const SavedProperties = () => {
                       </div>
                       <hr />
                       <div className="container">
-                        <p>{property.short_description}</p>
+                        <p>
+                          {property.short_description.substring(0, 100)} ...
+                        </p>
                       </div>
                       <br />
                       <div className="container">
