@@ -13,6 +13,8 @@ const PropertyIndex = () => {
     minimum_beds: '',
     maximum_beds: '',
     property_type: '',
+    order_by: 'price',
+    ordering: 'descending',
   })
 
   const [listings, setListings] = useState(null)
@@ -41,8 +43,12 @@ const PropertyIndex = () => {
     }
     if (location) {
       const getData = async () => {
-        const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=100&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&api_key=${zooplaKey}`)
-        setListings(await res.json())
+        try {
+          const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=100&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&order_by=${search.order_by}&ordering=${search.ordering}&api_key=${zooplaKey}`)
+          setListings(await res.json())
+        } catch (err) {
+          console.log(err)
+        }
       }
       getData()
     }

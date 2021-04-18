@@ -12,7 +12,7 @@ const Map = ({ viewPort, setViewPort, listings }) => {
 
   //map
   const [popup, setPopup] = useState(null)
-
+  if (!listings) return null
   return (
     <div className="column is-half-desktop is-hidden-touch is-hidden-mobile">
       <div className="map-container">

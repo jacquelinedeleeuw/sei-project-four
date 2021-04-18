@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { priceOptions, typeOptions, bedroomOptions, customStyles } from './searchdata'
+import { priceOptions, typeOptions, bedroomOptions, orderOptions, orderByOptions, customStyles } from './searchdata'
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -92,7 +92,7 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
           <div className="navbar-item">
             <input
               className="input"
-              placeholder="Search..."
+              placeholder="Search for a postcode..."
               name="location"
               required={true}
             />
@@ -164,6 +164,38 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
                   placeholder="Show all"
                   name="property_type"
                   onChange={(selected) => handleChange(selected, 'property_type')}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="navbar-item has-dropdown is-hoverable">
+            <div className="navbar-link">
+              Sort by
+            </div>
+            <div className="navbar-dropdown">
+              <div className="navbar-item">
+                <Select className="search-bar"
+                  options={orderByOptions}
+                  styles={customStyles}
+                  placeholder="Price"
+                  name="price"
+                  onChange={(selected) => handleChange(selected, 'order_by')}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="navbar-item has-dropdown is-hoverable">
+            <div className="navbar-link">
+              Order by
+            </div>
+            <div className="navbar-dropdown">
+              <div className="navbar-item">
+                <Select className="search-bar"
+                  options={orderOptions}
+                  styles={customStyles}
+                  placeholder="Descending"
+                  name="ordering"
+                  onChange={(selected) => handleChange(selected, 'ordering')}
                 />
               </div>
             </div>
