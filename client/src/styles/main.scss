@@ -395,7 +395,6 @@ p {
   margin-top: 0.5rem;
   margin-left: 0.3rem;
   cursor: pointer;
-  opacity: 0;
 }
 
 .saved-location-sidebar-icon:hover {
@@ -509,6 +508,18 @@ textarea {
   margin-left: 50px;
 }
 
+//* Index .profile-image
+
+.card-box {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.card-container {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {
@@ -576,15 +587,43 @@ hr {
 
 .card-image {
   img {
-    max-height: 200px;
+    height: 250px;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px;
+    z-index: 1;
   }
+}
+
+.card-content {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  min-height: 25vh;
+
+  margin-top: -2rem;
+  width: 90%;
+  background: white;
+  border-radius: 1rem;
+  border: 3px solid rgba(53, 53, 53, 0);
+  -webkit-box-shadow: 0px 5px 10px 5px rgba(53, 53, 53, 0.119); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 5px 1px 5px rgba(53, 53, 53, 0.119); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 5px 10px 5px rgba(53, 53, 53, 0.119); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.card-content:last-child {
+  border-radius: 1rem;
+}
+
+.card-content:hover {
+  border: 3px solid $brand-blue;
 }
 
 img.property-detail {
   width: 100%;
 }
+// .card {
+// }
 
 .property-detail-view {
   padding-left: 20px;
