@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//prettier-ignore
+import {
+  faTimesCircle
+
+} from '@fortawesome/free-solid-svg-icons'
+import { faStickyNote } from '@fortawesome/free-regular-svg-icons'
 import 'animate.css'
 //prettier-ignore
 import {
@@ -22,6 +31,22 @@ const UpdateProfile = ({ propID }) => {
 
   //prettier-ignore
 
+  const onDelete = async (id) => {
+
+    console.log(id)
+    // try {
+    //   await axios.delete('/api/notes/', {id}, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    // } catch (err) {
+    //   setErrors(err.response.data)
+    // }
+  }
+
+  onDelete()
+
   const onSubmit = async (data) => {
     const text = data.text
     setNoteChange(noteChange + 1)
@@ -29,8 +54,6 @@ const UpdateProfile = ({ propID }) => {
       text,
       saved_property: propID,
     }
-
-  
 
     try {
       await axios.post('/api/notes/', formData, {
@@ -61,7 +84,12 @@ const UpdateProfile = ({ propID }) => {
       {/* This is the form box here */}
       <div className="form-header ">
         <br />
-        <h3> {notes.address}</h3>
+        <Link
+          to={`/properties/${notes.listing_id}/${notes.postcode}/${notes.beds}`}
+        >
+          <h3> {notes.address}</h3>
+        </Link>
+
         <p>Add notes to this property</p>
       </div>
       <br />
@@ -71,7 +99,16 @@ const UpdateProfile = ({ propID }) => {
             notes.notes.map((note) => {
               return (
                 <li className="note-item" key={note.id}>
+                  <FontAwesomeIcon
+                    icon={faStickyNote}
+                    className="saved-location-icon fa-1x fa-fw"
+                  />
                   {note.text}
+                  <FontAwesomeIcon
+                    icon={faTimesCircle}
+                    className="saved-location-sidebar-icon fa-1x fa-fw"
+                    onClick={() => onDelete(note.id)}
+                  />{' '}
                 </li>
               )
             })}

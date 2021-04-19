@@ -29,6 +29,8 @@ const SavedProperties = () => {
 
   const [propID, setPropID] = useState('')
 
+  const [content, setContent] = useState(false)
+
   useEffect(() => {}, [location.pathname])
 
   useEffect(() => {
@@ -48,12 +50,18 @@ const SavedProperties = () => {
   function openNav(id) {
     document.getElementById('mySidebar').style.width = '400px'
 
+    setTimeout(() => {
+      setContent(true)
+    }, 400)
+
     setPropID(id)
   }
 
   /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
   function closeNav() {
     document.getElementById('mySidebar').style.width = '0'
+
+    setContent(false)
   }
 
   if (!userDetails) return null
@@ -152,7 +160,9 @@ const SavedProperties = () => {
               <a className="closebtn" onClick={closeNav}>
                 &times;
               </a>
-              <PropertySidebar propID={propID} />
+              <div className="side-bar-container">
+                {content && <PropertySidebar propID={propID} />}
+              </div>
             </div>
           </div>
         </div>

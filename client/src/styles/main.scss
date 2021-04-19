@@ -391,6 +391,16 @@ p {
   margin-top: 0.5rem;
   margin-right: 0.3rem;
 }
+.saved-location-sidebar-icon {
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.saved-location-sidebar-icon:hover {
+  opacity: 1;
+}
 .saved-location-icon-card {
   margin-top: 1rem;
   margin-right: 0.7rem;
@@ -415,6 +425,9 @@ p {
 textarea {
   border-radius: 10px;
 }
+.side-bar-container {
+  transition: 4s ease all;
+}
 
 .note-list {
   text-align: center;
@@ -425,6 +438,17 @@ textarea {
 }
 .note-item {
   list-style: none;
+  padding: 1rem;
+  border: $brand-border-light;
+}
+
+.note-item:hover {
+  background-color: $brand-dark-bg-gray;
+}
+
+.form-header h3 {
+  font-size: 1em;
+  text-decoration: underline;
 }
 
 ::-webkit-file-upload-button {
