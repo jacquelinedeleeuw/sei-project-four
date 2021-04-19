@@ -66,10 +66,16 @@ const UpdateProfile = ({ propID }) => {
       </div>
       <br />
       <div className="note-list">
-        {notes.notes &&
-          notes.notes.map((note) => {
-            return <li key={note.id}>{note.text}</li>
-          })}
+        <ul>
+          {notes.notes &&
+            notes.notes.map((note) => {
+              return (
+                <li className="note-item" key={note.id}>
+                  {note.text}
+                </li>
+              )
+            })}
+        </ul>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="column sidebar-form">
         <div className="field">

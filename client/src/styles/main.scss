@@ -418,6 +418,13 @@ textarea {
 
 .note-list {
   text-align: center;
+  list-style: none;
+}
+.note-list ul {
+  list-style: none;
+}
+.note-item {
+  list-style: none;
 }
 
 ::-webkit-file-upload-button {
