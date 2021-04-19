@@ -520,6 +520,33 @@ textarea {
   padding: 1rem;
 }
 
+.load-more-box {
+  margin: 0 auto;
+
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.load-button {
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+}
+
+//* Index
+
+.index-search-container {
+  min-height: 10vh;
+  // width: 80%;
+  // margin: 0 auto;
+  padding: 1rem;
+  border-bottom: $brand-border-light;
+}
+.index-search-content {
+  width: 80%;
+  margin: 0 auto;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {
