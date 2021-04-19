@@ -32,20 +32,18 @@ const UpdateProfile = ({ propID }) => {
   //prettier-ignore
 
   const onDelete = async (id) => {
-
-    console.log(id)
-    // try {
-    //   await axios.delete('/api/notes/', {id}, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    // } catch (err) {
-    //   setErrors(err.response.data)
-    // }
+  
+    try {
+      await axios.delete(`/api/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      setNoteChange(noteChange + 1)
+    } catch (err) {
+      setErrors(err.response.data)
+    }
   }
-
-  onDelete()
 
   const onSubmit = async (data) => {
     const text = data.text
