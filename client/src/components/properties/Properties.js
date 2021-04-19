@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 const Properties = ({ listings }) => {
   if (!listings) return null
   return (
@@ -11,8 +10,13 @@ const Properties = ({ listings }) => {
       <div className="columns is-multiline">
         {listings.listing.map((item, index) => {
           return (
-            <div key={index} className="column is-half-desktop is-half-tablet is-full-mobile">
-              <Link to={`/properties/${item.listing_id}/${item.outcode}/${item.num_bedrooms}`}>
+            <div
+              key={index}
+              className="column is-half-desktop is-half-tablet is-full-mobile"
+            >
+              <Link
+                to={`/properties/${item.listing_id}/${item.outcode}/${item.num_bedrooms}`}
+              >
                 <div className="card">
                   <div className="card-image">
                     <img src={item.image_354_255_url} />
@@ -23,11 +27,11 @@ const Properties = ({ listings }) => {
                       <p>{item.property_type}</p>
                     </div>
                     <hr />
-                    {item.price === 0 ?
+                    {item.price === 0 ? (
                       <h2>TBC</h2>
-                      :
+                    ) : (
                       <h2>£{Number(item.price).toLocaleString()}</h2>
-                    }
+                    )}
                     <div className="property-details">
                       {item.num_bedrooms > 0 ? (
                         <>
