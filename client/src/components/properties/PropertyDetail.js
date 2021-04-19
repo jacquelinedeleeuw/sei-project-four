@@ -15,26 +15,32 @@ const PropertyDetail = () => {
 
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
   const token = getTokenFromLocalStorage()
+  const userID = getPayloadFromToken().sub
+  
   const { id } = useParams()
   const { postcode } = useParams()
   const { beds } = useParams()
+  
   const [listing, setListing] = useState(null)
   const [listings, setListings] = useState(null)
   const [user, setUser] = useState(null)
-  const [listingIdArray, setListingIdArray] = useState(null)
+  const [propertyIndex, setPropertyIndex] = useState(null)
+  const [propertyIndexArray, setPropertyIndexArray] = useState(null)
+  // const [propId, setPropId] = useState(null)
 
-  const userID = getPayloadFromToken().sub
-  let favId
-
+  // Like and save properties
   const handleSaveProperty = () => {
+    updateUserData()
+    let favId
     user.saved_properties.map(item => {
       if (item.listing_id === listing.listing[0].listing_id) {
         favId = item.id
+        // setPropId(item.id)
       }
     })
-    let listingArray = user.saved_properties.map((item) => item.listing_id)
-    if (listingArray.includes(listing.listing[0].listing_id)) {
+    if (propertyIndexArray.includes(propertyIndex)) {
       axios.delete(`/api/savedproperties/${favId}`)
+      updateUserData()
     } else {
       try {
         axios.post('/api/savedproperties/', {
@@ -50,52 +56,66 @@ const PropertyDetail = () => {
           listing_id: listing.listing[0].listing_id,
           user: userID,
         })
+        updateUserData()
       } catch (err) {
         console.log(err)
       }
     }
-    listingArray = user.saved_properties.map((item) => item.listing_id)
-    setListingIdArray(listingArray)
   }
 
+  // Get data for details of property
   useEffect(() => {
     const getData = async () => {
-      try {
-        const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`)
-        setListings(await res.json())
-      } catch (err) {
-        console.log(err)
-      }
+      const { data } = await axios.get(`http://api.zoopla.co.uk/api/v1/property_listings.json?listing_id=${id}&api_key=${zooplaKey}`)
+      setListing(data)
+      setPropertyIndex(data.listing[0].listing_id)
     }
     getData()
   }, [])
-
+  
+  // GET data for user saved properties
   useEffect(() => {
-    const getData = async () => {
-      const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?listing_id=${id}&api_key=${zooplaKey}`)
-      setListing(await res.json())
-    }
-    getData()
-  }, [])
-
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch(`/api/auth/${userID}`, {
+    const getUserData = async () => {
+      const { data } = await axios.get(`/api/auth/${userID}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      setUser(await res.json())
+      setUser(data)
+      setPropertyIndexArray(data.saved_properties.map(item => item.listing_id))
+    }
+    getUserData()
+  }, [])
+
+  const updateUserData = async () => {
+    const { data } = await axios.get(`/api/auth/${userID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setUser(data)
+    setPropertyIndexArray(data.saved_properties.map(item => item.listing_id))
+  }
+
+  // Get properties data for calculations
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`)
+        setListings(data)
+      } catch (err) {
+        console.log(err)
+      }
     }
     getData()
-  }, [handleSaveProperty])
+  }, [])
 
   const history = useHistory()
-
+  
   const goToPreviousPath = () => {
     history.goBack()
   }
-
+  
   if (!listing || !user || !listings) return null
   return (
     <div className="columns">
@@ -106,10 +126,8 @@ const PropertyDetail = () => {
           <p>Guide price</p>
           <SaveProperty 
             handleSaveProperty={handleSaveProperty}
-            user={user}
-            listing={listing}
-            listingIdArray={listingIdArray}
-            setListingIdArray={setListingIdArray}
+            propertyIndex={propertyIndex}
+            propertyIndexArray={propertyIndexArray}
           />
         </div>
         <h6>£{Number(listing.listing[0].price).toLocaleString()}</h6>
@@ -128,9 +146,13 @@ const PropertyDetail = () => {
           </div>   
         </div>   
       </div>
+      {/* <button onClick={handleCalculations}>Click for calculations</button> */}
       <YieldCalculation
         listing={listing}
-        listings={listings} 
+        listings={listings}
+        user={user}
+        propertyIndex={propertyIndex}
+        propertyIndexArray={propertyIndexArray}
       />
     </div>
   )
