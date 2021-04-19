@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   faHeart as faHeartSolid
 } from '@fortawesome/free-solid-svg-icons'
@@ -7,17 +7,12 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const SaveProperty = ({ user, setListingIdArray, listingIdArray, listing, handleSaveProperty }) => {
+const SaveProperty = ({ propertyIndex, propertyIndexArray, handleSaveProperty }) => {
 
-  useEffect(() => {
-    const listingArray = user.saved_properties.map((item) => item.listing_id)
-    setListingIdArray(listingArray)
-  }, [])
-
-  if (!listingIdArray) return null
+  if (!propertyIndexArray || !propertyIndex) return null
   return (
     <div>
-      {listingIdArray.includes(listing.listing[0].listing_id) ?
+      {propertyIndexArray.includes(propertyIndex) ?
         <a onClick={handleSaveProperty}><FontAwesomeIcon icon={faHeartSolid} className="property-icon fa-2x fa-fw" /></a>
         :
         <a onClick={handleSaveProperty}><FontAwesomeIcon icon={faHeart} className="property-icon fa-2x fa-fw" /></a>
