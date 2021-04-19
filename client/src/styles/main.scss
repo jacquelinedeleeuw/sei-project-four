@@ -404,6 +404,22 @@ p {
   width: 60%;
 }
 
+// * sidebar ::content
+
+.sidebar-form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sidebar-form input,
+textarea {
+  border-radius: 10px;
+}
+
+.note-list {
+  text-align: center;
+}
+
 ::-webkit-file-upload-button {
   /* chrome and edge */
   display: inline-block;
