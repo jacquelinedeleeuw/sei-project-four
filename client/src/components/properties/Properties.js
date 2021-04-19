@@ -4,22 +4,24 @@ import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
-  if (!listings) return null
+  // if (!listings) return null
   return (
     <section className="column is-half-desktop">
-      <div className="columns is-multiline">
-        {listings.listing.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="column is-half-desktop is-half-tablet is-full-mobile"
-            >
-              <Link
-                to={`/properties/${item.listing_id}/${item.outcode}/${item.num_bedrooms}`}
+      <div className="columns card-box is-multiline">
+        {listings &&
+          listings.listing.map((item, index) => {
+            return (
+              <div
+                className="column card-container is-half-desktop is-half-tablet is-full-mobile"
+                key={index}
               >
-                <div className="card">
-                  <div className="card-image">
-                    <img src={item.image_354_255_url} />
+                <Link
+                  to={`/properties/${item.listing_id}/${item.outcode}/${item.num_bedrooms}`}
+                >
+                  <div className="">
+                    <div className="card-image">
+                      <img src={item.image_354_255_url} />
+                    </div>
                   </div>
                   <div className="card-content">
                     <div className="card-property-details">
@@ -59,11 +61,10 @@ const Properties = ({ listings }) => {
                     <hr />
                     <p>{item.displayable_address}</p>
                   </div>
-                </div>
-              </Link>
-            </div>
-          )
-        })}
+                </Link>
+              </div>
+            )
+          })}
       </div>
     </section>
   )

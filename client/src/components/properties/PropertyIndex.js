@@ -4,7 +4,6 @@ import Properties from './Properties'
 import Map from './Map'
 
 const PropertyIndex = () => {
-
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
 
   const [search, setSearch] = useState({
@@ -27,8 +26,8 @@ const PropertyIndex = () => {
     setSearch(newSearchData)
   }
 
-  const handleSubmit = event => {
-    event.preventDefault()    
+  const handleSubmit = (event) => {
+    event.preventDefault()
     setLocation(event.target[0].value)
     setListingsLength(listings.listing.length)
   }
@@ -36,7 +35,9 @@ const PropertyIndex = () => {
   useEffect(() => {
     if (!location) {
       const getData = async () => {
-        const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&page_size=100&api_key=${zooplaKey}`)
+        const res = await fetch(
+          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&page_size=100&api_key=${zooplaKey}`
+        )
         setListings(await res.json())
       }
       getData()
@@ -44,7 +45,9 @@ const PropertyIndex = () => {
     if (location) {
       const getData = async () => {
         try {
-          const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=100&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&order_by=${search.order_by}&ordering=${search.ordering}&api_key=${zooplaKey}`)
+          const res = await fetch(
+            `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=100&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&order_by=${search.order_by}&ordering=${search.ordering}&api_key=${zooplaKey}`
+          )
           setListings(await res.json())
         } catch (err) {
           console.log(err)
@@ -62,23 +65,24 @@ const PropertyIndex = () => {
     }
   }, [listings])
 
-  if (!listings) return null
   return (
     <>
-      <Searchbar 
+      <Searchbar
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         listingsLength={listingsLength}
       />
       <div className="columns">
-        <Map 
-          listings={listings}
-          viewPort={viewPort}
-          setViewPort={setViewPort}
-        />
-        <Properties
-          listings={listings}
-        />
+        {listings && (
+          <>
+            <Map
+              listings={listings}
+              viewPort={viewPort}
+              setViewPort={setViewPort}
+            />
+            <Properties listings={listings} />
+          </>
+        )}
       </div>
     </>
   )
