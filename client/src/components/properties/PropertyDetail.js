@@ -4,15 +4,12 @@ import axios from 'axios'
 import {
   faBath,
   faBed,
-  faCouch,
-  faHeart as faHeartSolid
+  faCouch
 } from '@fortawesome/free-solid-svg-icons'
-import {
-  faHeart
-} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getPayloadFromToken, getTokenFromLocalStorage } from '../../helpers/auth'
 import YieldCalculation from './YieldCalculation'
+import SaveProperty from './SaveProperty'
 
 const PropertyDetail = () => {
 
@@ -21,21 +18,22 @@ const PropertyDetail = () => {
   const { id } = useParams()
   const { postcode } = useParams()
   const { beds } = useParams()
-  console.log(postcode)
   const [listing, setListing] = useState(null)
   const [listings, setListings] = useState(null)
   const [user, setUser] = useState(null)
+  const [listingIdArray, setListingIdArray] = useState(null)
 
   const userID = getPayloadFromToken().sub
+  let favId
 
   const handleSaveProperty = () => {
-    let favId
     user.saved_properties.map(item => {
       if (item.listing_id === listing.listing[0].listing_id) {
         favId = item.id
       }
     })
-    if (listingIdArray.includes(listing.listing[0].listing_id)) {
+    let listingArray = user.saved_properties.map((item) => item.listing_id)
+    if (listingArray.includes(listing.listing[0].listing_id)) {
       axios.delete(`/api/savedproperties/${favId}`)
     } else {
       try {
@@ -56,6 +54,8 @@ const PropertyDetail = () => {
         console.log(err)
       }
     }
+    listingArray = user.saved_properties.map((item) => item.listing_id)
+    setListingIdArray(listingArray)
   }
 
   useEffect(() => {
@@ -63,7 +63,6 @@ const PropertyDetail = () => {
       try {
         const res = await fetch(`http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`)
         setListings(await res.json())
-        console.log('test')
       } catch (err) {
         console.log(err)
       }
@@ -97,12 +96,7 @@ const PropertyDetail = () => {
     history.goBack()
   }
 
-  let listingIdArray
-
   if (!listing || !user || !listings) return null
-  else {
-    {listingIdArray = user.saved_properties.map((item) => item.listing_id)}
-  }
   return (
     <div className="columns">
       <button onClick={goToPreviousPath} className="button get-started-button">Go back</button>
@@ -110,13 +104,13 @@ const PropertyDetail = () => {
         <img src={listing.listing[0].image_645_430_url} className="property-detail"/>
         <div className="property-details-spread">
           <p>Guide price</p>
-          <div>
-            {listingIdArray.includes(listing.listing[0].listing_id) ?
-              <a onClick={handleSaveProperty}><FontAwesomeIcon icon={faHeartSolid} className="property-icon fa-2x fa-fw" /></a>
-              :
-              <a onClick={handleSaveProperty}><FontAwesomeIcon icon={faHeart} className="property-icon fa-2x fa-fw" /></a>
-            }
-          </div>
+          <SaveProperty 
+            handleSaveProperty={handleSaveProperty}
+            user={user}
+            listing={listing}
+            listingIdArray={listingIdArray}
+            setListingIdArray={setListingIdArray}
+          />
         </div>
         <h6>£{Number(listing.listing[0].price).toLocaleString()}</h6>
         <p><b>{listing.listing[0].num_bedrooms} bed {listing.listing[0].property_type} for {listing.listing[0].listing_status}</b></p>

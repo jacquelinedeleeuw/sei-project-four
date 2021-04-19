@@ -6,7 +6,7 @@ const YieldCalculation = ({ listings, listing }) => {
   const { register, handleSubmit } = useForm()
   const onSubmit = async (data) => {
     console.log(data)
-    setYieldData([data])
+    setYieldData(data)
   }
   const handleChange = (event) => {
     const newYieldData = { ... yieldData, [event.target.name]: event.target.value }
@@ -23,8 +23,8 @@ const YieldCalculation = ({ listings, listing }) => {
   const avgPrice = price / avgPriceArray.length
 
   const [yieldData, setYieldData] = useState({
-    purchasePrice: listing.listing[0].price,
-    deposit: listing.listing[0].price * 0.10,
+    purchasePrice: Number(listing.listing[0].price),
+    deposit: Number(listing.listing[0].price * 0.10),
     loanTerms: 25,
     refurb: '',
     purchaseCosts: '',
