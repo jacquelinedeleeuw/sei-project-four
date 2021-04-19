@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jwt_auth',
     'saved_properties',
-    'notes'
+    'notes',
+    'yield_calculations'
 ]
 
 MIDDLEWARE = [
