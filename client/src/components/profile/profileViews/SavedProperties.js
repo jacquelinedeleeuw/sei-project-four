@@ -143,7 +143,7 @@ const SavedProperties = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{property.beds}</p>
+                                <p>{property.yield_percentage}</p>
                               </div>
                             </div>
                           </div>

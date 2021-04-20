@@ -20,7 +20,7 @@ import axios from 'axios'
 
 // components
 
-const UpdateProfile = ({ propID }) => {
+const PropertySidebar = ({ propID }) => {
   const token = getTokenFromLocalStorage()
 
   const [errors, setErrors] = useState('')
@@ -144,4 +144,4 @@ const UpdateProfile = ({ propID }) => {
   )
 }
 
-export default UpdateProfile
+export default PropertySidebar

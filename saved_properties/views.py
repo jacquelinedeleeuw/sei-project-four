@@ -37,3 +37,11 @@ class SavedPropertyDetailView(APIView):
         saved_property_to_delete = self.get_saved_property(pk=pk)
         saved_property_to_delete.delete()
         return Response(f"Property {pk} deleted successfully", status=status.HTTP_200_OK)
+
+    def patch(self, request, pk):
+        saved_property_to_edit = self.get_saved_property(pk=pk)
+        updated_saved_property = PopulatedSavedPropertySerializer(saved_property_to_edit, data=request.data, partial=True)
+        if updated_saved_property.is_valid():
+            updated_saved_property.save()
+            return Response(updated_saved_property.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_saved_property.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)

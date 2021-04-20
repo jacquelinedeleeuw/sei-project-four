@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import 'animate.css'
 import axios from 'axios'
 import Modal from '../../../Modal'
+import PropertySidebar from './PropertySidebar'
 
 // components
 import SavedYield from './SavedYield'
@@ -30,10 +31,9 @@ const Applications = () => {
 
   const [userDetails, setUserDetails] = useState(null)
   const [propertyDetails, setPropertyDetails] = useState(null)
+  const [propID, setPropID] = useState('')
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
-
-  const [propID, setPropID] = useState('')
 
   useEffect(() => {}, [location.pathname])
 
@@ -45,22 +45,27 @@ const Applications = () => {
         },
       })
       setUserDetails(data)
+      console.log(data)
     }
     getData()
   }, [])
 
-  const openYield = (id) => {
-    modal.current.open()
+  const openYield = async (id) => {
     const getData = async () => {
-      const { data } = await axios.get(`api/savedproperties/${id}`, {
+      const { data } = await axios.get(`api/savedproperties/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      setPropertyDetails(data)
+      openPopUp(data)
+      setPropID(id)
     }
     getData()
-    setPropID(id)
+  }
+  
+  const openPopUp = async (data) => {
+    setPropertyDetails(data)
+    await modal.current.open()
   }
 
   if (!userDetails) return null
@@ -69,7 +74,6 @@ const Applications = () => {
     <div>
       <h2>Applications</h2>
       <br />
-
       <div className="dash-content-box">
         <div className="columns">
           <div className="column">
@@ -142,6 +146,7 @@ const Applications = () => {
                               />
                               <div>
                                 <p>Yield</p>
+                                <p>{property.yield_percentage}%</p>
                               </div>
                             </div>
                           </div>
@@ -156,10 +161,19 @@ const Applications = () => {
         </div>
       </div>
       <Modal ref={modal}>
-        <SavedYield 
-          propID={propID}
-          propertyDetails={propertyDetails}
-        />
+        <div className="columns applications">
+          <div>
+            <PropertySidebar 
+              propID={propID}
+              className="column"
+            />
+          </div>
+          <SavedYield 
+            propertyDetails={propertyDetails}
+            modal={modal}
+            className="column"
+          />
+        </div>
       </Modal>
     </div>
   )

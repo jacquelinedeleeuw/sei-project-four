@@ -33,6 +33,7 @@ const YieldCalculation = ({ user, listings, listing, propertyIndex, propertyInde
     saved_property: '',
   })
   
+
   // Form Submit
   const { register, handleSubmit } = useForm()
   const onSubmit = async () => {

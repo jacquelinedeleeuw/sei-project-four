@@ -17,7 +17,7 @@ const PropertyIndex = () => {
   })
 
   const [listings, setListings] = useState(null)
-  const [listingsLength, setListingsLength] = useState('')
+  const [listingsLength, setListingsLength] = useState(null)
   const [location, setLocation] = useState(null)
   const [viewPort, setViewPort] = useState(null)
 
