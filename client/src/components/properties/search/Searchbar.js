@@ -12,31 +12,18 @@ import {
 } from './searchdata'
 
 //prettier-ignore
-import { Link, useHistory, useLocation } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import {  useLocation } from 'react-router-dom'
+
 // import Logo from '../../assets/logo.svg'
 //prettier-ignore
-import {
-  userIsAuthenticated,
-  getPayloadFromToken,
-  getTokenFromLocalStorage
-} from '../../../helpers/auth'
-
-import axios from 'axios'
 
 const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
   const location = useLocation()
 
   useEffect(() => {}, [location.pathname])
 
-  const history = useHistory()
-
-  const token = getTokenFromLocalStorage()
-
   const [burger, setBurger] = useState('')
   const [searchBurger, setSearchBurger] = useState('')
-  const [userName, setUserName] = useState(null)
 
   const toggleBurger = () => {
     if (burger === '') setBurger('is-active')
@@ -48,27 +35,6 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
     if (searchBurger === 'is-active') setSearchBurger('')
   }
 
-  const handleLogout = () => {
-    window.localStorage.removeItem('token')
-    history.push('/login')
-  }
-
-  const userID = getPayloadFromToken().sub
-
-  useEffect(() => {
-    if (userIsAuthenticated()) {
-      const getData = async () => {
-        const { data } = await axios.get(`api/auth/${userID}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        setUserName(data.username)
-      }
-      getData()
-    }
-  }, [])
-
   return (
     <div className="index-search-container">
       <div className="index-search-content">
@@ -79,11 +45,6 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
             aria-label="main navigation"
           >
             <div className="navbar-brand">
-              {/* <Link to="/" className="navbar-item">
-            <img src={Logo} />
-            <h1 className="logo">yieldly</h1>
-          </Link> */}
-
               <div
                 onClick={toggleSearchBurger}
                 className={`search-navbar-burger navbar-burger ${searchBurger}`}
@@ -238,47 +199,6 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
                 <strong>Search</strong>
               </button>
             </form>
-
-            <div id="yieldly-navbar" className={`navbar-menu ${burger}`}>
-              <div className="navbar-end">
-                {!userIsAuthenticated() && (
-                  <div className="navbar-item">
-                    <div className="buttons">
-                      <Link to="/login" className="sign-in ">
-                        Sign in
-                      </Link>
-                      <Link
-                        to="/getstarted"
-                        className="button get-started-button"
-                      >
-                        <strong>Get Started</strong>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-                {userIsAuthenticated() && (
-                  <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link">
-                      <FontAwesomeIcon
-                        icon={faUserCircle}
-                        className="circle-space fa-2x"
-                      />
-                      <p>{userName}</p>
-                    </a>
-                    <div className="navbar-dropdown dropdown-shape">
-                      <Link to="/myprofile" className="navbar-item">
-                        Dashboard
-                      </Link>
-
-                      <hr className="navbar-divider" />
-                      <a onClick={handleLogout} className="navbar-item">
-                        Log out
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
           </nav>
         </div>
       </div>
