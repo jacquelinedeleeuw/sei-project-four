@@ -75,7 +75,7 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
             >
               <div className="navbar-item">
                 <input
-                  className="input"
+                  className="input index-search-box"
                   placeholder="Search for a postcode..."
                   name="location"
                   required={true}

@@ -59,10 +59,13 @@ p {
 }
 
 .nav-container {
-  width: 70%;
-  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 0.5rem;
   margin-top: 1rem;
   position: relative;
+  z-index: 10;
+  border-bottom: $brand-border-light;
 }
 .sign-in {
   color: $brand-black;
@@ -516,7 +519,7 @@ textarea {
 }
 
 .card-container {
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding: 1rem;
 }
 
@@ -536,15 +539,22 @@ textarea {
 //* Index
 
 .index-search-container {
-  min-height: 10vh;
-  // width: 80%;
-  // margin: 0 auto;
+  max-height: 10vh;
+
   padding: 1rem;
   border-bottom: $brand-border-light;
+
+  z-index: 5;
+  position: relative;
 }
 .index-search-content {
   width: 80%;
   margin: 0 auto;
+}
+
+.index-search-box {
+  border-radius: 15px;
+  padding: 1rem 2rem;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
