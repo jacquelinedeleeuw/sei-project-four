@@ -10,6 +10,7 @@ class SavedProperty(models.Model):
     beds = models.FloatField()
     baths = models.FloatField()
     receptions = models.FloatField()
+    yield_percentage = models.CharField(max_length=50, blank=True)
     listing_id = models.CharField(max_length=50, blank=True)
     user = models.ForeignKey(
         "jwt_auth.User",

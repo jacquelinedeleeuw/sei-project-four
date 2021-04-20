@@ -41,10 +41,12 @@ const Profile = () => {
   const editProfileShow = () => {
     setProfileShow(true)
     setPropertyShow(false)
+    setApplicationShow(false)
   }
   const editPropertyShow = () => {
     setProfileShow(false)
     setPropertyShow(true)
+    setApplicationShow(false)
   }
 
   const editApplicationShow = () => {
