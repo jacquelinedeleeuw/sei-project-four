@@ -3,7 +3,6 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Logo from './assets/logo.svg'
-//prettier-ignore
 import {
   userIsAuthenticated,
   getPayloadFromToken,
@@ -71,15 +70,6 @@ const Navbar = () => {
         </div>
 
         <div id="yieldly-navbar" className={`navbar-menu ${burger}`}>
-          {/* <div className="navbar-start">
-            <Link to="/" className="navbar-item">
-              Home
-            </Link>
-            <Link to="/" className="navbar-item">
-              About
-            </Link>
-          </div> */}
-
           <div className="navbar-end">
             {!userIsAuthenticated() && (
               <div className="navbar-item">
@@ -93,6 +83,7 @@ const Navbar = () => {
                 </div>
               </div>
             )}
+
             {userIsAuthenticated() && (
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
@@ -106,12 +97,6 @@ const Navbar = () => {
                   <Link to="/myprofile" className="navbar-item">
                     Dashboard
                   </Link>
-                  {/* <Link to="/savedproperties" className="navbar-item">
-                    My Properties
-                  </Link>
-                  <Link to="/applications" className="navbar-item">
-                    My applications
-                  </Link> */}
                   <hr className="navbar-divider" />
                   <a onClick={handleLogout} className="navbar-item">
                     Log out

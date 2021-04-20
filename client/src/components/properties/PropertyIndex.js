@@ -39,7 +39,7 @@ const PropertyIndex = () => {
     if (!location) {
       const getData = async () => {
         const res = await fetch(
-          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&page_size=100&api_key=${zooplaKey}`
+          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&maximum_price=200000&page_size=100&api_key=${zooplaKey}`
         )
         setListings(await res.json())
       }

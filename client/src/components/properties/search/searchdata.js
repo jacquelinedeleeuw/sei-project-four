@@ -38,6 +38,7 @@ export const priceOptions = [
   { value: '70000', label: '£70,000' },
   { value: '80000', label: '£80,000' },
   { value: '90000', label: '£90,000' },
+  { value: '100000', label: '£100,000' },
   { value: '110000', label: '£110,000' },
   { value: '120000', label: '£120,000' },
   { value: '130000', label: '£130,000' },

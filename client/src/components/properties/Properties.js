@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
   const [moreProperties, SetMoreProperties] = useState(10)
-  console.log(moreProperties, SetMoreProperties)
 
   return (
     <section className="column is-half-desktop">

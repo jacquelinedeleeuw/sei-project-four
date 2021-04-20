@@ -22,13 +22,7 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
 
   useEffect(() => {}, [location.pathname])
 
-  const [burger, setBurger] = useState('')
   const [searchBurger, setSearchBurger] = useState('')
-
-  const toggleBurger = () => {
-    if (burger === '') setBurger('is-active')
-    if (burger === 'is-active') setBurger('')
-  }
 
   const toggleSearchBurger = () => {
     if (searchBurger === '') setSearchBurger('is-active')
@@ -56,15 +50,6 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
                 >
                   <strong>Find your property</strong>
                 </button>
-              </div>
-              <div
-                onClick={toggleBurger}
-                className={`navbar-burger ${burger}`}
-                data-target="yieldly-navbar"
-              >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
               </div>
             </div>
 

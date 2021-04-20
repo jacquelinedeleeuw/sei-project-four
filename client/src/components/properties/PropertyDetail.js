@@ -14,7 +14,7 @@ import {
 
 import YieldCalculation from './YieldCalculation'
 import SaveProperty from './SaveProperty'
-import Navbar from './search/IndexNav'
+import IndexNav from './search/IndexNav'
 import Footer from '../Footer'
 
 const PropertyDetail = () => {
@@ -46,7 +46,11 @@ const PropertyDetail = () => {
       }
     })
     if (propertyIndexArray.includes(propertyIndex)) {
-      axios.delete(`/api/savedproperties/${favId}`)
+      axios.delete(`/api/savedproperties/${favId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       updateUserData()
     } else {
       try {
@@ -165,12 +169,32 @@ const PropertyDetail = () => {
     } catch (err) {
       console.log(err.message)
     }
+    const yieldly = (((
+      Number(avgPrice) * 12 -
+      Number(((avgPrice * 12) / 100) * 6) -
+      Number((Number(listing.listing[0].price) / 100) * 3)) /
+      Number(
+        Number(Number(listing.listing[0].price * 0.1))
+      )) *
+    100)
+    try {
+      await axios.patch(
+        `/api/savedproperties/${propID[0].id}/`, { yield_percentage: yieldly },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   if (!listing || !user || !listings) return null
   return (
     <>
-      <Navbar />
+      <IndexNav />
       <div className="detail-container">
         <div className="columns">
           <div className="column property-detail-view">
@@ -192,13 +216,13 @@ const PropertyDetail = () => {
               />
             </div>
             <h6>£{Number(listing.listing[0].price).toLocaleString()}</h6>
-            <p>
+            <div>
               <h3>
                 {listing.listing[0].num_bedrooms} bed{' '}
                 {listing.listing[0].property_type} for{' '}
                 {listing.listing[0].listing_status}
               </h3>
-            </p>
+            </div>
             <br />
 
             <p>{listing.listing[0].short_description}</p>

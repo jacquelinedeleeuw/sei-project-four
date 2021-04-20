@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers.common import NoteSerializer
 from .models import Note
@@ -15,6 +16,7 @@ class NoteListView(APIView):
         return Response(note_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class NoteDetailView(APIView):
+    permission_classes = (IsAuthenticated,)
     def get_note(self, pk):
         try:
             return Note.objects.get(pk=pk)

@@ -32,10 +32,30 @@ const Applications = () => {
   const [userDetails, setUserDetails] = useState(null)
   const [propertyDetails, setPropertyDetails] = useState(null)
   const [propID, setPropID] = useState('')
+  
+  const [sortType, setSortType] = useState('yield_percentage')
+
+  
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
-
+  
   useEffect(() => {}, [location.pathname])
+
+  const sortProperties = (data) => {
+    if (data) {
+      const sortArray = type => {
+        const types = {
+          yield_percentage: 'yield_percentage',
+          price: 'price',
+          postcode: 'postcode',
+        }
+        const sortProperty = types[type]
+        const sorted = [...data.saved_properties].sort((a, b) => b[sortProperty] - a[sortProperty])
+        setUserDetails(sorted)
+      }
+      sortArray(sortType)
+    }
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -44,11 +64,10 @@ const Applications = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      setUserDetails(data)
-      console.log(data)
+      sortProperties(data)
     }
     getData()
-  }, [])
+  }, [sortType])
 
   const openYield = async (id) => {
     const getData = async () => {
@@ -72,12 +91,20 @@ const Applications = () => {
 
   return (
     <div>
-      <h2>Applications</h2>
+      <h2 className="column is-two-thirds">Applications</h2>
+      <div className="select">
+        <select onChange={(e) => setSortType(e.target.value)}>
+          <option value="yield_percentage">Yield Percentage</option>
+          <option value="price">Price</option>
+          <option value="postcode">Postcode</option>
+        </select>
+      </div>
+      <br />
       <br />
       <div className="dash-content-box">
         <div className="columns">
           <div className="column">
-            {userDetails.saved_properties.map((property) => {
+            {userDetails.map((property) => {
               return (
                 <div
                   key={property.id}
@@ -146,7 +173,7 @@ const Applications = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{property.yield_percentage}%</p>
+                                <p>{Number(property.yield_percentage).toFixed(2)}%</p>
                               </div>
                             </div>
                           </div>

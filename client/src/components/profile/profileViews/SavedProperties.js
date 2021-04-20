@@ -143,7 +143,7 @@ const SavedProperties = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{property.yield_percentage}</p>
+                                <p>{Number(property.yield_percentage).toFixed(2)}%</p>
                               </div>
                             </div>
                           </div>

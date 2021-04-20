@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../helpers/auth'
 
-//prettier-ignore
 import {
   faMoneyCheckAlt,
   faFileInvoiceDollar,
@@ -27,6 +26,7 @@ const YieldCalculation = ({
 
   const [calculations, setCalculations] = useState(false)
   const [property, setProperty] = useState(null)
+  const [yieldly, setYieldly] = useState(null)
 
   const avgPriceArray = listings.listing.map(
     (item) => item.rental_prices.per_month
@@ -71,10 +71,32 @@ const YieldCalculation = ({
     } catch (err) {
       console.log(err.message)
     }
+    try {
+      await axios.patch(
+        `/api/savedproperties/${property.id}/`, { yield_percentage: yieldly },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   // Handle change on form, recalculate data and set to state
   const handleChange = (event) => {
+    setYieldly(((yieldData.monthlyRent * 12 -
+      Number(yieldData.annualMaintenance) -
+      Number(((yieldData.monthlyRent * 12) / 100) * yieldData.managementFee) -
+      Number((yieldData.purchasePrice / 100) * yieldData.mortgageInterest)) /
+      Number(
+        Number(yieldData.deposit) +
+          Number(yieldData.refurb) +
+          Number(yieldData.purchaseCosts)
+      )) *
+    100)
     const newYieldData = {
       ...yieldData,
       [event.target.name]: Number(event.target.value),
@@ -84,6 +106,16 @@ const YieldCalculation = ({
 
   // Submit calculations, set to state, get yield ID and property ID
   const handleCalculations = () => {
+    setYieldly(((yieldData.monthlyRent * 12 -
+      Number(yieldData.annualMaintenance) -
+      Number(((yieldData.monthlyRent * 12) / 100) * yieldData.managementFee) -
+      Number((yieldData.purchasePrice / 100) * yieldData.mortgageInterest)) /
+      Number(
+        Number(yieldData.deposit) +
+          Number(yieldData.refurb) +
+          Number(yieldData.purchaseCosts)
+      )) *
+    100)
     if (propertyIndexArray.includes(propertyIndex)) {
       setYieldData({ ...yieldData, saved_property: propId[0].id })
       setCalculations(true)
@@ -92,14 +124,17 @@ const YieldCalculation = ({
       (item) => item.listing_id === listing.listing[0].listing_id ?? item
     )
     const getUserData = async () => {
-      const { data } = await axios.get(`/api/savedproperties/${propID[0].id}`)
+      const { data } = await axios.get(`/api/savedproperties/${propID[0].id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       setProperty(data)
     }
     getUserData()
   }
 
   // Financial Calcuations
-
   const annualCost = (
     Number(yieldData.annualMaintenance) +
     Number(((yieldData.monthlyRent * 12) / 100) * yieldData.managementFee) +
@@ -345,13 +380,11 @@ const YieldCalculation = ({
                     Number(yieldData.purchaseCosts)
                   ).toLocaleString()}
                 </p>
-
                 <p>
                   <b>Total Annual Running Costs</b> £{annualCost}
                 </p>
               </div>
             </div>
-
             <hr />
           </>
         )}
