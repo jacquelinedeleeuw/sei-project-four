@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import 'animate.css'
 import axios from 'axios'
+import Modal from '../../../Modal'
+
 // components
-import PropertySidebar from './PropertySidebar'
+import SavedYield from './SavedYield'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//prettier-ignore
+
 import {
   faMapMarkerAlt,
   faTags,
@@ -14,22 +16,24 @@ import {
   faChartLine
 } from '@fortawesome/free-solid-svg-icons'
 
-//prettier-ignore
+
 import {
   getPayloadFromToken,
   getTokenFromLocalStorage
 } from '../../../helpers/auth'
 
-const SavedProperties = () => {
+const Applications = () => {
+
   const location = useLocation()
+  
+  const modal = useRef(null)
 
   const [userDetails, setUserDetails] = useState(null)
+  const [propertyDetails, setPropertyDetails] = useState(null)
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
 
   const [propID, setPropID] = useState('')
-
-  const [content, setContent] = useState(false)
 
   useEffect(() => {}, [location.pathname])
 
@@ -40,35 +44,30 @@ const SavedProperties = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-
       setUserDetails(data)
     }
     getData()
   }, [])
 
-  /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-  function openNav(id) {
-    document.getElementById('mySidebar').style.width = '400px'
-
-    setTimeout(() => {
-      setContent(true)
-    }, 400)
-
+  const openYield = (id) => {
+    modal.current.open()
+    const getData = async () => {
+      const { data } = await axios.get(`api/savedproperties/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      setPropertyDetails(data)
+    }
+    getData()
     setPropID(id)
-  }
-
-  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-  function closeNav() {
-    document.getElementById('mySidebar').style.width = '0'
-
-    setContent(false)
   }
 
   if (!userDetails) return null
 
   return (
     <div>
-      <h2>Saved Properties</h2>
+      <h2>Applications</h2>
       <br />
 
       <div className="dash-content-box">
@@ -79,7 +78,7 @@ const SavedProperties = () => {
                 <div
                   key={property.id}
                   className="container saved-property-card animate__animated animate__fadeInUp"
-                  onClick={() => openNav(property.id)}
+                  onClick={() => openYield(property.id)}
                 >
                   <div className="columns">
                     <div className="column">
@@ -143,7 +142,6 @@ const SavedProperties = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{property.beds}</p>
                               </div>
                             </div>
                           </div>
@@ -155,20 +153,16 @@ const SavedProperties = () => {
               )
             })}
           </div>
-          <div>
-            <div id="mySidebar" className="sidebar">
-              <a className="closebtn" onClick={closeNav}>
-                &times;
-              </a>
-              <div className="side-bar-container">
-                {content && <PropertySidebar propID={propID} />}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
+      <Modal ref={modal}>
+        <SavedYield 
+          propID={propID}
+          propertyDetails={propertyDetails}
+        />
+      </Modal>
     </div>
   )
 }
 
-export default SavedProperties
+export default Applications

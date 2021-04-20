@@ -27,6 +27,7 @@ class SavedPropertyDetailView(APIView):
             return SavedProperty.objects.get(pk=pk)
         except SavedProperty.DoesNotExist:
             raise NotFound(detail="Cannot find that property")
+
     def get(self, _request, pk):
         saved_property = self.get_saved_property(pk=pk)
         serialized_saved_property = PopulatedSavedPropertySerializer(saved_property)

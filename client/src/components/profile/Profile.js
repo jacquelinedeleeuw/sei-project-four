@@ -17,6 +17,7 @@ import Modal from '../../Modal'
 
 import ProfilePage from '../profile/profileViews/profilePage'
 import SavedProperties from './profileViews/SavedProperties'
+import Applications from './profileViews/Applications'
 
 //helpers
 
@@ -35,17 +36,22 @@ const Profile = () => {
 
   const [profileShow, setProfileShow] = useState(true)
   const [propertyShow, setPropertyShow] = useState(false)
+  const [applicationShow, setApplicationShow] = useState(false)
 
   const editProfileShow = () => {
-    setPropertyShow(false)
     setProfileShow(true)
+    setPropertyShow(false)
   }
   const editPropertyShow = () => {
-    setPropertyShow(true)
     setProfileShow(false)
+    setPropertyShow(true)
   }
 
-  // console.log(profileShow)
+  const editApplicationShow = () => {
+    setProfileShow(false)
+    setPropertyShow(false)
+    setApplicationShow(true)
+  }
 
   useEffect(() => {}, [location.pathname])
 
@@ -93,7 +99,7 @@ const Profile = () => {
               <p>Properties</p>
             </div>
             {/* </Link> */}
-            <div className="dash-nav-item">
+            <div onClick={editApplicationShow} className="dash-nav-item">
               <FontAwesomeIcon
                 icon={faFileAlt}
                 className="nav-icon fa-2x fa-fw"
@@ -110,7 +116,7 @@ const Profile = () => {
           {/* Start of Content */}
           {profileShow && <ProfilePage />}
           {propertyShow && <SavedProperties />}
-
+          {applicationShow && <Applications />}
           {/* End of content */}
         </div>
       </div>

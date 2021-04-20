@@ -16,6 +16,10 @@ const PropertyDetail = () => {
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
+  const history = useHistory()
+  const goToPreviousPath = () => {
+    history.goBack()
+  }
 
   const { id } = useParams()
   const { postcode } = useParams()
@@ -26,16 +30,14 @@ const PropertyDetail = () => {
   const [user, setUser] = useState(null)
   const [propertyIndex, setPropertyIndex] = useState(null)
   const [propertyIndexArray, setPropertyIndexArray] = useState(null)
-  // const [propId, setPropId] = useState(null)
-
-  // Like and save properties
+  
+  // Like and save properties (delete or post depending on user)
   const handleSaveProperty = () => {
     updateUserData()
     let favId
     user.saved_properties.map((item) => {
       if (item.listing_id === listing.listing[0].listing_id) {
         favId = item.id
-        // setPropId(item.id)
       }
     })
     if (propertyIndexArray.includes(propertyIndex)) {
@@ -56,7 +58,7 @@ const PropertyDetail = () => {
           listing_id: listing.listing[0].listing_id,
           user: userID,
         })
-        updateUserData()
+        updateUserDataWithYield()
       } catch (err) {
         console.log(err)
       }
@@ -71,6 +73,21 @@ const PropertyDetail = () => {
       )
       setListing(data)
       setPropertyIndex(data.listing[0].listing_id)
+    }
+    getData()
+  }, [])
+
+  // Get properties data for calculations
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`
+        )
+        setListings(data)
+      } catch (err) {
+        console.log(err)
+      }
     }
     getData()
   }, [])
@@ -91,6 +108,7 @@ const PropertyDetail = () => {
     getUserData()
   }, [])
 
+  // Update user data for saved properties ONLY when unlike
   const updateUserData = async () => {
     const { data } = await axios.get(`/api/auth/${userID}`, {
       headers: {
@@ -101,25 +119,43 @@ const PropertyDetail = () => {
     setPropertyIndexArray(data.saved_properties.map((item) => item.listing_id))
   }
 
-  // Get properties data for calculations
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await axios.get(
-          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`
-        )
-        setListings(data)
-      } catch (err) {
-        console.log(err)
-      }
+  // Update user data for saved properties when like and run yield post function
+  const updateUserDataWithYield = async () => {
+    const { data } = await axios.get(`/api/auth/${userID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    setUser(data)
+    setPropertyIndexArray(data.saved_properties.map((item) => item.listing_id))
+    const propID = data.saved_properties.filter(item => (item.listing_id === listing.listing[0].listing_id) ?? item)
+    handleYieldCalculations(propID)
+  }
+
+  // Function to post yield calculations to the saved property
+  const handleYieldCalculations = async (propID) => {
+    const avgPriceArray = listings.listing.map((item) => item.rental_prices.per_month)
+    const price = avgPriceArray.reduce((acc, item) => {
+      const price = acc += Number(item)
+      return price
+    }, 0)
+    const avgPrice = (price === 0) ? 0 : price / avgPriceArray.length
+    try {
+      await axios.post('/api/yield/', {
+        purchasePrice: Number(listing.listing[0].price),
+        deposit: Number(listing.listing[0].price * 0.10),
+        loanTerms: 25,
+        refurb: 0,
+        purchaseCosts: 0,
+        monthlyRent: Number(avgPrice),
+        annualMaintenance: 500,
+        managementFee: 6,
+        mortgageInterest: 3,
+        saved_property: propID[0].id,
+      })
+    } catch (err) {
+      console.log(err.message)
     }
-    getData()
-  }, [])
-
-  const history = useHistory()
-
-  const goToPreviousPath = () => {
-    history.goBack()
   }
 
   if (!listing || !user || !listings) return null
@@ -172,7 +208,6 @@ const PropertyDetail = () => {
           </div>
         </div>
       </div>
-      {/* <button onClick={handleCalculations}>Click for calculations</button> */}
       <YieldCalculation
         listing={listing}
         listings={listings}
