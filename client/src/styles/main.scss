@@ -539,17 +539,22 @@ textarea {
 //* Index
 
 .index-search-container {
-  min-height: 10vh;
-  width: 80%;
-  margin: 0 auto;
+  max-height: 10vh;
+
   padding: 1rem;
   border-bottom: $brand-border-light;
+
   z-index: 5;
   position: relative;
 }
 .index-search-content {
   width: 80%;
   margin: 0 auto;
+}
+
+.index-search-box {
+  border-radius: 15px;
+  padding: 1rem 2rem;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
