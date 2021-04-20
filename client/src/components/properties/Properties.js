@@ -4,13 +4,14 @@ import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
-  const [moreProperties, SetMoreProperties] = useState(10)
+  // const [moreProperties, SetMoreProperties] = useState(10)
+  console.log(useState)
 
   return (
     <section className="column is-half-desktop">
       <div className="columns card-box is-multiline ">
         {listings &&
-          listings.listing.splice(0, moreProperties).map((item, index) => {
+          listings.listing.map((item, index) => {
             return (
               <div
                 className="column card-container is-half-desktop is-half-tablet is-full-mobile  animate__animated animate__fadeInUp"
@@ -68,12 +69,12 @@ const Properties = ({ listings }) => {
           })}
       </div>
       <div className="load-more-box">
-        <div
+        {/* <div
           className="button load-button"
           onClick={() => SetMoreProperties(moreProperties + 10)}
         >
           Load more
-        </div>
+        </div> */}
       </div>
     </section>
   )

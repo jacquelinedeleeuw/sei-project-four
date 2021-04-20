@@ -15,28 +15,29 @@ const Map = ({ viewPort, setViewPort, listings }) => {
   if (!listings) return null
   return (
     <div className="column is-half-desktop is-hidden-touch is-hidden-mobile">
-      <div className="map-container">
-        {viewPort ?
-          <ReactMapGL
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-            height="100vh"
-            width="50vw"
-            mapStyle="mapbox://styles/mapbox/light-v10"
-            zoom={15}
-            {...viewPort}
-            onViewportChange={(viewPort) => setViewPort(viewPort)}
-          >
-            {listings.listing.map((listing, index) => {
-              return <Marker 
-                key={index} 
-                longitude={listing.longitude} 
-                latitude={listing.latitude}>
-                <span onClick={() => setPopup(listing)}>
-                  <FontAwesomeIcon icon={faHome} className="nav-icon fa-1x fa-fw" />
-                </span>
-              </Marker>
-            })}
-            {popup &&
+      {viewPort ?
+        <div className="map-container">
+          {viewPort ?
+            <ReactMapGL
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+              height="100vh"
+              width="50vw"
+              mapStyle="mapbox://styles/mapbox/light-v10"
+              zoom={15}
+              {...viewPort}
+              onViewportChange={(viewPort) => setViewPort(viewPort)}
+            >
+              {listings.listing.map((listing, index) => {
+                return <Marker 
+                  key={index} 
+                  longitude={listing.longitude} 
+                  latitude={listing.latitude}>
+                  <span onClick={() => setPopup(listing)}>
+                    <FontAwesomeIcon icon={faHome} className="nav-icon fa-1x fa-fw" />
+                  </span>
+                </Marker>
+              })}
+              {popup &&
         <Link to={`/properties/${popup.listing_id}`}>
           <Popup
             latitude={popup.latitude}
@@ -60,12 +61,26 @@ const Map = ({ viewPort, setViewPort, listings }) => {
             <p>{popup.displayable_address}</p>
           </Popup>
         </Link>
-            }
+              }
+            </ReactMapGL>
+            :
+            <p>Loading the location…</p>
+          }
+        </div>
+        :
+        <div className="map-container">
+          <ReactMapGL
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            height="100vh"
+            width="50vw"
+            mapStyle="mapbox://styles/mapbox/light-v10"
+            zoom={10}
+            latitude={51.4934}
+            longitude={0.0098}
+          >
           </ReactMapGL>
-          :
-          <p>Loading the location…</p>
-        }
-      </div>
+        </div>
+      }
     </div>
   )
 }
