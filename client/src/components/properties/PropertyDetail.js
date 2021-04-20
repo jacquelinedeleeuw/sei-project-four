@@ -9,8 +9,12 @@ import {
   getPayloadFromToken,
   getTokenFromLocalStorage
 } from '../../helpers/auth'
+
+//Components
+
 import YieldCalculation from './YieldCalculation'
 import SaveProperty from './SaveProperty'
+import Navbar from './search/IndexNav'
 
 const PropertyDetail = () => {
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
@@ -30,7 +34,7 @@ const PropertyDetail = () => {
   const [user, setUser] = useState(null)
   const [propertyIndex, setPropertyIndex] = useState(null)
   const [propertyIndexArray, setPropertyIndexArray] = useState(null)
-  
+
   // Like and save properties (delete or post depending on user)
   const handleSaveProperty = () => {
     updateUserData()
@@ -128,22 +132,26 @@ const PropertyDetail = () => {
     })
     setUser(data)
     setPropertyIndexArray(data.saved_properties.map((item) => item.listing_id))
-    const propID = data.saved_properties.filter(item => (item.listing_id === listing.listing[0].listing_id) ?? item)
+    const propID = data.saved_properties.filter(
+      (item) => item.listing_id === listing.listing[0].listing_id ?? item
+    )
     handleYieldCalculations(propID)
   }
 
   // Function to post yield calculations to the saved property
   const handleYieldCalculations = async (propID) => {
-    const avgPriceArray = listings.listing.map((item) => item.rental_prices.per_month)
+    const avgPriceArray = listings.listing.map(
+      (item) => item.rental_prices.per_month
+    )
     const price = avgPriceArray.reduce((acc, item) => {
-      const price = acc += Number(item)
+      const price = (acc += Number(item))
       return price
     }, 0)
-    const avgPrice = (price === 0) ? 0 : price / avgPriceArray.length
+    const avgPrice = price === 0 ? 0 : price / avgPriceArray.length
     try {
       await axios.post('/api/yield/', {
         purchasePrice: Number(listing.listing[0].price),
-        deposit: Number(listing.listing[0].price * 0.10),
+        deposit: Number(listing.listing[0].price * 0.1),
         loanTerms: 25,
         refurb: 0,
         purchaseCosts: 0,
@@ -160,62 +168,77 @@ const PropertyDetail = () => {
 
   if (!listing || !user || !listings) return null
   return (
-    <div className="columns">
-      <button onClick={goToPreviousPath} className="button get-started-button">
-        Go back
-      </button>
-      <div className="column is-two-thirds property-detail-view">
-        <img
-          src={listing.listing[0].image_645_430_url}
-          className="property-detail"
-        />
-        <div className="property-details-spread">
-          <p>Guide price</p>
-          <SaveProperty
-            handleSaveProperty={handleSaveProperty}
-            propertyIndex={propertyIndex}
-            propertyIndexArray={propertyIndexArray}
-          />
-        </div>
-        <h6>£{Number(listing.listing[0].price).toLocaleString()}</h6>
-        <p>
-          <b>
-            {listing.listing[0].num_bedrooms} bed{' '}
-            {listing.listing[0].property_type} for{' '}
-            {listing.listing[0].listing_status}
-          </b>
-        </p>
-        <p>{listing.listing[0].short_description}</p>
-        <hr />
-        <div className="property-details-spread">
-          <p>{listing.listing[0].displayable_address}</p>
-          <div className="property-details">
-            <FontAwesomeIcon
-              icon={faBed}
-              className="property-icon fa-1x fa-fw"
+    <>
+      <Navbar />
+      <div className="detail-container">
+        <div className="columns">
+          <div className="column is-two-thirds property-detail-view">
+            <div className="back-button" onClick={goToPreviousPath}>
+              <p>{'<'} Back to search</p>
+            </div>
+
+            <img
+              src={listing.listing[0].image_645_430_url}
+              className="property-detail"
             />
-            <p>{listing.listing[0].num_bedrooms} beds</p>
-            <FontAwesomeIcon
-              icon={faBath}
-              className="property-icon fa-1x fa-fw"
-            />
-            <p>{listing.listing[0].num_bathrooms} baths </p>
-            <FontAwesomeIcon
-              icon={faCouch}
-              className="property-icon fa-1x fa-fw"
-            />
-            <p>{listing.listing[0].num_recepts} reception</p>
+            <div className="property-details-spread">
+              <p>Guide price</p>
+
+              <SaveProperty
+                handleSaveProperty={handleSaveProperty}
+                propertyIndex={propertyIndex}
+                propertyIndexArray={propertyIndexArray}
+              />
+            </div>
+            <h6>£{Number(listing.listing[0].price).toLocaleString()}</h6>
+            <p>
+              <h3>
+                {listing.listing[0].num_bedrooms} bed{' '}
+                {listing.listing[0].property_type} for{' '}
+                {listing.listing[0].listing_status}
+              </h3>
+            </p>
+            <br />
+            <p>{listing.listing[0].short_description}</p>
+            <br />
+            <hr />
+            <div className="property-details-spread">
+              <p>{listing.listing[0].displayable_address}</p>
+              <div className="property-details">
+                <FontAwesomeIcon
+                  icon={faBed}
+                  className="property-icon fa-1x fa-fw"
+                />
+                <p>{listing.listing[0].num_bedrooms} beds</p>
+                <FontAwesomeIcon
+                  icon={faBath}
+                  className="property-icon fa-1x fa-fw"
+                />
+                <p>{listing.listing[0].num_bathrooms} baths </p>
+                <FontAwesomeIcon
+                  icon={faCouch}
+                  className="property-icon fa-1x fa-fw"
+                />
+                <p>{listing.listing[0].num_recepts} reception</p>
+              </div>
+            </div>
+            <hr />
+            <br />
+            <div className="yield-box-container">
+              <h3>Analytics</h3>
+              <YieldCalculation
+                listing={listing}
+                listings={listings}
+                user={user}
+                propertyIndex={propertyIndex}
+                propertyIndexArray={propertyIndexArray}
+              />
+            </div>
           </div>
+          <p>Placeholder for Zoopla link</p>
         </div>
       </div>
-      <YieldCalculation
-        listing={listing}
-        listings={listings}
-        user={user}
-        propertyIndex={propertyIndex}
-        propertyIndexArray={propertyIndexArray}
-      />
-    </div>
+    </>
   )
 }
 

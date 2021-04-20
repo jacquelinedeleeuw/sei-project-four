@@ -102,9 +102,9 @@ const Navbar = () => {
                   />
                   <p>{userName}</p>
                 </a>
-                <div className="navbar-dropdown dropdown-shape">
+                <div className="navbar-dropdown  is-right dropdown-shape">
                   <Link to="/myprofile" className="navbar-item">
-                    Profile
+                    Dashboard
                   </Link>
                   {/* <Link to="/savedproperties" className="navbar-item">
                     My Properties
