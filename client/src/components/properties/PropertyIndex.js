@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+
+//Components
 import Searchbar from './search/Searchbar'
 import Properties from './Properties'
 import Map from './Map'
+import IndexNav from './search/IndexNav'
 
 const PropertyIndex = () => {
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
@@ -67,6 +70,7 @@ const PropertyIndex = () => {
 
   return (
     <>
+      <IndexNav />
       <Searchbar
         handleSubmit={handleSubmit}
         handleChange={handleChange}

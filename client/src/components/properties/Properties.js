@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
-  // if (!listings) return null
+  const [moreProperties, SetMoreProperties] = useState(10)
+  console.log(moreProperties, SetMoreProperties)
+
   return (
     <section className="column is-half-desktop">
-      <div className="columns card-box is-multiline">
+      <div className="columns card-box is-multiline ">
         {listings &&
-          listings.listing.map((item, index) => {
+          listings.listing.splice(0, moreProperties).map((item, index) => {
             return (
               <div
-                className="column card-container is-half-desktop is-half-tablet is-full-mobile"
+                className="column card-container is-half-desktop is-half-tablet is-full-mobile  animate__animated animate__fadeInUp"
                 key={index}
               >
                 <Link
@@ -65,6 +67,14 @@ const Properties = ({ listings }) => {
               </div>
             )
           })}
+      </div>
+      <div className="load-more-box">
+        <div
+          className="button load-button"
+          onClick={() => SetMoreProperties(moreProperties + 10)}
+        >
+          Load more
+        </div>
       </div>
     </section>
   )
