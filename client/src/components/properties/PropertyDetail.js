@@ -15,6 +15,7 @@ import {
 import YieldCalculation from './YieldCalculation'
 import SaveProperty from './SaveProperty'
 import Navbar from './search/IndexNav'
+import Footer from '../Footer'
 
 const PropertyDetail = () => {
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
@@ -172,7 +173,7 @@ const PropertyDetail = () => {
       <Navbar />
       <div className="detail-container">
         <div className="columns">
-          <div className="column is-two-thirds property-detail-view">
+          <div className="column property-detail-view">
             <div className="back-button" onClick={goToPreviousPath}>
               <p>{'<'} Back to search</p>
             </div>
@@ -199,8 +200,10 @@ const PropertyDetail = () => {
               </h3>
             </p>
             <br />
+
             <p>{listing.listing[0].short_description}</p>
             <br />
+
             <hr />
             <div className="property-details-spread">
               <p>{listing.listing[0].displayable_address}</p>
@@ -224,8 +227,24 @@ const PropertyDetail = () => {
             </div>
             <hr />
             <br />
+            <h3>More information</h3>
+            <a
+              href={`https://www.zoopla.co.uk/for-sale/details/${listing.listing[0].listing_id}/`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png"
+                width="150"
+                height="73"
+                title="Property information powered by Zoopla"
+                alt="Property information powered by Zoopla"
+                border="0"
+              />
+            </a>
+
+            <br />
             <div className="yield-box-container">
-              <h3>Analytics</h3>
               <YieldCalculation
                 listing={listing}
                 listings={listings}
@@ -235,9 +254,9 @@ const PropertyDetail = () => {
               />
             </div>
           </div>
-          <p>Placeholder for Zoopla link</p>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

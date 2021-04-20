@@ -575,6 +575,31 @@ textarea {
   cursor: pointer;
 }
 
+.analytics-form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.analytics-form input {
+  border-radius: 10px;
+}
+
+.calculations {
+  margin-top: 0.2rem;
+}
+.calculations b {
+  color: #161637;
+}
+
+.powered-box {
+  margin-top: 5rem;
+  border: $brand-border-light;
+  height: 20vh;
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidebar {
