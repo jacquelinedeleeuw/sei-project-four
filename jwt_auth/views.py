@@ -11,6 +11,7 @@ import jwt
 
 from .serializers.common import UserSerializer
 from .serializers.populated import PopulatedUserSerializer
+from .serializers.populated_no import PopulatedNewUserSerializer
 
 User = get_user_model()
 
@@ -40,7 +41,7 @@ class UserDetailView(APIView):
 
     def patch(self, request, pk):
         user_to_edit = self.get_user(pk=pk)
-        updated_user = PopulatedUserSerializer(user_to_edit, data=request.data, partial=True)
+        updated_user = PopulatedNewUserSerializer(user_to_edit, data=request.data, partial=True)
         if updated_user.is_valid():
             updated_user.save()
             return Response(updated_user.data, status=status.HTTP_202_ACCEPTED)
