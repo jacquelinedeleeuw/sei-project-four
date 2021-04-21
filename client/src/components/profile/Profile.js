@@ -18,11 +18,13 @@ import Modal from '../../Modal'
 import ProfilePage from '../profile/profileViews/profilePage'
 import SavedProperties from './profileViews/SavedProperties'
 import Applications from './profileViews/Applications'
+import Settings from './profileViews/Settings'
 
 //helpers
 
 //prettier-ignore
 import {
+
   getPayloadFromToken,
   getTokenFromLocalStorage
 } from '../../helpers/auth'
@@ -38,6 +40,7 @@ const Profile = () => {
   const [propertyShow, setPropertyShow] = useState(false)
   const [applicationShow, setApplicationShow] = useState(false)
   const [mobileToggle, setMobileToggle] = useState(false)
+  const [settingShow, setSettingShow] = useState(false)
 
   const mobileNavToggle = () => {
     if (mobileToggle === true) {
@@ -51,17 +54,26 @@ const Profile = () => {
     setProfileShow(true)
     setPropertyShow(false)
     setApplicationShow(false)
+    setSettingShow(false)
   }
   const editPropertyShow = () => {
     setProfileShow(false)
     setPropertyShow(true)
     setApplicationShow(false)
+    setSettingShow(false)
   }
 
   const editApplicationShow = () => {
     setProfileShow(false)
     setPropertyShow(false)
     setApplicationShow(true)
+    setSettingShow(false)
+  }
+  const editSettingShow = () => {
+    setProfileShow(false)
+    setPropertyShow(false)
+    setApplicationShow(false)
+    setSettingShow(true)
   }
 
   useEffect(() => {}, [location.pathname])
@@ -122,7 +134,7 @@ const Profile = () => {
                   />
                   <p>Applications</p>
                 </div>
-                <div className="dash-nav-item">
+                <div onClick={editSettingShow} className="dash-nav-item">
                   <FontAwesomeIcon
                     icon={faCog}
                     className="nav-icon fa-2x fa-fw"
@@ -138,6 +150,7 @@ const Profile = () => {
           {profileShow && <ProfilePage />}
           {propertyShow && <SavedProperties />}
           {applicationShow && <Applications />}
+          {settingShow && <Settings />}
           {/* End of content */}
         </div>
       </div>
