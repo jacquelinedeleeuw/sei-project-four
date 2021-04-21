@@ -3,6 +3,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Logo from './assets/logo.svg'
+
+//prettier-ignore
 import {
   userIsAuthenticated,
   getPayloadFromToken,
@@ -87,12 +89,15 @@ const Navbar = () => {
             {userIsAuthenticated() && (
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
-                  <FontAwesomeIcon
-                    icon={faUserCircle}
-                    className="circle-space fa-2x"
-                  />
-                  <p>{userName}</p>
+                  <div className="mobile-user">
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      className="circle-space fa-2x"
+                    />
+                    <p>{userName}</p>
+                  </div>
                 </a>
+
                 <div className="navbar-dropdown  is-right dropdown-shape">
                   <Link to="/myprofile" className="navbar-item">
                     Dashboard
