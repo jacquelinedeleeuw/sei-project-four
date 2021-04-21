@@ -121,7 +121,6 @@ const UpdateProfile = ({ userDetails }) => {
               name="password"
               type="password"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.password}</p>
           </div>
@@ -134,7 +133,6 @@ const UpdateProfile = ({ userDetails }) => {
               name="password_confirmation"
               type="password"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.password}</p>
           </div>
