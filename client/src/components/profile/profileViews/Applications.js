@@ -3,13 +3,14 @@ import { useLocation } from 'react-router-dom'
 import 'animate.css'
 import axios from 'axios'
 import Modal from '../../../Modal'
-import PropertySidebar from './PropertySidebar'
+// import PropertySidebar from './PropertySidebar'
 
 // components
 import SavedYield from './SavedYield'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+//prettier-ignore
 import {
   faMapMarkerAlt,
   faTags,
@@ -17,40 +18,40 @@ import {
   faChartLine
 } from '@fortawesome/free-solid-svg-icons'
 
-
+//prettier-ignore
 import {
   getPayloadFromToken,
   getTokenFromLocalStorage
 } from '../../../helpers/auth'
 
 const Applications = () => {
-
   const location = useLocation()
-  
+
   const modal = useRef(null)
 
   const [userDetails, setUserDetails] = useState(null)
   const [propertyDetails, setPropertyDetails] = useState(null)
   const [propID, setPropID] = useState('')
-  
+
   const [sortType, setSortType] = useState('yield_percentage')
 
-  
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
-  
+
   useEffect(() => {}, [location.pathname])
 
   const sortProperties = (data) => {
     if (data) {
-      const sortArray = type => {
+      const sortArray = (type) => {
         const types = {
           yield_percentage: 'yield_percentage',
           price: 'price',
           postcode: 'postcode',
         }
         const sortProperty = types[type]
-        const sorted = [...data.saved_properties].sort((a, b) => b[sortProperty] - a[sortProperty])
+        const sorted = [...data.saved_properties].sort(
+          (a, b) => b[sortProperty] - a[sortProperty]
+        )
         setUserDetails(sorted)
       }
       sortArray(sortType)
@@ -81,7 +82,7 @@ const Applications = () => {
     }
     getData()
   }
-  
+
   const openPopUp = async (data) => {
     setPropertyDetails(data)
     await modal.current.open()
@@ -122,11 +123,7 @@ const Applications = () => {
                             icon={faMapMarkerAlt}
                             className="saved-location-icon fa-1x fa-fw"
                           />
-                          {
-                            <h2>
-                              {property.address}
-                            </h2>
-                          }
+                          {<h2>{property.address}</h2>}
                         </div>
                       </div>
                       <hr />
@@ -173,7 +170,10 @@ const Applications = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{Number(property.yield_percentage).toFixed(2)}%</p>
+                                <p>
+                                  {Number(property.yield_percentage).toFixed(2)}
+                                  %
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -188,18 +188,19 @@ const Applications = () => {
         </div>
       </div>
       <Modal ref={modal}>
-        <div className="columns applications">
-          <div>
-            <PropertySidebar 
-              propID={propID}
-              className="column"
-            />
+        <div className="applications-container applications">
+          <div className="container">
+            <h3>Property Analytics</h3>
+            <hr />
           </div>
-          <SavedYield 
+
+          <SavedYield
             propertyDetails={propertyDetails}
             modal={modal}
-            className="column"
+            propID={propID}
           />
+
+          <hr />
         </div>
       </Modal>
     </div>
