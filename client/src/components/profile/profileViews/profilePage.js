@@ -46,6 +46,18 @@ const profilePage = () => {
     <div>
       <h2>Profile</h2>
       <br />
+      <div className="container saved-property-card">
+        <div className="column is-one-quarter">
+          <div className="profile-image">
+            <img src={userDetails.profile_image}></img>
+          </div>
+
+          <div onClick={() => modal.current.open()} className="change-image">
+            <p>Change profile photo</p>
+          </div>
+        </div>
+        <div className="column"></div>
+      </div>
       <div className="columns dash-content-box">
         <div className="column is-one-quarter">
           <div className="profile-col">
@@ -72,9 +84,7 @@ const profilePage = () => {
         </div>
         <div className="column is-two-quarter">
           <div className="profile-col">
-            <UpdateProfile 
-              userDetails={userDetails}
-            />
+            <UpdateProfile userDetails={userDetails} />
           </div>
         </div>
       </div>

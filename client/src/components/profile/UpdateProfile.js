@@ -41,10 +41,7 @@ const UpdateProfile = ({ userDetails }) => {
         <p>Use the form below to change your user details</p>
       </div>
       <br />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="column login-form-form"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="column change-form">
         <div className="field">
           <div className="control">
             <div className="form-label">

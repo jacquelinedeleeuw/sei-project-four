@@ -395,6 +395,17 @@ p {
   color: $brand-gray-text;
 }
 
+// * Change details
+
+.change-form {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.change-form input {
+  border-radius: 10px;
+}
+
 // * Saved properties
 
 .saved-property-card {
