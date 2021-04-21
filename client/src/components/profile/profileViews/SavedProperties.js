@@ -113,7 +113,7 @@ const SavedProperties = () => {
                               <div>
                                 <p>Price</p>
                                 <p>
-                                  <strong>£ </strong>
+                                  <b>£ </b>
                                   {property.price.toLocaleString()}
                                 </p>
                               </div>
@@ -139,7 +139,10 @@ const SavedProperties = () => {
                               />
                               <div>
                                 <p>Yield</p>
-                                <p>{Number(property.yield_percentage).toFixed(2)}%</p>
+                                <p>
+                                  {Number(property.yield_percentage).toFixed(2)}
+                                  %
+                                </p>
                               </div>
                             </div>
                           </div>

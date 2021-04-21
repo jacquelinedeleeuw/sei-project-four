@@ -9,14 +9,25 @@ const Settings = () => {
 
   return (
     <div>
+      <h3>Settings</h3>
+      <br />
       <div className="container change-card animate__animated animate__fadeInUp">
+        <br />
         <div>
-          <button type="button" onClick={darkMode.disable}>
-            ☀
+          <button
+            className="button setting-button"
+            type="button"
+            onClick={darkMode.disable}
+          >
+            Light Mode
           </button>
-          <button checked={darkMode.value} onChange={darkMode.toggle} />
-          <button type="button" onClick={darkMode.enable}>
-            ☾
+
+          <button
+            className="button setting-button"
+            type="button"
+            onClick={darkMode.enable}
+          >
+            Dark Mode
           </button>
         </div>
       </div>

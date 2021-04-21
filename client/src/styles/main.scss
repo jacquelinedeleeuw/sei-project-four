@@ -13,6 +13,8 @@ $brand-border: 1px solid #e1e4ed;
 $brand-border-light: 1px solid #f2f4fc;
 $brand-dark-bg-gray: #f6f8fc;
 $brand-gray-text: rgb(162, 161, 161);
+$dark-mode-dark-black: #090b10;
+$dark-mode-light-black: #0f111a;
 // other
 
 $duration: 0.2s;
@@ -34,11 +36,15 @@ body.light-mode {
 }
 
 body.dark-mode {
-  background-color: #1a1919;
-  color: #999;
+  background-color: #090b10;
+  color: white;
 }
 
-body h1,
+body.dark-mode b {
+  color: white;
+}
+
+h1,
 h2,
 h3,
 h4,
@@ -49,6 +55,21 @@ h6 {
   color: $brand-black;
   font-weight: 500;
   font-size: 2em;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  font-family: $heading-font;
+  color: white;
+  font-weight: 500;
+}
+
+body.dark-mode h1 {
+  color: white;
 }
 
 h1 {
@@ -63,6 +84,10 @@ h3 {
 p {
   color: $brand-black;
 }
+
+body.dark-mode p {
+  color: white;
+}
 //* Nav Styles
 
 .logo {
@@ -71,6 +96,14 @@ p {
   font-weight: 700;
   font-size: 2em;
   margin-left: 0.5rem;
+}
+
+.logo.light-mode {
+  color: $brand-black;
+}
+
+.logo.dark-mode {
+  color: white;
 }
 
 .logo-container {
@@ -85,17 +118,26 @@ p {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-bottom: 0.5rem;
-  margin-top: 1rem;
+
   position: relative;
   z-index: 10;
   border-bottom: $brand-border-light;
 }
+
+body.dark-mode .nav-container {
+  border-bottom: none;
+}
+
 .sign-in {
   color: $brand-black;
   margin-right: 2rem;
 }
 .sign-in:hover {
   text-decoration: underline;
+}
+
+body.dark-mode .sign-in {
+  color: white;
 }
 
 .get-started-button {
@@ -161,6 +203,7 @@ p {
   // margin-top: 0.8rem;
   z-index: 1000 !important;
   width: 15rem;
+  color: $brand-black;
 }
 
 .circle-space {
@@ -199,6 +242,10 @@ p {
   justify-content: center;
   padding: 8rem;
 }
+
+body.dark-mode .logos-box-banner p {
+  color: $brand-black;
+}
 .logos-box {
   text-align: center;
   justify-content: center;
@@ -216,6 +263,10 @@ p {
   background: $brand-light-blue;
   min-height: 101.5vh;
   padding: 3rem;
+}
+
+body.dark-mode .login-left {
+  background: $dark-mode-light-black;
 }
 
 .login-logo {
@@ -268,6 +319,9 @@ p {
   background-color: $brand-hover;
 }
 
+body.dark-mode .form-button {
+  border: none;
+}
 .login-sign-up {
   text-align: center;
   font-size: 0.9em;
@@ -313,6 +367,10 @@ p {
   top: 0;
 }
 
+body.dark-mode .dash-col {
+  border-right: black;
+}
+
 .profile-col {
   // height: 80vh;
   border: $brand-border-light;
@@ -346,6 +404,10 @@ p {
   color: $brand-blue;
 }
 
+body.dark-mode .dash-nav-item:hover p {
+  color: $brand-blue;
+}
+
 .dash-nav-item p {
   font-weight: 700;
   color: rgb(162, 161, 161);
@@ -366,7 +428,11 @@ p {
 .dash-content {
   background: $brand-dark-bg-gray;
   padding: 4rem;
-  min-height: 101vh;
+  min-height: 101.5vh;
+}
+
+body.dark-mode .dash-content {
+  background: #0f111a;
 }
 
 // * Change details
@@ -391,6 +457,12 @@ p {
   -moz-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
+
+body.dark-mode .change-card {
+  background: $dark-mode-dark-black;
+  border: none;
+  box-shadow: none;
+}
 .profile-image {
   justify-content: center;
   text-align: center;
@@ -401,7 +473,6 @@ p {
   width: 50%;
   height: 50%;
   border-radius: 150px;
-  border: $brand-border;
 }
 
 .change-image {
@@ -428,6 +499,14 @@ p {
   padding: 3rem;
 }
 
+#modal-root {
+  background: $dark-mode-dark-black;
+}
+
+body.dark-mode .upload-form {
+  background: $dark-mode-dark-black;
+}
+
 .upload-form input {
   border-radius: 10px;
 }
@@ -442,6 +521,10 @@ p {
   background: white;
   border-radius: 10px;
   padding: 3rem;
+}
+
+body.dark-mode .change-details-box {
+  background: $dark-mode-dark-black;
 }
 
 .detail-button-box {
@@ -485,6 +568,11 @@ p {
   -webkit-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Firefox 3.5 - 3.6 */
   box-shadow: 0px 0px 1px 3px $brand-light-blue; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+body.dark-mode .saved-property-card {
+  background: $dark-mode-dark-black;
+  border: none;
 }
 
 .saved-property-card img {
@@ -556,7 +644,17 @@ textarea {
 .note-item {
   list-style: none;
   padding: 1rem;
-  border: $brand-border-light;
+  border-top: $brand-border-light;
+  border-bottom: $brand-border-light;
+  margin-bottom: 0.3rem;
+}
+
+body.dark-mode .note-item {
+  border: none;
+}
+
+body.dark-mode .note-item:hover {
+  background: $dark-mode-light-black;
 }
 
 .note-item:hover {
@@ -600,6 +698,11 @@ textarea {
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+body.dark-mode .sidebar {
+  background: $dark-mode-dark-black;
+  border-left: rgb(123, 123, 123);
 }
 
 /* The sidebar links */
@@ -662,6 +765,13 @@ textarea {
   z-index: 5;
   position: relative;
 }
+
+body.dark-mode .index-search-container {
+  background: $dark-mode-light-black;
+  border-bottom: rgb(44, 47, 57) 1px solid;
+  border-top: rgb(44, 47, 57) 1px solid;
+}
+
 .index-search-content {
   width: 80%;
   margin: 0 auto;
@@ -762,6 +872,13 @@ textarea {
   .navbar-brand {
     margin: 0 auto;
   }
+
+  // body.dark-mode .navbar nav,
+  // .navbar .navbar-brand,
+  // .navbar-menu {
+  //   background-color: $dark-mode-dark-black;
+  //   background: $dark-mode-dark-black;
+  // }
 
   .nav-button-container {
     margin-top: 1rem;
@@ -882,6 +999,13 @@ hr {
   box-shadow: 0px 5px 10px 5px rgba(53, 53, 53, 0.119); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
+body.dark-mode .card-content {
+  background: $dark-mode-light-black;
+  -webkit-box-shadow: 0px 5px 10px 5px rgba(53, 53, 53, 0.119); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 5px 1px 5px rgba(53, 53, 53, 0.119); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 5px 10px 5px rgba(191, 191, 191, 0.119); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
 .card-content:last-child {
   border-radius: 1rem;
 }
@@ -914,6 +1038,10 @@ img.property-detail {
   border-radius: 15px;
 }
 
+body.dark-mode .applications {
+  background: $dark-mode-dark-black;
+}
+
 .application-title {
   display: flex;
 }
@@ -924,6 +1052,10 @@ img.property-detail {
   select {
     border-radius: 20px;
   }
+}
+
+.setting-button {
+  margin-left: 1rem;
 }
 
 // * captcha

@@ -364,7 +364,7 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
           Save yield calculations
         </button>
       </form>
-      <hr />
+
       <Pdf targetRef={ref} filename="yieldly.pdf">
         {({ toPdf }) => (
           <div className="applications">

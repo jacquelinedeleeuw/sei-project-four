@@ -8,8 +8,11 @@ import Register from './auth/Register'
 import Profile from './components/profile/Profile'
 import PropertyIndex from './components/properties/PropertyIndex'
 import PropertyDetail from './components/properties/PropertyDetail'
+import useDarkMode from 'use-dark-mode'
 
 const App = () => {
+  const darkMode = useDarkMode(false)
+  console.log(darkMode)
   return (
     <BrowserRouter>
       <Switch>

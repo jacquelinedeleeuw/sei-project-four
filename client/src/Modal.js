@@ -48,9 +48,7 @@ export function Modal({ children, fade = false, defaultOpened = false }, ref) {
           className="modal-close"
           aria-label="close"
           onClick={close}
-        >
-          x
-        </span>
+        ></span>
         <div className="modal-body">{children}</div>
       </div>
     ) : null,
