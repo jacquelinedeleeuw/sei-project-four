@@ -37,6 +37,15 @@ const Profile = () => {
   const [profileShow, setProfileShow] = useState(true)
   const [propertyShow, setPropertyShow] = useState(false)
   const [applicationShow, setApplicationShow] = useState(false)
+  const [mobileToggle, setMobileToggle] = useState(false)
+
+  const mobileNavToggle = () => {
+    if (mobileToggle === true) {
+      setMobileToggle(false)
+    } else {
+      setMobileToggle(true)
+    }
+  }
 
   const editProfileShow = () => {
     setProfileShow(true)
@@ -82,35 +91,46 @@ const Profile = () => {
                 <h1 className="logo">yieldly</h1>
               </Link>
             </div>
-            {/* <Link to="/myprofile"> */}
-            <div onClick={editProfileShow} className="dash-nav-item">
-              <FontAwesomeIcon
-                icon={faUserCircle}
-                className="nav-icon fa-2x fa-fw"
-              />{' '}
-              <p>Profile</p>
+            <div
+              className="button get-started-button dash-nav-but"
+              onClick={mobileNavToggle}
+            >
+              Select page
             </div>
-            {/* </Link> */}
-            {/* <Link to="/savedproperties"> */}
-            <div onClick={editPropertyShow} className="dash-nav-item">
-              <FontAwesomeIcon
-                icon={('far', faHome)}
-                className="nav-icon fa-2x fa-fw"
-              />
-              <p>Properties</p>
-            </div>
-            {/* </Link> */}
-            <div onClick={editApplicationShow} className="dash-nav-item">
-              <FontAwesomeIcon
-                icon={faFileAlt}
-                className="nav-icon fa-2x fa-fw"
-              />
-              <p>Applications</p>
-            </div>
-            <div className="dash-nav-item">
-              <FontAwesomeIcon icon={faCog} className="nav-icon fa-2x fa-fw" />
-              <p>Settings</p>
-            </div>
+            {!mobileToggle && (
+              <>
+                <div onClick={editProfileShow} className="dash-nav-item">
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    className="nav-icon fa-2x fa-fw"
+                  />{' '}
+                  <p>Profile</p>
+                </div>
+
+                <div onClick={editPropertyShow} className="dash-nav-item">
+                  <FontAwesomeIcon
+                    icon={('far', faHome)}
+                    className="nav-icon fa-2x fa-fw"
+                  />
+                  <p>Properties</p>
+                </div>
+                {/* </Link> */}
+                <div onClick={editApplicationShow} className="dash-nav-item">
+                  <FontAwesomeIcon
+                    icon={faFileAlt}
+                    className="nav-icon fa-2x fa-fw"
+                  />
+                  <p>Applications</p>
+                </div>
+                <div className="dash-nav-item">
+                  <FontAwesomeIcon
+                    icon={faCog}
+                    className="nav-icon fa-2x fa-fw"
+                  />
+                  <p>Settings</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className="column is-four-fifths dash-content">

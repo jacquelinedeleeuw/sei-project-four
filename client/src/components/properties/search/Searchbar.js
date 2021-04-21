@@ -41,11 +41,10 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
             <div className="navbar-brand">
               <div
                 onClick={toggleSearchBurger}
-                className={`search-navbar-burger navbar-burger ${searchBurger}`}
                 data-target="yieldly-search-navbar"
               >
                 <button
-                  className="button get-started-button"
+                  className="button get-started-button search-button-mobile"
                   aria-hidden="true"
                 >
                   <strong>Find your property</strong>
@@ -180,9 +179,11 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
                   </div>
                 </div>
               </div>
-              <button className="button get-started-button">
-                <strong>Search</strong>
-              </button>
+              <div className="container nav-button-container">
+                <button className="button get-started-button">
+                  <strong>Search</strong>
+                </button>
+              </div>
             </form>
           </nav>
         </div>

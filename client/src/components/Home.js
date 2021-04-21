@@ -12,7 +12,6 @@ import Footer from './Footer'
 import { userIsAuthenticated } from '../helpers/auth'
 
 const Home = () => {
-
   return (
     <>
       <Navbar />
@@ -33,16 +32,16 @@ const Home = () => {
                   in the UK
                 </p>
                 <br />
-                { userIsAuthenticated() &&
+                {userIsAuthenticated() && (
                   <Link to="/properties" className="button get-started-button">
                     <strong>Find a property</strong>
                   </Link>
-                }
-                { !userIsAuthenticated() &&
+                )}
+                {!userIsAuthenticated() && (
                   <Link to="/getstarted" className="button get-started-button">
                     <strong>Get Started</strong>
                   </Link>
-                }
+                )}
               </div>
             </div>
             <div className="column">
@@ -53,10 +52,19 @@ const Home = () => {
       </div>
       <section className="logos-box-banner">
         <p>Utilising some of the UKs most trusted property data sources</p>
-        <div className="logos-box">
-          <img src={Zoopla}></img>
-          <img src={RightMove}></img>
-          <img src={PrimeLocation}></img>
+        <div className="columns logos-box">
+          <div className="column">
+            {' '}
+            <img src={Zoopla}></img>
+          </div>
+          <div className="column">
+            {' '}
+            <img src={RightMove}></img>
+          </div>
+          <div className="column">
+            {' '}
+            <img src={PrimeLocation}></img>
+          </div>
         </div>
       </section>
 
