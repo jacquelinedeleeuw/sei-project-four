@@ -8,6 +8,7 @@ import Register from './auth/Register'
 import Profile from './components/profile/Profile'
 import PropertyIndex from './components/properties/PropertyIndex'
 import PropertyDetail from './components/properties/PropertyDetail'
+import PdfSaver from './components/profile/profileViews/PdfSaver'
 
 const App = () => {
   return (
@@ -30,6 +31,9 @@ const App = () => {
         </Route>
         <Route path="/properties/:id/:postcode/:beds">
           <PropertyDetail />
+        </Route>
+        <Route path="/pdf">
+          <PdfSaver />
         </Route>
       </Switch>
     </BrowserRouter>

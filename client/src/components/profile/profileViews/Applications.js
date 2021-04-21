@@ -18,10 +18,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 
-import {
-  getPayloadFromToken,
-  getTokenFromLocalStorage
-} from '../../../helpers/auth'
+import { getPayloadFromToken, getTokenFromLocalStorage } from '../../../helpers/auth'
 
 const Applications = () => {
 
