@@ -9,6 +9,7 @@ import axios from 'axios'
 import Upload from '../UploadImage'
 import Modal from '../../../Modal'
 import UpdateProfile from '../UpdateProfile'
+import UpdatePassword from '../UpdatePassword'
 
 //helpers
 
@@ -23,6 +24,7 @@ const profilePage = () => {
   const location = useLocation()
   const modal = useRef(null)
   const details = useRef(null)
+  const passChange = useRef(null)
   const [userDetails, setUserDetails] = useState(null)
   const token = getTokenFromLocalStorage()
   const userID = getPayloadFromToken().sub
@@ -74,9 +76,20 @@ const profilePage = () => {
             </div>
           </div>
           <div className="column">
-            <button className="button" onClick={() => details.current.open()}>
-              Change Details
-            </button>
+            <div className="modal-button-box ">
+              <button
+                className="button modal-button"
+                onClick={() => details.current.open()}
+              >
+                Change Details
+              </button>
+              <button
+                className="button modal-button"
+                onClick={() => passChange.current.open()}
+              >
+                Change Password
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +98,10 @@ const profilePage = () => {
         <Upload />
       </Modal>
       <Modal ref={details}>
-        <UpdateProfile userDetails={userDetails} />
+        <UpdateProfile userDetails={userDetails} details={details} />
+      </Modal>
+      <Modal ref={passChange}>
+        <UpdatePassword userDetails={userDetails} details={details} />
       </Modal>
     </div>
   )

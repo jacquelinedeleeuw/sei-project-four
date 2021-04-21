@@ -420,6 +420,28 @@ p {
   padding: 3rem;
 }
 
+.detail-button-box {
+  display: flex;
+}
+
+.form-button-cancel {
+  width: 100%;
+
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+.modal-button {
+  margin-right: 1rem;
+}
+.modal-button-box {
+  margin: 0 auto;
+  margin-top: 14vh;
+
+  display: flex;
+  justify-content: center;
+}
+
 // * Saved properties
 
 .saved-property-card {
