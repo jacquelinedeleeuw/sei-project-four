@@ -349,6 +349,29 @@ p {
   padding: 4rem;
   min-height: 101vh;
 }
+
+// * Change details
+
+.change-form {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.change-form input {
+  border-radius: 10px;
+}
+
+.change-card {
+  background: white;
+  border: $brand-border-light;
+  border-radius: 20px;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  -webkit-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Firefox 3.5 - 3.6 */
+  box-shadow: 0px 0px 1px 3px rgba(255, 255, 255, 0.01); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
 .profile-image {
   justify-content: center;
   text-align: center;
@@ -356,8 +379,8 @@ p {
 }
 
 .profile-image img {
-  width: 75%;
-  height: 75%;
+  width: 50%;
+  height: 50%;
   border-radius: 150px;
   border: $brand-border;
 }
@@ -371,12 +394,10 @@ p {
 }
 
 .username-text {
-  text-align: center;
   font-size: 0.8em;
 }
 
 .member-since {
-  text-align: center;
   font-size: 0.8em;
 }
 .member-since p {
@@ -387,12 +408,16 @@ p {
   border-radius: 10px;
 }
 
-.user-email {
-  text-align: center;
-}
-
 .user-email P {
   color: $brand-gray-text;
+}
+.profile-info {
+  margin-top: 3vh;
+}
+.change-details-box {
+  background: white;
+  border-radius: 10px;
+  padding: 3rem;
 }
 
 // * Saved properties
@@ -631,6 +656,10 @@ textarea {
   color: #161637;
 }
 
+.data-container-app {
+  margin-left: 2rem;
+}
+
 .powered-box {
   margin-top: 5rem;
   border: $brand-border-light;
@@ -639,6 +668,8 @@ textarea {
   padding: 3rem;
   text-align: center;
 }
+
+// * applications
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -830,7 +861,9 @@ img.property-detail {
 
 .applications {
   background-color: white;
-  padding: 20px;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   margin: 0;
   border-radius: 15px;
 }
