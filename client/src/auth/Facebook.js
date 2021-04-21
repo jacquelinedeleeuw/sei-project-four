@@ -11,10 +11,13 @@ const Facebook = () => {
     console.log('clicked')
   }
 
+
+  const facebookKey = process.env.REACT_APP_FACEBOOK_KEY
+
   return (
     <div>
       <FacebookLogin
-        appId="281614550231171"
+        appId={facebookKey}
         autoLoad={true}
         fields="name,email,picture"
         onClick={componentClicked}

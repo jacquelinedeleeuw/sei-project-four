@@ -7,10 +7,12 @@ const Google = ({ setGoogleLogin }) => {
     setGoogleLogin(response)
   }
 
+  const googleKey = process.env.REACT_APP_GOOGLE_KEY
+
   return (
     <div>
       <GoogleLogin 
-        clientId="510466495847-39cmqq3p24hhp5378qongbpo3ep09ps9.apps.googleusercontent.com"
+        clientId={googleKey}
         buttonText="Login with Google"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
