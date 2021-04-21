@@ -40,13 +40,15 @@ const Register = () => {
 
   const validateHuman = async (googleToken) => {
     const secret = process.env.REACT_APP_RECAPTCHA_SECRET_KEY
-    const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${googleToken}`)
+    const response = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${googleToken}`
+    )
     return response.data.success
   }
 
   const [googleLogin, setGoogleLogin] = useState(null)
 
-  useEffect( async () => {
+  useEffect(async () => {
     if (googleLogin) {
       try {
         let response = await axios.post('/api/auth/register/', {
@@ -219,10 +221,13 @@ const Register = () => {
                   <p className="help is-danger">{errors.password}</p>
                 </div>
               </div>
-              <ReCAPTCHA 
-                sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_SITE_KEY}
-                ref={reRef}
-              />
+              <div className="container captcha">
+                <ReCAPTCHA
+                  sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_SITE_KEY}
+                  ref={reRef}
+                />
+              </div>
+
               <br />
               <div className="field">
                 <p className="control">
@@ -234,9 +239,7 @@ const Register = () => {
               <hr />
               <div className="login-sign-up">
                 <p> OR </p>
-                < Google 
-                  setGoogleLogin={setGoogleLogin}
-                />
+                <Google setGoogleLogin={setGoogleLogin} />
                 {/* < Facebook /> */}
                 <br />
                 <p>
