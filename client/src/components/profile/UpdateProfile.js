@@ -11,7 +11,7 @@ import axios from 'axios'
 
 // components
 
-const UpdateProfile = ({ userDetails }) => {
+const UpdateProfile = ({ userDetails, details }) => {
   const token = getTokenFromLocalStorage()
 
   const userID = getPayloadFromToken().sub
@@ -30,6 +30,11 @@ const UpdateProfile = ({ userDetails }) => {
     } catch (err) {
       setErrors(err.response.data)
     }
+    details.current.close()
+  }
+
+  const closePopUp = () => {
+    details.current.close()
   }
 
   return (
@@ -108,45 +113,18 @@ const UpdateProfile = ({ userDetails }) => {
           </div>
 
           <hr />
-          <div className="field">
-            <div className="control">
-              <div className="form-label">
-                <label>Password</label>
-              </div>
-              <input
-                className={`input ${errors.password ? 'is-danger' : ''}`}
-                placeholder="Enter password"
-                name="password"
-                type="password"
-                ref={register}
-              />
-              <p className="help is-danger">{errors.password}</p>
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input
-                className={`input ${errors.password ? 'is-danger' : ''}`}
-                placeholder="Confirm password"
-                name="password_confirmation"
-                type="password"
-                ref={register}
-              />
-              <p className="help is-danger">{errors.password}</p>
-            </div>
-          </div>
-          <hr />
-          <div className="field">
-            <p className="control">
-              <button className="button form-button" type="submit">
-                Change Details
-              </button>
-            </p>
-            <p className="control">
-              <button className="button" type="submit">
-                Cancel
-              </button>
-            </p>
+          <br />
+          <div className="detail-button-box ">
+            <button
+              className="button form-button-cancel"
+              onClick={closePopUp}
+              type="reset"
+            >
+              Cancel
+            </button>
+            <button className="button form-button" type="submit">
+              Change Details
+            </button>
           </div>
         </form>
         <br />

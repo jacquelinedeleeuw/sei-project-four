@@ -403,6 +403,11 @@ p {
 .member-since p {
   color: $brand-gray-text;
 }
+.upload-form {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+}
 
 .upload-form input {
   border-radius: 10px;
@@ -418,6 +423,28 @@ p {
   background: white;
   border-radius: 10px;
   padding: 3rem;
+}
+
+.detail-button-box {
+  display: flex;
+}
+
+.form-button-cancel {
+  width: 100%;
+
+  border-radius: 8px;
+  margin-right: 0.5rem;
+}
+
+.modal-button {
+  margin-right: 1rem;
+}
+.modal-button-box {
+  margin: 0 auto;
+  margin-top: 14vh;
+
+  display: flex;
+  justify-content: center;
 }
 
 // * Saved properties
