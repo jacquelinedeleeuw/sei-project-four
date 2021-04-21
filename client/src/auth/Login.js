@@ -146,7 +146,7 @@ const Login = () => {
                   <p className="help is-danger">{errors}</p>
                 </div>
               </div>
-              <ReCAPTCHA 
+              <ReCAPTCHA
                 sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_SITE_KEY}
                 ref={reRef}
               />
