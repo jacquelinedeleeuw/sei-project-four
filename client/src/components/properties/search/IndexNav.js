@@ -87,11 +87,13 @@ const Navbar = () => {
             {userIsAuthenticated() && (
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
-                  <FontAwesomeIcon
-                    icon={faUserCircle}
-                    className="circle-space fa-2x"
-                  />
-                  <p>{userName}</p>
+                  <div className="mobile-user">
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      className="circle-space fa-2x"
+                    />
+                    <p>{userName}</p>
+                  </div>
                 </a>
                 <div className="navbar-dropdown is-right dropdown-shape">
                   <Link to="/myprofile" className="navbar-item">

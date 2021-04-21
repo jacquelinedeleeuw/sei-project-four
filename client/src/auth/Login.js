@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
+import 'animate.css'
+
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // components
 import Logo from '../components/assets/logo.svg'
@@ -38,12 +42,30 @@ const Login = () => {
                   never before
                 </h2>
               </div>
-              <div className="check-boxes-login">
-                {/* <p>checkbox</p>
-                <p>checkbox</p>
-                <p>checkbox</p>
-                <p>checkbox</p>
-                <p>checkbox</p> */}
+              <div className="container check-boxes-login animate__animated animate__fadeInLeft">
+                <ul>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="check-icon fa-1x fa-fw"
+                    />
+                    Find exciting new opportunies
+                  </li>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="check-icon fa-1x fa-fw"
+                    />
+                    Find all the hot properties
+                  </li>
+                  <li>
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="check-icon fa-1x fa-fw"
+                    />
+                    Find yields like never before
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

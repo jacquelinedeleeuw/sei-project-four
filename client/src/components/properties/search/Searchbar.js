@@ -22,13 +22,9 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
 
   useEffect(() => {}, [location.pathname])
 
-  const [burger, setBurger] = useState('')
   const [searchBurger, setSearchBurger] = useState('')
 
-  const toggleBurger = () => {
-    if (burger === '') setBurger('is-active')
-    if (burger === 'is-active') setBurger('')
-  }
+
 
   const toggleSearchBurger = () => {
     if (searchBurger === '') setSearchBurger('is-active')
@@ -47,24 +43,14 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
             <div className="navbar-brand">
               <div
                 onClick={toggleSearchBurger}
-                className={`search-navbar-burger navbar-burger ${searchBurger}`}
                 data-target="yieldly-search-navbar"
               >
                 <button
-                  className="button get-started-button"
+                  className="button get-started-button search-button-mobile"
                   aria-hidden="true"
                 >
                   <strong>Find your property</strong>
                 </button>
-              </div>
-              <div
-                onClick={toggleBurger}
-                className={`navbar-burger ${burger}`}
-                data-target="yieldly-navbar"
-              >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
               </div>
             </div>
 
@@ -195,9 +181,11 @@ const Searchbar = ({ handleSubmit, handleChange, listingsLength }) => {
                   </div>
                 </div>
               </div>
-              <button className="button get-started-button">
-                <strong>Search</strong>
-              </button>
+              <div className="container nav-button-container">
+                <button className="button get-started-button">
+                  <strong>Search</strong>
+                </button>
+              </div>
             </form>
           </nav>
         </div>

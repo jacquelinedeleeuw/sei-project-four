@@ -92,11 +92,7 @@ const SavedProperties = () => {
                             icon={faMapMarkerAlt}
                             className="saved-location-icon fa-1x fa-fw"
                           />
-                          {
-                            <h2>
-                              {property.address}
-                            </h2>
-                          }
+                          {<h2>{property.address}</h2>}
                         </div>
                       </div>
                       <hr />
