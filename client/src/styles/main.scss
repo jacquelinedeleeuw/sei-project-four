@@ -403,6 +403,11 @@ p {
 .member-since p {
   color: $brand-gray-text;
 }
+.upload-form {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+}
 
 .upload-form input {
   border-radius: 10px;

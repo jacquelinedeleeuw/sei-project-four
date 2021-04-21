@@ -49,7 +49,7 @@ const profilePage = () => {
     <div>
       <h2>Profile</h2>
       <br />
-      <div className="container change-card">
+      <div className="container change-card animate__animated animate__fadeInUp">
         <div className="columns">
           <div className="column is-one-quarter">
             <div className="profile-image">
@@ -76,7 +76,7 @@ const profilePage = () => {
             </div>
           </div>
           <div className="column">
-            <div className="modal-button-box ">
+            <div className="modal-button-box">
               <button
                 className="button modal-button"
                 onClick={() => details.current.open()}
@@ -95,13 +95,13 @@ const profilePage = () => {
       </div>
 
       <Modal ref={modal}>
-        <Upload />
+        <Upload modal={modal} />
       </Modal>
       <Modal ref={details}>
         <UpdateProfile userDetails={userDetails} details={details} />
       </Modal>
       <Modal ref={passChange}>
-        <UpdatePassword userDetails={userDetails} details={details} />
+        <UpdatePassword userDetails={userDetails} passChange={passChange} />
       </Modal>
     </div>
   )

@@ -10,7 +10,7 @@ import {
 const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
 
-const UploadImage = () => {
+const UploadImage = ({ modal }) => {
   const [errors, setErrors] = useState('')
 
   const [imageUrl, setImageUrl] = useState({
@@ -55,8 +55,13 @@ const UploadImage = () => {
     }
   }
 
+  const closePopUp = () => {
+    modal.current.close()
+  }
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="column box upload-form">
+    <form onSubmit={handleSubmit(onSubmit)} className="column upload-form">
+      <h2>Upload a profile image</h2>
       <label>Profile Image</label>
       <br />
       <br />
@@ -65,26 +70,26 @@ const UploadImage = () => {
         type="file"
         onChange={handleUpload}
         required={true}
+        ref={register}
       />
       <br />
       <br />
       <div className="field">
-        <div className="control">
-          <input
-            className={`input ${errors ? 'is-danger' : ''}`}
-            placeholder="Enter password"
-            name="password"
-            type="password"
-            ref={register}
-            required={true}
-          />
-          <p className="help is-danger">{errors}</p>
-        </div>
+        <p className="help is-danger">{errors}</p>
       </div>
-      <hr />
-      <button className="button form-button" onSubmit={handleSubmit}>
-        Submit
-      </button>
+
+      <div className="detail-button-box ">
+        <button
+          className="button form-button-cancel"
+          onClick={closePopUp}
+          type="reset"
+        >
+          Cancel
+        </button>
+        <button className="button form-button" onSubmit={handleSubmit}>
+          Upload
+        </button>
+      </div>
     </form>
   )
 }
