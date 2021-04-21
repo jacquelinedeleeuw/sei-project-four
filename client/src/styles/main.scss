@@ -642,6 +642,10 @@ textarea {
   color: #161637;
 }
 
+.data-container-app {
+  margin-left: 2rem;
+}
+
 .powered-box {
   margin-top: 5rem;
   border: $brand-border-light;
@@ -650,6 +654,8 @@ textarea {
   padding: 3rem;
   text-align: center;
 }
+
+// * applications
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -841,7 +847,9 @@ img.property-detail {
 
 .applications {
   background-color: white;
-  padding: 20px;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   margin: 0;
   border-radius: 15px;
 }
