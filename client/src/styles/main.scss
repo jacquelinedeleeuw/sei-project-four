@@ -62,6 +62,14 @@ p {
   margin-left: 0.5rem;
 }
 
+.logo-container {
+  display: flex;
+  img {
+    height: 35px;
+    margin-top: 0.3rem;
+  }
+}
+
 .nav-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -893,4 +901,37 @@ img.property-detail {
   padding-right: 2rem;
   margin: 0;
   border-radius: 15px;
+}
+
+.application-title {
+  display: flex;
+}
+
+.application-select {
+  margin-left: 1rem;
+  border-radius: 20px;
+  select {
+    border-radius: 20px;
+  }
+}
+
+// * captcha
+
+.captcha {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.google {
+  border-radius: 20px;
+  button {
+    border-radius: 20px;
+  }
+}
+
+.google-box {
+  border-radius: 20px;
 }

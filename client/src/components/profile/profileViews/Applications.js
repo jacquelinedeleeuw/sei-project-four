@@ -17,12 +17,13 @@ import {
   faBed,
   faChartLine
 } from '@fortawesome/free-solid-svg-icons'
-
-
-import { getPayloadFromToken, getTokenFromLocalStorage } from '../../../helpers/auth'
+//prettier-ignore
+import {
+  getPayloadFromToken,
+  getTokenFromLocalStorage
+} from '../../../helpers/auth'
 
 const Applications = () => {
-
   const location = useLocation()
 
   const modal = useRef(null)
@@ -89,15 +90,18 @@ const Applications = () => {
   if (!userDetails) return null
 
   return (
-    <div>
-      <h2 className="column is-two-thirds">Applications</h2>
-      <div className="select">
-        <select onChange={(e) => setSortType(e.target.value)}>
-          <option value="yield_percentage">Yield Percentage</option>
-          <option value="price">Price</option>
-          <option value="postcode">Postcode</option>
-        </select>
+    <div className="column">
+      <div className="application-title">
+        <h2 className="">Applications</h2>
+        <div className="select application-select">
+          <select onChange={(e) => setSortType(e.target.value)}>
+            <option value="yield_percentage">Yield Percentage</option>
+            <option value="price">Price</option>
+            <option value="postcode">Postcode</option>
+          </select>
+        </div>
       </div>
+
       <br />
       <br />
       <div className="dash-content-box">

@@ -140,17 +140,21 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
       <form onSubmit={handleSubmit(onSubmit)} className=" applications">
         <div ref={ref}>
           <div className="container">
-            <div className="logo">
+            <div className="logo-container">
               <img src={Logo} />
-              <h1 className="logo">yieldly</h1>
+              <h3 className="logo">yieldly</h3>
             </div>
+            <br />
             <h3>Property Analytics</h3>
             <hr />
           </div>
           <div className="data-container-app">
             <div className="columns calculations">
               <div className="column">
-                <FontAwesomeIcon icon={faMoneyCheckAlt} className=" fa-3x fa-fw" />
+                <FontAwesomeIcon
+                  icon={faMoneyCheckAlt}
+                  className=" fa-3x fa-fw"
+                />
                 <br />
                 <br />
                 <b>Monthly Cashflow</b>
@@ -188,7 +192,10 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
                 <p> {grossYield}%</p>
               </div>
               <div className="column">
-                <FontAwesomeIcon icon={faHandHoldingUsd} className=" fa-3x fa-fw" />
+                <FontAwesomeIcon
+                  icon={faHandHoldingUsd}
+                  className=" fa-3x fa-fw"
+                />
                 <br />
                 <br />
                 <b>Net Yield</b>
@@ -272,8 +279,8 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
                 <br />£
                 {(
                   Number(yieldData.deposit) +
-                    Number(yieldData.refurb) +
-                    Number(yieldData.purchaseCosts)
+                  Number(yieldData.refurb) +
+                  Number(yieldData.purchaseCosts)
                 ).toLocaleString()}
               </p>
             </div>
@@ -335,12 +342,13 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
                 <b>Total Annual Costs</b> £
                 {(
                   Number(yieldData.annualMaintenance) +
-                    Number(
-                      ((yieldData.monthlyRent * 12) / 100) * yieldData.managementFee
-                    ) +
-                    Number(
-                      (yieldData.purchasePrice / 100) * yieldData.mortgageInterest
-                    )
+                  Number(
+                    ((yieldData.monthlyRent * 12) / 100) *
+                      yieldData.managementFee
+                  ) +
+                  Number(
+                    (yieldData.purchasePrice / 100) * yieldData.mortgageInterest
+                  )
                 ).toLocaleString()}
               </p>
             </div>
@@ -353,12 +361,18 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
           <br />
         </div>
         <button className="button form-button" onSubmit={handleSubmit}>
-            Save yield calculations
+          Save yield calculations
         </button>
       </form>
       <hr />
       <Pdf targetRef={ref} filename="yieldly.pdf">
-        {({ toPdf }) => <div className="applications"><button onClick={toPdf} className="button form-button">Generate Pdf</button></div>}
+        {({ toPdf }) => (
+          <div className="applications">
+            <button onClick={toPdf} className="button form-button">
+              Generate Pdf
+            </button>
+          </div>
+        )}
       </Pdf>
     </div>
   )
