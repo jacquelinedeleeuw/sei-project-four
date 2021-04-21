@@ -146,7 +146,7 @@ const Applications = () => {
                               <div>
                                 <p>Price</p>
                                 <p>
-                                  <strong>£ </strong>
+                                  <b>£ </b>
                                   {property.price.toLocaleString()}
                                 </p>
                               </div>

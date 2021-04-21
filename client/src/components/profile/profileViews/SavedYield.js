@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '../../../helpers/auth'
 import Pdf from 'react-to-pdf'
-import Logo from '../../assets/logo.svg'
+// import Logo from '../../assets/logo.svg'
 
 import ApplicationNotes from './ApplicationNotes'
 
@@ -140,10 +140,10 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
       <form onSubmit={handleSubmit(onSubmit)} className=" applications">
         <div ref={ref}>
           <div className="container">
-            <div className="logo-container">
+            {/* <div className="logo-container">
               <img src={Logo} />
               <h3 className="logo">yieldly</h3>
-            </div>
+            </div> */}
             <br />
             <h3>Property Analytics</h3>
             <hr />
