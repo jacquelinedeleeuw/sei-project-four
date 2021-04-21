@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 
 // components
 import Logo from '../components/assets/logo.svg'
+import Google from './Google'
 
 const Register = () => {
   const history = useHistory()
@@ -24,6 +25,30 @@ const Register = () => {
       setErrors(err.response.data)
     }
   }
+
+  const [googleLogin, setGoogleLogin] = useState(null)
+
+  useEffect( async () => {
+    if (googleLogin) {
+      try {
+        const response = await axios.post('/api/auth/register/', {
+          email: googleLogin.profileObj.email,
+          username: googleLogin.profileObj.givenName,
+          first_name: googleLogin.profileObj.givenName,
+          last_name: googleLogin.profileObj.familyName,
+          password: googleLogin.tokenObj.login_hint,
+          password_confirmation: googleLogin.tokenObj.login_hint,
+          profile_image: googleLogin.profileObj.imageUrl,
+        })
+        window.localStorage.setItem('token', response.data.token)
+        history.push('/')
+      } catch (err) {
+        console.log(err.message)
+        // console.log(err.response.data)
+        console.log(googleLogin)
+      }
+    }
+  }, [googleLogin])
 
   return (
     <>
@@ -159,6 +184,12 @@ const Register = () => {
               </div>
               <hr />
               <div className="login-sign-up">
+                <p> OR </p>
+                < Google 
+                  setGoogleLogin={setGoogleLogin}
+                />
+                {/* < Facebook /> */}
+                <br />
                 <p>
                   Already registered?
                   <Link to="/login">

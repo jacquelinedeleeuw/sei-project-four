@@ -64,7 +64,6 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-
       setUserDetails(data)
     }
     getData()

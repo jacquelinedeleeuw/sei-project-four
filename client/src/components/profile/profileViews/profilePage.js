@@ -35,7 +35,6 @@ const profilePage = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-
       setUserDetails(data)
     }
     getData()
@@ -73,7 +72,9 @@ const profilePage = () => {
         </div>
         <div className="column is-two-quarter">
           <div className="profile-col">
-            <UpdateProfile />
+            <UpdateProfile 
+              userDetails={userDetails}
+            />
           </div>
         </div>
       </div>

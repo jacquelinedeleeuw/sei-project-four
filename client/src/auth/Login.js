@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 
 // components
 import Logo from '../components/assets/logo.svg'
+import Google from './Google'
+// import Facebook from './Facebook'
 
 const Login = () => {
   const history = useHistory()
@@ -20,6 +22,23 @@ const Login = () => {
       setErrors(err.response.data.detail)
     }
   }
+
+  const [googleLogin, setGoogleLogin] = useState(null)
+
+  useEffect( async () => {
+    if (googleLogin) {
+      try {
+        const response = await axios.post('/api/auth/login/', {
+          email: googleLogin.profileObj.email,
+          password: googleLogin.tokenObj.login_hint,
+        })
+        window.localStorage.setItem('token', response.data.token)
+        history.push('/')
+      } catch (err) {
+        console.log('user does not exist')
+      }
+    }
+  }, [googleLogin])
 
   return (
     <>
@@ -103,6 +122,12 @@ const Login = () => {
               <hr />
             </form>
             <div className="login-sign-up">
+              <p> OR </p>
+              < Google 
+                setGoogleLogin={setGoogleLogin}
+              />
+              {/* < Facebook /> */}
+              <br />
               <p>
                 Don’t have an account?{' '}
                 <Link to="/getstarted">

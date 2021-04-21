@@ -11,7 +11,7 @@ import axios from 'axios'
 
 // components
 
-const UpdateProfile = () => {
+const UpdateProfile = ({ userDetails }) => {
   const token = getTokenFromLocalStorage()
 
   const userID = getPayloadFromToken().sub
@@ -26,6 +26,7 @@ const UpdateProfile = () => {
           Authorization: `Bearer ${token}`,
         },
       })
+      window.location.reload()
     } catch (err) {
       setErrors(err.response.data)
     }
@@ -52,9 +53,9 @@ const UpdateProfile = () => {
             <input
               className={`input ${errors.first_name ? 'is-danger' : ''}`}
               placeholder="First Name"
+              defaultValue={userDetails.first_name}
               name="first_name"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.first_name}</p>
           </div>
@@ -68,9 +69,9 @@ const UpdateProfile = () => {
             <input
               className={`input ${errors.last_name ? 'is-danger' : ''}`}
               placeholder="Last Name"
+              defaultValue={userDetails.last_name}
               name="last_name"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.last_name}</p>
           </div>
@@ -84,9 +85,9 @@ const UpdateProfile = () => {
             <input
               className={`input ${errors.username ? 'is-danger' : ''}`}
               placeholder="Username"
+              defaultValue={userDetails.username}
               name="username"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.username}</p>
           </div>
@@ -100,9 +101,9 @@ const UpdateProfile = () => {
             <input
               className={`input ${errors.email ? 'is-danger' : ''}`}
               placeholder="Email"
+              defaultValue={userDetails.email}
               name="email"
               ref={register}
-              required={true}
             />
             <p className="help is-danger">{errors.email}</p>
           </div>
