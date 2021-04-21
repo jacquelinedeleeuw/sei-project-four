@@ -31,21 +31,23 @@ const Register = () => {
   useEffect( async () => {
     if (googleLogin) {
       try {
-        const response = await axios.post('/api/auth/register/', {
+        let response = await axios.post('/api/auth/register/', {
           email: googleLogin.profileObj.email,
-          username: googleLogin.profileObj.givenName,
+          username: googleLogin.profileObj.email,
           first_name: googleLogin.profileObj.givenName,
           last_name: googleLogin.profileObj.familyName,
           password: googleLogin.tokenObj.login_hint,
           password_confirmation: googleLogin.tokenObj.login_hint,
           profile_image: googleLogin.profileObj.imageUrl,
         })
+        response = await axios.post('/api/auth/login/', {
+          email: googleLogin.profileObj.email,
+          password: googleLogin.tokenObj.login_hint,
+        })
         window.localStorage.setItem('token', response.data.token)
         history.push('/')
       } catch (err) {
         console.log(err.message)
-        // console.log(err.response.data)
-        console.log(googleLogin)
       }
     }
   }, [googleLogin])
