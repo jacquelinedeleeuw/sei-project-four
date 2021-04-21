@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import 'animate.css'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,10 +14,17 @@ import Google from './Google'
 
 const Register = () => {
   const history = useHistory()
+  const reRef = useRef()
 
   const [errors, setErrors] = useState('')
   const { register, handleSubmit } = useForm()
   const onSubmit = async (data) => {
+    const googleToken = await reRef.current.getValue()
+    reRef.current.reset()
+    const human = await validateHuman(googleToken)
+    if (!human) {
+      return
+    }
     try {
       let response = await axios.post('/api/auth/register/', data)
       response = await axios.post('/api/auth/login/', {
@@ -28,6 +36,12 @@ const Register = () => {
     } catch (err) {
       setErrors(err.response.data)
     }
+  }
+
+  const validateHuman = async (googleToken) => {
+    const secret = process.env.REACT_APP_RECAPTCHA_SECRET_KEY
+    const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${googleToken}`)
+    return response.data.success
   }
 
   const [googleLogin, setGoogleLogin] = useState(null)
@@ -205,6 +219,10 @@ const Register = () => {
                   <p className="help is-danger">{errors.password}</p>
                 </div>
               </div>
+              <ReCAPTCHA 
+                sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_SITE_KEY}
+                ref={reRef}
+              />
               <br />
               <div className="field">
                 <p className="control">
