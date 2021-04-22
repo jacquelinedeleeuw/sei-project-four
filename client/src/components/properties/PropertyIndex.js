@@ -45,7 +45,7 @@ const PropertyIndex = () => {
       const getData = async () => {
         try {
           const { data } = await axios.get(
-            `http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&maximum_price=200000&page_size=10&api_key=${zooplaKey}`
+            `http://api.zoopla.co.uk/api/v1/property_listings.json?area=london&listing_status=sale&maximum_price=200000&page_size=100&api_key=${zooplaKey}`
           )
           setListings(data)
         } catch (err) {
@@ -58,7 +58,7 @@ const PropertyIndex = () => {
       const getData = async () => {
         try {
           const { data } = await axios.get(
-            `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=10&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&order_by=${search.order_by}&ordering=${search.ordering}&api_key=${zooplaKey}`
+            `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${location}&listing_status=sale&page_size=100&minimum_beds=${search.minimum_beds}&maximum_beds=${search.maximum_beds}&minimum_price=${search.minimum_price}&maximum_price=${search.maximum_price}&property_type=${search.property_type}&order_by=${search.order_by}&ordering=${search.ordering}&api_key=${zooplaKey}`
           )
           // handleViewport(data)
           const longitude = data.listing[0].longitude

@@ -23,7 +23,6 @@ const Navbar = () => {
 
   const [burger, setBurger] = useState('')
   const [userName, setUserName] = useState(null)
-  console.log(userName)
 
   const toggleBurger = () => {
     if (burger === '') setBurger('is-active')
@@ -45,7 +44,7 @@ const Navbar = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(data)
+
         setUserName(data.username)
       }
       getData()
