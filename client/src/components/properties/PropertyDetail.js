@@ -14,8 +14,8 @@ import {
 
 import YieldCalculation from './YieldCalculation'
 import SaveProperty from './SaveProperty'
-import IndexNav from './search/IndexNav'
 import Footer from '../Footer'
+import DetailNavbar from './search/DetailNav'
 
 const PropertyDetail = () => {
   const zooplaKey = process.env.REACT_APP_ZOOPLA_KEY
@@ -169,17 +169,16 @@ const PropertyDetail = () => {
     } catch (err) {
       console.log(err.message)
     }
-    const yieldly = (((
-      Number(avgPrice) * 12 -
-      Number(((avgPrice * 12) / 100) * 6) -
-      Number((Number(listing.listing[0].price) / 100) * 3)) /
-      Number(
-        Number(Number(listing.listing[0].price * 0.1))
-      )) *
-    100)
+    const yieldly =
+      ((Number(avgPrice) * 12 -
+        Number(((avgPrice * 12) / 100) * 6) -
+        Number((Number(listing.listing[0].price) / 100) * 3)) /
+        Number(Number(Number(listing.listing[0].price * 0.1)))) *
+      100
     try {
       await axios.patch(
-        `/api/savedproperties/${propID[0].id}/`, { yield_percentage: yieldly },
+        `/api/savedproperties/${propID[0].id}/`,
+        { yield_percentage: yieldly },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -194,7 +193,7 @@ const PropertyDetail = () => {
   if (!listing || !user || !listings) return null
   return (
     <>
-      <IndexNav />
+      <DetailNavbar user={user} />
       <div className="detail-container">
         <div className="columns">
           <div className="column property-detail-view">
