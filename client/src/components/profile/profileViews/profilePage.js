@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import Logo from '../../assets/logo.svg'
 
 //prettier-ignore
 
@@ -47,7 +48,20 @@ const profilePage = () => {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <div className="columns">
+        <h2 className="column">Profile</h2>
+        <div className="dash-logo-box">
+          <div className="login-logo">
+            <img src={Logo} />
+            <h1 className="logo">yieldly</h1>
+            {userDetails.pro ?
+              <h1 className="logo yieldly-plan">pro</h1>
+              :
+              <h1 className="logo yieldly-plan">basic</h1>
+            }
+          </div>
+        </div>
+      </div>
       <br />
       <div className="container change-card animate__animated animate__fadeInUp">
         <div className="columns">
@@ -78,13 +92,13 @@ const profilePage = () => {
           <div className="column">
             <div className="modal-button-box">
               <button
-                className="button modal-button"
+                className="button modal-button setting-button yieldly-plan-button"
                 onClick={() => details.current.open()}
               >
                 Change Details
               </button>
               <button
-                className="button modal-button"
+                className="button modal-button setting-button yieldly-plan-button"
                 onClick={() => passChange.current.open()}
               >
                 Change Password

@@ -5,12 +5,12 @@ import useDarkMode from 'use-dark-mode'
 // import Toggle from './Toggle'
 import Checkout from '../../stripe/Checkout'
 
-const Settings = () => {
+const Settings = ({ userDetails }) => {
   const darkMode = useDarkMode(false)
 
   return (
     <div>
-      <h3>Settings</h3>
+      <h2>Settings</h2>
       <br />
       <div className="container change-card animate__animated animate__fadeInUp">
         <br />
@@ -26,7 +26,6 @@ const Settings = () => {
               >
                 Light Mode
               </button>
-    
               <button
                 className="button setting-button yieldly-plan-button"
                 type="button"
@@ -35,7 +34,9 @@ const Settings = () => {
                 Dark Mode
               </button>
             </div>
+            { !userDetails.pro &&
             <div className="column"><Checkout /></div>
+            }
             <br />
           </div>
         </div>

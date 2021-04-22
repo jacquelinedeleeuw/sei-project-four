@@ -153,7 +153,9 @@ const Profile = () => {
           {profileShow && <ProfilePage />}
           {propertyShow && <SavedProperties />}
           {applicationShow && <Applications />}
-          {settingShow && <Settings />}
+          {settingShow && <Settings 
+            userDetails={userDetails}
+          />}
           {/* End of content */}
         </div>
       </div>
