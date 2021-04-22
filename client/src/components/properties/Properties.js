@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { faBath, faBed } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Properties = ({ listings }) => {
-  // const [moreProperties, SetMoreProperties] = useState(10)
-  console.log(useState)
 
   return (
     <section className="column is-half-desktop">

@@ -6,10 +6,8 @@ import Pdf from 'react-to-pdf'
 import Logo from '../../assets/logo.svg'
 
 import ApplicationNotes from './ApplicationNotes'
+import Checkout from '../../stripe/Checkout'
 
-// import PropertySidebar from './PropertySidebar'
-
-//prettier-ignore
 import {
   faMoneyCheckAlt,
   faFileInvoiceDollar,
@@ -20,7 +18,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const SavedYield = ({ propertyDetails, modal, propID }) => {
+const SavedYield = ({ user, propertyDetails, modal, propID }) => {
+
   const token = getTokenFromLocalStorage()
 
   const ref = React.createRef()
@@ -204,144 +203,145 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
             </div>
             <br />
           </div>
-          <div className="columns">
-            <div className="column">
-              <div className="field">
-                <div className="form-label">
-                  <label>Purchase Price</label>
+          { user.pro &&
+            <div className="columns">
+              <div className="column">
+                <div className="field">
+                  <div className="form-label">
+                    <label>Purchase Price</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={
+                      propertyDetails.yield_calculations[0].purchasePrice
+                    }
+                    placeholder={propertyDetails.yield_calculations[0].purchasePrice.toLocaleString()}
+                    name="purchasePrice"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={
-                    propertyDetails.yield_calculations[0].purchasePrice
-                  }
-                  placeholder={propertyDetails.yield_calculations[0].purchasePrice.toLocaleString()}
-                  name="purchasePrice"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Deposit</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Deposit</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={propertyDetails.yield_calculations[0].deposit}
+                    placeholder={propertyDetails.yield_calculations[0].deposit.toLocaleString()}
+                    name="deposit"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={propertyDetails.yield_calculations[0].deposit}
-                  placeholder={propertyDetails.yield_calculations[0].deposit.toLocaleString()}
-                  name="deposit"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Loan terms in years</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Loan terms in years</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={25}
+                    placeholder={25}
+                    name="loanTerms"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={25}
-                  placeholder={25}
-                  name="loanTerms"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Refurb</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Refurb</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.refurb}
+                    placeholder={yieldData.refurb.toLocaleString()}
+                    name="refurb"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.refurb}
-                  placeholder={yieldData.refurb.toLocaleString()}
-                  name="refurb"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Purchase Costs</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Purchase Costs</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.purchaseCosts}
+                    placeholder={yieldData.purchaseCosts.toLocaleString()}
+                    name="purchaseCosts"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.purchaseCosts}
-                  placeholder={yieldData.purchaseCosts.toLocaleString()}
-                  name="purchaseCosts"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <hr />
-              <p>
-                <b>Total Funds Required </b>
-                <br />£
-                {(
-                  Number(yieldData.deposit) +
+                <hr />
+                <p>
+                  <b>Total Funds Required </b>
+                  <br />£
+                  {(
+                    Number(yieldData.deposit) +
                   Number(yieldData.refurb) +
                   Number(yieldData.purchaseCosts)
-                ).toLocaleString()}
-              </p>
-            </div>
-            <div className="column">
-              <div className="field">
-                <div className="form-label">
-                  <label>Annual Maintenance</label>
-                </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.annualMaintenance}
-                  placeholder={yieldData.annualMaintenance}
-                  name="annualMaintenance"
-                  ref={register}
-                  onChange={handleChange}
-                />
+                  ).toLocaleString()}
+                </p>
               </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Annual Management Fee %</label>
+              <div className="column">
+                <div className="field">
+                  <div className="form-label">
+                    <label>Annual Maintenance</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.annualMaintenance}
+                    placeholder={yieldData.annualMaintenance}
+                    name="annualMaintenance"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.managementFee}
-                  placeholder={yieldData.managementFee}
-                  name="managementFee"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Annual Mortgage Interest %</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Annual Management Fee %</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.managementFee}
+                    placeholder={yieldData.managementFee}
+                    name="managementFee"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.mortgageInterest}
-                  placeholder={yieldData.mortgageInterest}
-                  name="mortgageInterest"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="field">
-                <div className="form-label">
-                  <label>Monthly rent</label>
+                <div className="field">
+                  <div className="form-label">
+                    <label>Annual Mortgage Interest %</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.mortgageInterest}
+                    placeholder={yieldData.mortgageInterest}
+                    name="mortgageInterest"
+                    ref={register}
+                    onChange={handleChange}
+                  />
                 </div>
-                <input
-                  className="input"
-                  defaultValue={yieldData.monthlyRent}
-                  placeholder={yieldData.monthlyRent}
-                  name="monthlyRent"
-                  ref={register}
-                  onChange={handleChange}
-                />
-              </div>
-              <hr />
-              <p>
-                <b>Total Annual Costs</b> £
-                {(
-                  Number(yieldData.annualMaintenance) +
+                <div className="field">
+                  <div className="form-label">
+                    <label>Monthly rent</label>
+                  </div>
+                  <input
+                    className="input"
+                    defaultValue={yieldData.monthlyRent}
+                    placeholder={yieldData.monthlyRent}
+                    name="monthlyRent"
+                    ref={register}
+                    onChange={handleChange}
+                  />
+                </div>
+                <hr />
+                <p>
+                  <b>Total Annual Costs</b> £
+                  {(
+                    Number(yieldData.annualMaintenance) +
                   Number(
                     ((yieldData.monthlyRent * 12) / 100) *
                       yieldData.managementFee
@@ -349,22 +349,27 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
                   Number(
                     (yieldData.purchasePrice / 100) * yieldData.mortgageInterest
                   )
-                ).toLocaleString()}
-              </p>
-            </div>
-            <div className="column">
+                  ).toLocaleString()}
+                </p>
+              </div>
               <div className="column">
-                <ApplicationNotes propID={propID} />
+                <div className="column">
+                  <ApplicationNotes propID={propID} />
+                </div>
               </div>
             </div>
-          </div>
+          }
           <br />
         </div>
-        <button className="button form-button" onSubmit={handleSubmit}>
+        { user.pro ?
+          <button className="button form-button" onSubmit={handleSubmit}>
           Save yield calculations
-        </button>
+          </button>
+          :
+          <Checkout />
+        }
       </form>
-
+      { user.pro &&
       <Pdf targetRef={ref} filename="yieldly.pdf">
         {({ toPdf }) => (
           <div className="applications">
@@ -374,6 +379,7 @@ const SavedYield = ({ propertyDetails, modal, propID }) => {
           </div>
         )}
       </Pdf>
+      }
     </div>
   )
 }

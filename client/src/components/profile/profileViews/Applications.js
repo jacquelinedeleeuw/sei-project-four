@@ -29,6 +29,7 @@ const Applications = () => {
   const modal = useRef(null)
 
   const [userDetails, setUserDetails] = useState(null)
+  const [user, setUser] = useState(null)
   const [propertyDetails, setPropertyDetails] = useState(null)
   const [propID, setPropID] = useState('')
 
@@ -64,6 +65,7 @@ const Applications = () => {
           Authorization: `Bearer ${token}`,
         },
       })
+      setUser(data)
       sortProperties(data)
     }
     getData()
@@ -194,6 +196,7 @@ const Applications = () => {
           propertyDetails={propertyDetails}
           modal={modal}
           propID={propID}
+          user={user}
         />
       </Modal>
     </div>
