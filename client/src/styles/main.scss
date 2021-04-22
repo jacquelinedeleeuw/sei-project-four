@@ -98,6 +98,23 @@ body.dark-mode p {
   margin-left: 0.5rem;
 }
 
+.yieldly-plan {
+  color: $brand-blue;
+}
+
+body.dark-mode .yieldly-plan {
+  color: $brand-blue;
+}
+
+body.dark-mode .yieldly-plan-button {
+  border: none;
+}
+
+.yieldly-plan-button {
+  color: white;
+  background-color: $brand-blue;
+}
+
 .logo.light-mode {
   color: $brand-black;
 }

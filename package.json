@@ -3,6 +3,7 @@
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
     "react-google-recaptcha": "^2.1.0",
+    "stripe": "^8.145.0",
     "use-dark-mode": "^2.3.1"
   }
 }

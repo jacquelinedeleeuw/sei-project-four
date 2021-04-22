@@ -8,3 +8,4 @@ class User(AbstractUser):
     password = models.CharField(max_length=128, verbose_name='password', blank=True)
     password_confirmation = models.CharField(max_length=128, verbose_name='password', blank=True)
     profile_image = models.CharField(max_length=300, blank=True, default='http://res.cloudinary.com/dyng677ts/image/upload/v1618691793/czguijbf0xi9iterh54p.png')
+    pro = models.BooleanField(default=False)

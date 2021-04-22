@@ -34,6 +34,9 @@ const DetailNavbar = ({ user }) => {
           <Link to="/" className="navbar-item">
             <img src={Logo} />
             <h1 className="logo">yieldly</h1>
+            {user.pro &&
+              <h1 className="logo yieldly-plan">pro</h1>
+            }
           </Link>
 
           <div

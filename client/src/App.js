@@ -8,16 +8,20 @@ import Register from './auth/Register'
 import Profile from './components/profile/Profile'
 import PropertyIndex from './components/properties/PropertyIndex'
 import PropertyDetail from './components/properties/PropertyDetail'
+import Success from './components/stripe/Success'
+import Cancel from './components/stripe/Cancel'
 import useDarkMode from 'use-dark-mode'
 
 const App = () => {
   const darkMode = useDarkMode(false)
-  console.log(darkMode)
+  const stripe = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home 
+            darkMode = {darkMode}
+          />
         </Route>
         <Route path="/getstarted">
           <Register />
@@ -33,6 +37,12 @@ const App = () => {
         </Route>
         <Route path="/properties/:id/:postcode/:beds">
           <PropertyDetail />
+        </Route>
+        <Route path={`/${stripe}`}>
+          <Success />
+        </Route>
+        <Route path="/cancel">
+          <Cancel />
         </Route>
       </Switch>
     </BrowserRouter>

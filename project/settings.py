@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'jwt_auth',
     'saved_properties',
     'notes',
-    'yield_calculations'
+    'yield_calculations',
+    'products'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,6 @@ REST_FRAMEWORK = {
         'jwt_auth.authentication.JWTAuthentication'
     ],
 }
+
+STRIPE_PUBLISHABLE_KEY = "pk_test_51IiimUHRvHaqA6PUZKEoCm8tApqot31Iv2dguEF2ZhEipObnBfud2AIgo8oIP9ryoRWghHJARtocA5b3KFN59l8Z003Qb8XWi1"
+STRIPE_SECRET_KEY = "sk_test_51IiimUHRvHaqA6PU5ESs2fXPLyTjyhYFiAfh3mBffB9IiteaCnRuuKAnA7Wu7na4mCfCao8eqJ7r2JW97TyOB2V500MBmo9kH4"
