@@ -14,6 +14,7 @@ import useDarkMode from 'use-dark-mode'
 
 const App = () => {
   const darkMode = useDarkMode(false)
+  const stripe = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
   return (
     <BrowserRouter>
       <Switch>
@@ -37,7 +38,7 @@ const App = () => {
         <Route path="/properties/:id/:postcode/:beds">
           <PropertyDetail />
         </Route>
-        <Route path="/process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY">
+        <Route path={`/${stripe}`}>
           <Success />
         </Route>
         <Route path="/cancel">
