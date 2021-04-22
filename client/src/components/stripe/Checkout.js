@@ -8,7 +8,7 @@ const ProductDisplay = ({ handleClick }) => (
     <p>Subscribe to pro for lifetime access to view, amend and save calculations</p>
     <br />
     <button className="button setting-button yieldly-plan-button" type="button" id="checkout-button" role="link" onClick={handleClick}>
-      Pay £149.99 
+      Upgrade to Pro £149.99 
     </button>
   </section>
 )

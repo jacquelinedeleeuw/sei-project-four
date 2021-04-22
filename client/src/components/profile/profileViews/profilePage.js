@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import Logo from '../../assets/logo.svg'
 
 //prettier-ignore
 
@@ -50,7 +49,7 @@ const profilePage = () => {
     <div>
       <div className="columns">
         <h2 className="column">Profile</h2>
-        <div className="dash-logo-box">
+        {/* <div className="dash-logo-box">
           <div className="login-logo">
             <img src={Logo} />
             <h1 className="logo">yieldly</h1>
@@ -60,7 +59,7 @@ const profilePage = () => {
               <h1 className="logo yieldly-plan">basic</h1>
             }
           </div>
-        </div>
+        </div> */}
       </div>
       <br />
       <div className="container change-card animate__animated animate__fadeInUp">
@@ -86,6 +85,13 @@ const profilePage = () => {
               </div>
               <div className="member-since">
                 <p>Member since, {convertTimestamp(userDetails.date_joined)}</p>
+              </div>
+              <div className="member-plan">
+                {userDetails.pro ?
+                  <p>Plan: pro</p>
+                  :
+                  <p>Plan: basic</p>
+                }
               </div>
             </div>
           </div>
