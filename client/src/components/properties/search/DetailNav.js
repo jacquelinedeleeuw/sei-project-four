@@ -5,25 +5,17 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import Logo from '../../assets/logo.svg'
 //prettier-ignore
 import {
-  userIsAuthenticated,
-  getPayloadFromToken,
-  getTokenFromLocalStorage
+  userIsAuthenticated
 } from '../../../helpers/auth'
 
-import axios from 'axios'
-
-const Navbar = () => {
+const DetailNavbar = ({ user }) => {
   const location = useLocation()
 
   useEffect(() => {}, [location.pathname])
 
   const history = useHistory()
 
-  const token = getTokenFromLocalStorage()
-
   const [burger, setBurger] = useState('')
-  const [userName, setUserName] = useState(null)
-  console.log(userName)
 
   const toggleBurger = () => {
     if (burger === '') setBurger('is-active')
@@ -34,23 +26,6 @@ const Navbar = () => {
     window.localStorage.removeItem('token')
     history.push('/login')
   }
-
-  const userID = getPayloadFromToken().sub
-
-  useEffect(() => {
-    if (userIsAuthenticated()) {
-      const getData = async () => {
-        const { data } = await axios.get(`api/auth/${userID}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        console.log(data)
-        setUserName(data.username)
-      }
-      getData()
-    }
-  }, [])
 
   return (
     <div className="nav-container">
@@ -94,7 +69,7 @@ const Navbar = () => {
                       icon={faUserCircle}
                       className="circle-space fa-2x"
                     />
-                    <p>{userName}</p>
+                    <p>{user.username}</p>
                   </div>
                 </a>
                 <div className="navbar-dropdown is-right dropdown-shape">
@@ -116,4 +91,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default DetailNavbar
