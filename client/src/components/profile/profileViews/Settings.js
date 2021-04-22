@@ -17,8 +17,10 @@ const Settings = () => {
         <div>
           <div className="columns">
             <div className="column">
+              <p>Use the buttons below to switch between dark and light mode</p>
+              <br />
               <button
-                className="button setting-button"
+                className="button setting-button yieldly-plan-button"
                 type="button"
                 onClick={darkMode.disable}
               >
@@ -26,7 +28,7 @@ const Settings = () => {
               </button>
     
               <button
-                className="button setting-button"
+                className="button setting-button yieldly-plan-button"
                 type="button"
                 onClick={darkMode.enable}
               >
