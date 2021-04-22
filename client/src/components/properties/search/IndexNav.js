@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const [burger, setBurger] = useState('')
   const [userName, setUserName] = useState(null)
-  console.log(userName)
+  const [pro, setPro] = useState(null)
 
   const toggleBurger = () => {
     if (burger === '') setBurger('is-active')
@@ -45,8 +45,8 @@ const Navbar = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        console.log(data)
         setUserName(data.username)
+        setPro(data.pro)
       }
       getData()
     }
@@ -59,6 +59,9 @@ const Navbar = () => {
           <Link to="/" className="navbar-item">
             <img src={Logo} />
             <h1 className="logo">yieldly</h1>
+            {pro &&
+              <h1 className="logo yieldly-plan">pro</h1>
+            }
           </Link>
 
           <div
