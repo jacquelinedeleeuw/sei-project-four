@@ -101,6 +101,9 @@ const Profile = () => {
               <Link to="/" className="login-logo">
                 <img src={Logo} />
                 <h1 className="logo">yieldly</h1>
+                {userDetails.pro &&
+                  <h1 className="logo yieldly-plan">pro</h1>
+                }
               </Link>
             </div>
             <div
