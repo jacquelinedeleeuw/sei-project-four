@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.views import View
 
-stripe.api_key = STRIPE_SECRET_KEY
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CreateCheckoutSessionView(View):
     def post(self, _request, *args, **kwargs):
@@ -24,7 +24,7 @@ class CreateCheckoutSessionView(View):
                 },
             ],
             mode='payment',
-            success_url=YOUR_DOMAIN + STRIPE_PUBLISHABLE_KEY,
+            success_url=YOUR_DOMAIN + settings.STRIPE_PUBLISHABLE_KEY,
             cancel_url=YOUR_DOMAIN + 'cancel',
         )
 
