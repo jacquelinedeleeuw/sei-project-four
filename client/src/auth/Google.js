@@ -4,7 +4,6 @@ import GoogleLogin from 'react-google-login'
 const Google = ({ setGoogleLogin }) => {
   const responseGoogle = (response) => {
     setGoogleLogin(response)
-    console.log(response)
   }
 
   const googleKey = process.env.REACT_APP_GOOGLE_KEY

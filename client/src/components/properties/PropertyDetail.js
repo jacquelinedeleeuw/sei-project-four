@@ -78,7 +78,7 @@ const PropertyDetail = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios.get(
-        `http://api.zoopla.co.uk/api/v1/property_listings.json?listing_id=${id}&api_key=${zooplaKey}`
+        `https://api.zoopla.co.uk/api/v1/property_listings.json?listing_id=${id}&api_key=${zooplaKey}`
       )
       setListing(data)
       setPropertyIndex(data.listing[0].listing_id)
@@ -91,7 +91,7 @@ const PropertyDetail = () => {
     const getData = async () => {
       try {
         const { data } = await axios.get(
-          `http://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`
+          `https://api.zoopla.co.uk/api/v1/property_listings.json?area=${postcode}&minimum_beds=${beds}&maximum_beds=${beds}&listing_status=rent&api_key=${zooplaKey}`
         )
         setListings(data)
       } catch (err) {
