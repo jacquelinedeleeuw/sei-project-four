@@ -33,11 +33,9 @@ export default function Checkout () {
   }, [])
   const handleClick = async () => {
     const stripe = await stripePromise
-    console.log('promise', stripePromise)
     const response = await fetch('/api/checkout/', {
       method: 'POST',
     })
-    console.log('response', response)
     const session = await response.json()
     // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({
