@@ -46,7 +46,6 @@ const Login = () => {
 
   useEffect(async () => {
     if (googleLogin) {
-      console.log(googleLogin)
       try {
         const response = await axios.post('/api/auth/login/', {
           email: googleLogin.profileObj.email,
