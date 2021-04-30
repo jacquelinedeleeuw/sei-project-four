@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
+import dotenv
+
 from pathlib import Path
 
 import os
@@ -21,6 +24,9 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Add .env variables anywhere before SECRET_KEY
 dotenv_file = os.path.join(BASE_DIR, ".env")
@@ -70,7 +76,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'client')
+<<<<<<< HEAD
             ]  #Look, we have added the root folder of frontend here
+=======
+                ]  #Look, we have added the root folder of frontend here
+>>>>>>> 263524b82f794459fc5a15293634949c56de0db3
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -158,7 +168,10 @@ REST_FRAMEWORK = {
 STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 263524b82f794459fc5a15293634949c56de0db3
 ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 
 STATIC_URL = '/static/' # same with this

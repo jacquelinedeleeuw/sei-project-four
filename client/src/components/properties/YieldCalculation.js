@@ -125,7 +125,7 @@ const YieldCalculation = ({
       (item) => item.listing_id === listing.listing[0].listing_id ?? item
     )
     const getUserData = async () => {
-      const { data } = await axios.get(`/api/savedproperties/${propID[0].id}`, {
+      const { data } = await axios.get(`/api/savedproperties/${propID[0].id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

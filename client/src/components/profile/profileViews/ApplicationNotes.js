@@ -34,7 +34,7 @@ const PropertySidebar = ({ propID }) => {
   const onDelete = async (id) => {
   
     try {
-      await axios.delete(`/api/notes/${id}`, {
+      await axios.delete(`/api/notes/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
