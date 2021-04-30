@@ -1,3 +1,3 @@
 module.exports = {
-  'presets': ['@mapbox/babel-preset-mapbox'],
+  presets: ['@mapbox/babel-preset-mapbox'],
 }
