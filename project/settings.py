@@ -75,13 +75,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'client')
-<<<<<<< HEAD
-            ]  #Look, we have added the root folder of frontend here
-=======
-                ]  #Look, we have added the root folder of frontend here
->>>>>>> 263524b82f794459fc5a15293634949c56de0db3
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'client')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -168,10 +162,6 @@ REST_FRAMEWORK = {
 STRIPE_PUBLISHABLE_KEY = os.environ['STRIPE_PUBLISHABLE_KEY']
 STRIPE_SECRET_KEY = os.environ['STRIPE_SECRET_KEY']
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 263524b82f794459fc5a15293634949c56de0db3
 ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
 
 STATIC_URL = '/static/' # same with this
