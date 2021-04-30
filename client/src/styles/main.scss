@@ -386,6 +386,7 @@ body.dark-mode .form-button {
 
 body.dark-mode .dash-col {
   border-right: black;
+  background: $dark-mode-dark-black;
 }
 
 .profile-col {
@@ -918,6 +919,10 @@ body.dark-mode .index-search-container {
     position: none;
     background: white;
     z-index: 1000;
+  }
+
+  body.dark-mode .dash-nav-box {
+    background: $dark-mode-dark-black;
   }
   .dash-col {
     position: none;
