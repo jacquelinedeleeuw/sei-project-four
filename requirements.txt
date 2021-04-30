@@ -23,7 +23,7 @@ pytz==2021.1
 requests==2.25.1
 setuptools==54.1.2
 sqlparse==0.4.1
-stripe==2.56.0
+stripe==8.145.0
 toml==0.10.2
 urllib3==1.26.4
 wheel==0.36.2
