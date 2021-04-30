@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mapbox/babel-preset-mapbox": "^7.0.3-0",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
     "cors": "^2.8.5",

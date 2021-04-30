@@ -7,7 +7,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CreateCheckoutSessionView(View):
     def post(self, _request, *args, **kwargs):
-        YOUR_DOMAIN = 'http://localhost:3000/'
+        YOUR_DOMAIN = 'http://localhost:8000/'
 
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
