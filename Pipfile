@@ -12,6 +12,7 @@ pyjwt = "*"
 djangorestframework = "*"
 django-on-heroku = "*"
 stripe = "*"
+python-decouple = "*"
 
 [dev-packages]
 
