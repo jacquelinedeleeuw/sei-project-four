@@ -4,7 +4,7 @@
 8 days
 
 ### Group Members
-- Attila Arslan - https://github.com/Atilla-Arslan
+- Atila Arslan - https://github.com/Atilla-Arslan
 - Jacqueline de Leeuw - https://github.com/jacquelinedeleeuw
 
 ## Project Overview
