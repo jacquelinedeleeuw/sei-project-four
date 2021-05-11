@@ -13,6 +13,7 @@ djangorestframework = "*"
 django-on-heroku = "*"
 stripe = "*"
 python-decouple = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
