@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import 'animate.css'
-import ReCAPTCHA from 'react-google-recaptcha'
+// import ReCAPTCHA from 'react-google-recaptcha'
 
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,17 +14,17 @@ import Google from './Google'
 
 const Register = () => {
   const history = useHistory()
-  const reRef = useRef()
+  // const reRef = useRef()
 
   const [errors, setErrors] = useState('')
   const { register, handleSubmit } = useForm()
   const onSubmit = async (data) => {
-    const googleToken = await reRef.current.getValue()
-    reRef.current.reset()
-    const human = await validateHuman(googleToken)
-    if (!human) {
-      return
-    }
+    // const googleToken = await reRef.current.getValue()
+    // reRef.current.reset()
+    // const human = await validateHuman(googleToken)
+    // if (!human) {
+    //   return
+    // }
     try {
       let response = await axios.post('/api/auth/register/', data)
       response = await axios.post('/api/auth/login/', {
@@ -38,13 +38,13 @@ const Register = () => {
     }
   }
 
-  const validateHuman = async (googleToken) => {
-    const secret = process.env.REACT_APP_RECAPTCHA_SECRET_KEY
-    const response = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${googleToken}`
-    )
-    return response.data.success
-  }
+  // const validateHuman = async (googleToken) => {
+  //   const secret = process.env.REACT_APP_RECAPTCHA_SECRET_KEY
+  //   const response = await axios.post(
+  //     `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${googleToken}`
+  //   )
+  //   return response.data.success
+  // }
 
   const [googleLogin, setGoogleLogin] = useState(null)
 
@@ -221,12 +221,12 @@ const Register = () => {
                   <p className="help is-danger">{errors.password}</p>
                 </div>
               </div>
-              <div className="container captcha">
+              {/* <div className="container captcha">
                 <ReCAPTCHA
                   sitekey={process.env.REACT_APP_PUBLIC_RECAPTCHA_SITE_KEY}
                   ref={reRef}
                 />
-              </div>
+              </div> */}
 
               <br />
               <div className="field">
